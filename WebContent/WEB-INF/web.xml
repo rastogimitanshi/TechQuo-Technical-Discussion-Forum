@@ -5,9 +5,7 @@
 
     <welcome-file>index.htm</welcome-file>
     <welcome-file>search.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
+   
   </welcome-file-list>
    <servlet>
     <servlet-name>UpdateProfileServlet</servlet-name>
@@ -32,14 +30,5 @@
   <servlet-mapping>
     <servlet-name>LogOutServlet</servlet-name>
     <url-pattern>/LogOut</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>LogInServlet</servlet-name>
-    <servlet-class>controller.LogInServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>LogInServlet</servlet-name>
-    <url-pattern>/UserLogin</url-pattern>
-  </servlet-mapping>
-  
+  </servlet-mapping> 
 </web-app>

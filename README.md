@@ -1,2 +1,0 @@
-# TechQuo
-ACMS Project

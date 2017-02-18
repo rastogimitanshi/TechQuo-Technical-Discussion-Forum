@@ -40,7 +40,7 @@ public class User {
 	this.JobPosition = JobPosition;
 	//this.Role = Role;
 	//this.Activity = Activity;
-	//this.ProfileViews = ProfileViews;
+	
 	//this.Password = Password;
 	//this.create_time = create_time;
 	//this.expiry_date = expiry_date;
