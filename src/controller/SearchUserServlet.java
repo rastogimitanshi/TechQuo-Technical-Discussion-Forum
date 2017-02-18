@@ -37,27 +37,43 @@ public class SearchUserServlet extends HttpServlet{
             
 			System.out.println("Connection Established");
             Integer Uid = Integer.parseInt(request.getParameter("UID"));
+            System.out.println(Uid);
             PreparedStatement pst= (PreparedStatement) conn.prepareStatement("SELECT Fname, Lname, Email, DOB,"
-            			+"Country, City, JobPostion, Profile_views FROM"+
+            			+"Country, City, JobPosition, Profile_views FROM"+
             		"`user` WHERE user_id=?");
             pst.setInt(1, Uid);
             ResultSet rs=pst.executeQuery();
+            rs.next();
             User user =new User(Uid,rs.getString(1),rs.getString(2),rs.getString(5),rs.getString(3),rs.getString(6),
             		rs.getString(7),rs.getDate(4));
             Integer pv=rs.getInt(8);
-            PreparedStatement pstI= (PreparedStatement) conn.prepareStatement("SELECT Interests FROM `interests_user"+
+            PreparedStatement pstI= (PreparedStatement) conn.prepareStatement("SELECT Interests FROM `interests_user`"+
             					"WHERE user_id_I=?");
-            pstI.setInt(1,Uid);
+            pstI.setInt(1, Uid);
             String Interests="";
             ResultSet rstI=pstI.executeQuery();
             while(rstI.next()){
-            	Interests.concat(rstI.getString(1)+",");
+            	Interests= Interests.concat(rstI.getString(1)).concat(",");
             	
             }
             System.out.println(Interests);
+            PreparedStatement pstE= (PreparedStatement) conn.prepareStatement("SELECT Education FROM `education_user`"+
+					"WHERE user_id_E=?");
+            pstE.setInt(1, Uid);
+            String Education="";
+            ResultSet rstE=pstE.executeQuery();
+            while(rstE.next()){
+            Education= Education.concat(rstE.getString(1)).concat(",");
+            }
+            System.out.println(Education);
             conn.close();
+            request.setAttribute("UserDetails", user);
+            request.setAttribute("Interests",Interests);
+            request.setAttribute("Education",Education);
+            request.setAttribute("ProfileViews",pv);
+            
             RequestDispatcher requestDispatcher;			
-    		requestDispatcher =request.getRequestDispatcher("UserLogin.jsp"); //change name later
+    		requestDispatcher =request.getRequestDispatcher("UserProfile.jsp"); //change name later
     		requestDispatcher.forward(request, response); 
 }
         catch(Exception e){
