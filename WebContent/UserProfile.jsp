@@ -99,12 +99,54 @@
 			
 		}
 	</style>
-
 	<body>
 	<div class="main">
 		<div class="logout">
 			<a href ="LogOut"> <button id="btnLogout">Logout</button> </a>
 		</div>
+			<br><br>
+		<% 	User user =(User)request.getAttribute("UserDetails"); 
+			String Interests =(String)request.getAttribute("Interests");	
+			String Education =(String)request.getAttribute("Education");	
+			Integer profileV =(Integer)request.getAttribute("ProfileViews");
+				%>
+				
+				<img src="/TechQuo/GetProfilePicture?Uid=<%=user.getUserId()%>" width="50" height="50" alt="User Profile Picture"/>
+			<div class="contents"> 
+				<div id="fields">
+					<br>User Id 
+					<br>First Name
+					<br>Last Name 
+					<br>Email ID 
+					<br>Country
+					<br>City
+					<br>Job Position
+					<br>DOB
+					<br>Interests
+					<br>Education
+					<br>Profile Views
+				</div>
+			
+			
+				<div id="values" style="margin-bottom:80px;">
+					<% 
+						out.println("<BR>: " + user.getUserId()); 
+						out.println("<BR>: " + user.getFirstName());
+						out.println("<BR>: " + user.getLastName());
+						out.println("<BR>: " + user.getEmailId());
+						out.println("<BR>: " + user.getCountry());
+						out.println("<BR>: " + user.getCity());
+						out.println("<BR>: " + user.getJobPosition());
+						out.println("<BR>: " + user.getDOB());
+						out.println("<BR>: "+ Interests);
+						out.println("<BR>: "+ Education);
+						out.println("<BR>: "+ profileV);
+						
+					%>
+				 </div>
+	
+		</div>
+		<br><br><br><br>
 	
 	</div>
 

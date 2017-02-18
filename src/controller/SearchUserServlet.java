@@ -38,6 +38,9 @@ public class SearchUserServlet extends HttpServlet{
 			System.out.println("Connection Established");
             Integer Uid = Integer.parseInt(request.getParameter("UID"));
             System.out.println(Uid);
+            PreparedStatement pstU= (PreparedStatement) conn.prepareStatement("UPDATE `user` SET Profile_views= Profile_views+1 WHERE user_id=?");
+            pstU.setInt(1,Uid);
+            int i = pstU.executeUpdate();
             PreparedStatement pst= (PreparedStatement) conn.prepareStatement("SELECT Fname, Lname, Email, DOB,"
             			+"Country, City, JobPosition, Profile_views FROM"+
             		"`user` WHERE user_id=?");
@@ -65,6 +68,7 @@ public class SearchUserServlet extends HttpServlet{
             while(rstE.next()){
             Education= Education.concat(rstE.getString(1)).concat(",");
             }
+            
             System.out.println(Education);
             conn.close();
             request.setAttribute("UserDetails", user);

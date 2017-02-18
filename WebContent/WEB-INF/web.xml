@@ -2,12 +2,10 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
   <display-name>TechQuo</display-name>
   <welcome-file-list>
-
     <welcome-file>index.htm</welcome-file>
     <welcome-file>search.jsp</welcome-file>
-   
   </welcome-file-list>
-   <servlet>
+  <servlet>
     <servlet-name>UpdateProfileServlet</servlet-name>
     <servlet-class>controller.UpdateProfileServlet</servlet-class>
   </servlet>
@@ -16,12 +14,12 @@
     <url-pattern>/UpdateProfile</url-pattern>
   </servlet-mapping>
   <servlet>
-  <servlet-name>SearchQuestionServlet</servlet-name>
-  <servlet-class>controller.SearchQuestionServlet</servlet-class>
+    <servlet-name>SearchQuestionServlet</servlet-name>
+    <servlet-class>controller.SearchQuestionServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-  <servlet-name>SearchQuestionServlet</servlet-name>
-  <url-pattern>/SearchQuestionServlet</url-pattern>
+    <servlet-name>SearchQuestionServlet</servlet-name>
+    <url-pattern>/SearchQuestionServlet</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>LogOutServlet</servlet-name>
@@ -30,13 +28,13 @@
   <servlet-mapping>
     <servlet-name>LogOutServlet</servlet-name>
     <url-pattern>/LogOut</url-pattern>
-  </servlet-mapping> 
-    <servlet>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>SearchUserServlet</servlet-name>
     <servlet-class>controller.SearchUserServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>SearchUserServlet</servlet-name>
     <url-pattern>/SearchUserServlet</url-pattern>
-  </servlet-mapping> 
+  </servlet-mapping>
 </web-app>
