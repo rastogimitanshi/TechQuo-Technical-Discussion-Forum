@@ -6,7 +6,6 @@ import java.sql.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,12 +13,11 @@ import domain.User;
 import org.apache.log4j.Logger;
 import com.mysql.jdbc.Connection;
 
-@WebServlet(name="/SearchUserServlet",urlPatterns={"/SearchUserServlet"})
-public class SearchUserServlet{
+public class SearchUserServlet extends HttpServlet{
 
-	//private static final long serialVersionUID =102831973239L;
+	private static final long serialVersionUID =102831973239L;
 	final static Logger logger= Logger.getLogger(UpdateProfileServlet.class);
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     	logger.info("Inside Search User servlet");
         response.setContentType("text/html");

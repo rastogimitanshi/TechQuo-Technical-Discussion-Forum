@@ -31,4 +31,12 @@
     <servlet-name>LogOutServlet</servlet-name>
     <url-pattern>/LogOut</url-pattern>
   </servlet-mapping> 
+    <servlet>
+    <servlet-name>SearchUserServlet</servlet-name>
+    <servlet-class>controller.SearchUserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SearchUserServlet</servlet-name>
+    <url-pattern>/SearchUserServlet</url-pattern>
+  </servlet-mapping> 
 </web-app>

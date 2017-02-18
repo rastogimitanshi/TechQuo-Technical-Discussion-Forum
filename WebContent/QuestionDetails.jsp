@@ -6,6 +6,7 @@
 <%@ page import ="domain.Question" %>
 <%@ page import ="domain.Answer" %>
 <%@ page import ="domain.User" %>
+<%@ page import ="controller.*" %>
 <%@ page import ="com.mysql.jdbc.Connection" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -80,7 +81,7 @@
 	    	ResultSet rstau =pstau.executeQuery();
 	    	rstau.next();%>
 	    	<li><strong>Posted By:</strong>
-	   		<a href ="/TechQuo/SearchUser?UID=<%=rs.getInt(4)%>"><%=rstau.getString(1)%></a></li>
+	   		<a href ="/TechQuo/SearchUserServlet?UID=<%=rs.getInt(4)%>"><%=rstau.getString(1)%></a></li>
 			<li><strong>Up votes : </strong><%=A1.getUpvotes()%></li>
 			<li><strong>Down votes : </strong><%=A1.getDownvotes()%></li>
 			</ul></li>
