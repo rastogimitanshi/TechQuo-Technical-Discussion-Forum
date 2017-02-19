@@ -58,6 +58,7 @@
 	    <li><strong>Posted on: </strong><%=rst.getDate(3)%></li>
 	    
 	   </ul>
+	   <p>Think you can answer the question? Post an answer by clicking <a href="EnterAnswer.jsp?qid=<%=quesid%>">here</a>
 	   </div>
 	   
 		<div class="answers">
@@ -81,7 +82,7 @@
 	    	ResultSet rstau =pstau.executeQuery();
 	    	rstau.next();%>
 	    	<li><strong>Posted By:</strong>
-	   		<a href ="/TechQuo/SearchUserServlet?UID=<%=rs.getInt(4)%>"><%=rstau.getString(1)%></a></li>
+	   		<a href ="http://localhost:8080/TechQuo/SearchUserServlet?UID=<%=rs.getInt(4)%>"><%=rstau.getString(1)%></a></li>
 			<li><strong>Up votes : </strong><%=A1.getUpvotes()%></li>
 			<li><strong>Down votes : </strong><%=A1.getDownvotes()%></li>
 			</ul></li>
