@@ -40,7 +40,7 @@ public class RegistrationServlet extends HttpServlet {
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/techquo", "root", "tiger"); // Path of database, username, password for sql
 																													
 					
-						ps = con.prepareStatement("insert into user values(?,?,?,?,?,?,?,?,DEFAULT,?,?,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT)"); // user is the table name no of ?= no of columns
+						ps = con.prepareStatement("insert into `user`(user_id,Fname,Lname,Q1,A1,Q2,A2,Role,Email,Password) values(?,?,?,?,?,?,?,?,?,?)"); // user is the table name no of ?= no of columns
 																													
 						ps.setString(1, Eid); // 0,1,2,3 depicts the serial order of question marks in table. All question markks are in 1 to 1 corrospondence with column names
 						ps.setString(2, Fname);
