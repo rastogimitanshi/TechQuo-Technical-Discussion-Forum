@@ -6,6 +6,7 @@ import java.sql.*;
 import java.util.ArrayList;
 //import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,7 +15,7 @@ import domain.Question;
 import org.apache.log4j.Logger;
 
 import com.mysql.jdbc.Connection;
- 
+@WebServlet("/EnterAnswer")
 public class EnterAnswerServlet extends HttpServlet {
 	private static final long serialVersionUID =1L;
 	final static Logger logger= Logger.getLogger(UpdateProfileServlet.class);
@@ -37,11 +38,33 @@ public class EnterAnswerServlet extends HttpServlet {
                                            "user=root&password=tiger");
             
 			System.out.println("Connection Established");
+			String ans=request.getParameter("ans");
 			Integer qid=Integer.parseInt(request.getParameter("qid"));
+			
+			System.out.println(qid);
+            PreparedStatement pstI= (PreparedStatement) conn.prepareStatement("INSERT INTO"+
+			"`answer`(Ques_id_A,Answer,user_id_A) VALUES ?,?,'123'");//change 123 to user id of the logged in user
+			pstI.setInt(1,qid);
+			pstI.setString(2,ans);
+            
+            int i= pstI.executeUpdate();
+			if(i>0)
+			{
+				System.out.println("Answer Posted Successfully");
+			}
+			out.println("<script type=\"text/javascript\">");        // creating alert message using java
+			out.println("alert('Profile Edited Successfully');");
+			out.println("location='UserLogin.jsp';");
+			out.println("</script>");
+			
 			
 			
         }
         catch(Exception ex){
+        	out.println("<script type=\"text/javascript\">");        // creating alert message using java
+			out.println("alert('Some unexpected error occured. Please try again later');");
+			out.println("location='UserLogin.jsp';");
+			out.println("</script>");
         }
         }
     }

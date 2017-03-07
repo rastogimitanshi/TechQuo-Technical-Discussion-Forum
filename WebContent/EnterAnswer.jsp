@@ -7,7 +7,9 @@
 <title>Post Answer</title>
 </head>
 <body>
-<% Integer quesid=Integer.parseInt(request.getParameter("qid")); %>
+<% Integer quesid=Integer.parseInt(request.getParameter("qid"));
+//Enter code for session. User can only answer if they have logged in. Else redirect to Login Page.
+%>
 <div class ="input">
 	   <form action="EnterAnswer">
 	   <textarea name="ans" rows="4" cols="50">
