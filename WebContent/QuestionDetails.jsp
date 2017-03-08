@@ -36,12 +36,15 @@
 		System.out.println("Connection Established");
 		PreparedStatement pst= (PreparedStatement) conn.prepareStatement("SELECT Question, user_id,"+
 				"create_time FROM `question` WHERE Ques_id=?");
+		
 		%>
 		<div class ="question">
 		<h3 class="main"><strong>Question ID: </strong><%=quesid%></h3>
 		<% pst.setInt(1,quesid);
 		ResultSet rst = pst.executeQuery();
 	 	rst.next();
+	 	PreparedStatement qstU= (PreparedStatement) conn.prepareStatement("UPDATE `question` set count=count+1 where Ques_id=?");
+		qstU.setInt(1,quesid);
 	 	Question Q1;
 		Q1=new Question(quesid,rst.getString(1),rst.getDate(3),rst.getInt(2));%>
 		<ul>
