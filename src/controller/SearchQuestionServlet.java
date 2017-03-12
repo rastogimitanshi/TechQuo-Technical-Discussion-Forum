@@ -1,5 +1,5 @@
 package controller;
-
+import connection.ConnectionManager;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
@@ -14,7 +14,6 @@ import domain.Question;
 import org.apache.log4j.Logger;
 
 import com.mysql.jdbc.Connection;
- 
 public class SearchQuestionServlet extends HttpServlet {
 	private static final long serialVersionUID =1L;
 	final static Logger logger= Logger.getLogger(UpdateProfileServlet.class);
@@ -25,20 +24,8 @@ public class SearchQuestionServlet extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
         try {
-            // The newInstance() call is a work around for some
-            // broken Java implementations
-
-            Class.forName("com.mysql.jdbc.Driver").newInstance();
-        } catch (Exception ex) {
-            // handle the error
-        }
-        Connection conn = null;
-        try {
-            conn =
-               (Connection) DriverManager.getConnection("jdbc:mysql://localhost/techquo?" +
-                                           "user=root&password=tiger");
-            
-			System.out.println("Connection Established");
+        	Connection conn=null;
+			conn = ConnectionManager.getConnection();
             String tag = request.getParameter("tag");
             System.out.println(tag);
             Question Q1 = null;

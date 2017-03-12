@@ -1,5 +1,5 @@
 package com.TechQuo.Controller;
-
+import connection.ConnectionManager;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -35,8 +35,8 @@ public class RegistrationServlet extends HttpServlet {
 		
 		
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/techquo", "root", "root"); // Path of database, username, password for sql
+			Connection con=null;
+			con = ConnectionManager.getConnection();
 																													
 					
 						ps = con.prepareStatement("insert into user values(DEFAULT,?,?,?,?,?,?,?,DEFAULT,?,?,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT)"); // user is the table name no of ?= no of columns

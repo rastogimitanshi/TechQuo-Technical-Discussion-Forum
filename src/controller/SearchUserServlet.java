@@ -13,6 +13,8 @@ import domain.User;
 import org.apache.log4j.Logger;
 import com.mysql.jdbc.Connection;
 
+import connection.ConnectionManager;
+
 public class SearchUserServlet extends HttpServlet{
 
 	private static final long serialVersionUID =102831973239L;
@@ -23,19 +25,8 @@ public class SearchUserServlet extends HttpServlet{
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
         try {
-            
-
-            Class.forName("com.mysql.jdbc.Driver").newInstance();
-        } catch (Exception ex) {
-            
-        }
-        Connection conn = null;
-        try {
-            conn =
-               (Connection) DriverManager.getConnection("jdbc:mysql://localhost/techquo?" +
-                                           "user=root&password=tiger");
-            
-			System.out.println("Connection Established");
+        	Connection conn=null;
+			conn = ConnectionManager.getConnection();
             Integer Uid = Integer.parseInt(request.getParameter("UID"));
             System.out.println(Uid);
             PreparedStatement pstU= (PreparedStatement) conn.prepareStatement("UPDATE `user` SET Profile_views= Profile_views+1 WHERE user_id=?");

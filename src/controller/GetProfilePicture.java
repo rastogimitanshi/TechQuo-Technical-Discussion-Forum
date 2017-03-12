@@ -1,5 +1,5 @@
 package controller;
-
+import connection.ConnectionManager;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.sql.Connection;
@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import connection.ConnectionManager;
+
 public class GetProfilePicture extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -20,17 +22,8 @@ public class GetProfilePicture extends HttpServlet {
 		
 		int img_id = Integer.parseInt(request.getParameter("Uid"));
 		try {
-            // The newInstance() call is a work around for some
-            // broken Java implementations
-
-            Class.forName("com.mysql.jdbc.Driver").newInstance();
-        } catch (Exception ex) {
-            // handle the error
-        }
-		try {
-			Connection conn =null;
-			conn=(Connection) DriverManager.getConnection("jdbc:mysql://localhost/techquo?" +
-		                                           "user=root&password=tiger");
+			Connection conn=null;
+			conn = ConnectionManager.getConnection();
 		            
 		System.out.println("Connection Established");
 		ResultSet rs = null;

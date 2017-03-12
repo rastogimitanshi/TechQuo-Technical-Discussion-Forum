@@ -22,8 +22,8 @@
                     for( final Question Q1: al)
                     {
                     	%>
-                    	<li><ul><li> Question ID: <a href ="QuestionDetails.jsp?QID=<%= Q1.getQuesid() %>"><%= Q1.getQuesid() %></a> </li>
-                    	<li>Question: <%=Q1.getQuestion() %><li> 
+                    	<li><ul><li> Question ID: <%= Q1.getQuesid() %>  </li>
+                    	<li>Question: <a href ="QuestionDetails.jsp?QID=<%= Q1.getQuesid() %>"><%=Q1.getQuestion() %></a><li> 
                     	<li>Question Create Time: <%=Q1.getcreate_time() %></li>
                     	<li>User ID Who Posted Question: <%=Q1.getuser_id() %><li>
                     	</ul>

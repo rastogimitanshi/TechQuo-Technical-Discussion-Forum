@@ -1,4 +1,4 @@
-package com.TechQuo.Controller;
+package controller;
 import java.io.IOException;
 
 import javax.servlet.ServletException;

@@ -1,4 +1,6 @@
 package controller;
+import connection.ConnectionManager;
+
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -25,19 +27,9 @@ public class EnterAnswerServlet extends HttpServlet {
 		//response.setContentType("text/html");
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
-        try {
-
-            Class.forName("com.mysql.jdbc.Driver").newInstance();
-        } catch (Exception ex) {
-            // handle the error
-        }
-        Connection conn = null;
-        try {
-            conn =
-               (Connection) DriverManager.getConnection("jdbc:mysql://localhost/techquo?" +
-                                           "user=root&password=tiger");
-            
-			System.out.println("Connection Established");
+        try{
+        Connection conn=null;
+		conn = ConnectionManager.getConnection();
 			String ans=request.getParameter("ans");
 			System.out.println(ans);
 			Integer qid=Integer.parseInt(request.getParameter("qid"));

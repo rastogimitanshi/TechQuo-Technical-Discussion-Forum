@@ -1,11 +1,10 @@
 package controller;
 
+import connection.ConnectionManager;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
@@ -13,9 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
-
 import org.apache.log4j.Logger;
-
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 
@@ -30,7 +27,7 @@ public class UpdateProfileServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		PrintWriter out = response.getWriter();
 		logger.info("Inside update profile servlet");
-		response.setContentType("text/html"); // type of response given by the server
+		response.setContentType("text/html");
 		
 		HttpSession session = request.getSession();
 		User user =(User) session.getAttribute("USER_DETAILS");
@@ -70,20 +67,13 @@ public class UpdateProfileServlet extends HttpServlet {
 			EmailId=user.getEmailId();
 		}
 		
-		try {
-          
-            Class.forName("com.mysql.jdbc.Driver").newInstance();
-        } catch (Exception ex) {
-            // handle the error
-        }
-        Connection conn = null;
-        try {
-            conn =
-               (Connection) DriverManager.getConnection("jdbc:mysql://localhost/techquo?" +
-                                           "user=root&password=tiger");
-			System.out.println("Connection Established");
+		try{
+			Connection con=null;
+			con = ConnectionManager.getConnection();
+			System.out.println("Established");
+		
 			
-			PreparedStatement ps = (PreparedStatement) conn.prepareStatement("UPDATE `user` SET Fname=?, Lname=?, City=?, Email=?, Country=? , DOB=?, JobPosition=?, Profile_Picture=? WHERE user_id=?");
+			PreparedStatement ps = (PreparedStatement) con.prepareStatement("UPDATE `user` SET Fname=?, Lname=?, City=?, Email=?, Country=? , DOB=?, JobPosition=?, Profile_Picture=? WHERE user_id=?");
 		
 			
 			ps.setString(1, Fname);
@@ -102,7 +92,7 @@ public class UpdateProfileServlet extends HttpServlet {
             // sends the statement to the database server
 			
 			int i = ps.executeUpdate();
-			PreparedStatement pst = (PreparedStatement) conn.prepareStatement("INSERT INTO interests_user VALUES(?,?)");
+			PreparedStatement pst = (PreparedStatement) con.prepareStatement("INSERT INTO interests_user VALUES(?,?)");
 		
 			for(i=0;i<Interests.length;i++){
 				pst.setInt(1, UserId);
@@ -112,7 +102,7 @@ public class UpdateProfileServlet extends HttpServlet {
 			}
 			pst.executeBatch();
 			
-			PreparedStatement pstE = (PreparedStatement) conn.prepareStatement("INSERT INTO education_user VALUES(?,?)");
+			PreparedStatement pstE = (PreparedStatement) con.prepareStatement("INSERT INTO education_user VALUES(?,?)");
 			for(int j=0;j<Education.length;j++){
 				pstE.setInt(1, UserId);
 				pstE.setString(2, Education[j]);
@@ -121,7 +111,7 @@ public class UpdateProfileServlet extends HttpServlet {
 			}
 			pstE.executeBatch();
 		
-			PreparedStatement p = (PreparedStatement) conn.prepareStatement("SELECT user_id, Fname, Lname, Country, Email, City, JobPosition, DOB FROM `user` WHERE user_id=?");
+			PreparedStatement p = (PreparedStatement) con.prepareStatement("SELECT user_id, Fname, Lname, Country, Email, City, JobPosition, DOB FROM `user` WHERE user_id=?");
 			p.setInt(1, UserId); //change to getUserId() later
 			
 			ResultSet rs = p.executeQuery();
@@ -134,7 +124,6 @@ public class UpdateProfileServlet extends HttpServlet {
 			User UserDetails;
 			rs.next();
 			UserDetails = new User(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getDate(8));
-			conn.close();
 			session.setAttribute("USER_DETAILS", UserDetails);
 				logger.info("Profile edited successfully");
 				out.println("<script type=\"text/javascript\">");        // creating alert message using java

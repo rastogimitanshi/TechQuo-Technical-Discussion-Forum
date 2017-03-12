@@ -7,7 +7,9 @@
 <%@ page import ="domain.Answer" %>
 <%@ page import ="domain.User" %>
 <%@ page import ="controller.*" %>
+<%@ page import ="connection.ConnectionManager" %>
 <%@ page import ="com.mysql.jdbc.Connection" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -19,21 +21,8 @@
 	Integer quesid=Integer.parseInt(request.getParameter("QID")); 
 	
 	try {
-	
-	    Class.forName("com.mysql.jdbc.Driver").newInstance();
-	} catch (Exception ex){
-		
-		System.out.println("Error Occurred");
-	}
-	
-	Connection conn = null;
-	
-	try {
-	    conn =
-	       (Connection) DriverManager.getConnection("jdbc:mysql://localhost/techquo?" +
-	                                   "user=root&password=tiger");
-	    
-		System.out.println("Connection Established");
+		Connection conn=null;
+		conn = ConnectionManager.getConnection();
 		PreparedStatement pst= (PreparedStatement) conn.prepareStatement("SELECT Question, user_id,"+
 				"create_time FROM `question` WHERE Ques_id=?");
 		
