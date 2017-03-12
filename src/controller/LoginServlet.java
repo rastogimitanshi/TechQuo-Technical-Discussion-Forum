@@ -1,11 +1,13 @@
-package controller;
+package com.TechQuo.Controller;
 import java.io.IOException;
+import java.io.PrintWriter; 
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 
 import tables.UserBean;
@@ -31,16 +33,21 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
+		
+		PrintWriter out=response.getWriter(); 
 		try
 		{	    
 
 			UserBean user = new UserBean();
 			user.setUsername(request.getParameter("username"));
 			user.setPassword(request.getParameter("password"));
-
 			user = UserDAO.login(user);
-
-
+			if(user != null){
+				out.print("Welcome "+ user.getUsername());  
+				request.setAttribute("NAME", user.getUsername());
+				HttpSession session = request.getSession();
+				session.setAttribute("name", user.getUsername());
+			}
 		} 
 
 
