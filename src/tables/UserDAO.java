@@ -5,7 +5,8 @@ import java.sql.*;
 public class UserDAO 
 {
 	static Connection currentCon = null;
-	static ResultSet rs = null;  
+	static ResultSet rs = null; 
+	static int flag = 0;
 
 	public static UserBean login(UserBean bean) {
 
@@ -18,7 +19,7 @@ public class UserDAO
 		{
 			//connect to DB
 			Class.forName("com.mysql.jdbc.Driver");    
-			Connection myConn= DriverManager.getConnection("jdbc:mysql://localhost:3306/techquo?user=root&password=tiger"); //database and table name=hello
+			Connection myConn= DriverManager.getConnection("jdbc:mysql://localhost:3306/techquo?user=root&password=dnsingh87"); //database and table name=hello
 
 			Statement stmt= (Statement) myConn.createStatement();
 			searchQuery="SELECT Email, Password FROM user";
@@ -30,9 +31,14 @@ public class UserDAO
 				{
 
 					System.out.println("Login successful");
+					flag = 1;
 					break;
 
 				}
+			}
+			if(flag != 1){
+				System.out.println("Login unsuccessful. Check credentials.");
+				return null;
 			}
 			
 		}			
