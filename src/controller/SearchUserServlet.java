@@ -32,12 +32,14 @@ public class SearchUserServlet extends HttpServlet{
             PreparedStatement pstU= (PreparedStatement) conn.prepareStatement("UPDATE `user` SET Profile_views= Profile_views+1 WHERE user_id=?");
             pstU.setInt(1,Uid);
             int i = pstU.executeUpdate();
+            if(i>0){
             PreparedStatement pst= (PreparedStatement) conn.prepareStatement("SELECT Fname, Lname, Email, DOB,"
             			+"Country, City, JobPosition, Profile_views FROM"+
             		"`user` WHERE user_id=?");
             pst.setInt(1, Uid);
             ResultSet rs=pst.executeQuery();
             rs.next();
+            
             User user =new User(Uid,rs.getString(1),rs.getString(2),rs.getString(5),rs.getString(3),rs.getString(6),
             		rs.getString(7),rs.getDate(4));
             Integer pv=rs.getInt(8);
@@ -66,7 +68,7 @@ public class SearchUserServlet extends HttpServlet{
             request.setAttribute("Interests",Interests);
             request.setAttribute("Education",Education);
             request.setAttribute("ProfileViews",pv);
-            
+            }
             RequestDispatcher requestDispatcher;			
     		requestDispatcher =request.getRequestDispatcher("UserProfile.jsp"); //change name later
     		requestDispatcher.forward(request, response); 

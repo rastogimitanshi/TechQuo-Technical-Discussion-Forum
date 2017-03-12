@@ -100,6 +100,7 @@
 		}
 	</style>
 	<body>
+	
 	<div class="main">
 		<div class="logout">
 			<a href ="LogOut"> <button id="btnLogout">Logout</button> </a>

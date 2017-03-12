@@ -7,7 +7,15 @@
 <title>Post Answer</title>
 </head>
 <body>
-<% Integer quesid=Integer.parseInt(request.getParameter("qid"));
+<% 
+	if(session.getAttribute("user_details")==null){
+	request.setAttribute("SessionExpired", "Your session has expired. Please log in again.");
+	RequestDispatcher requestDispatcher;
+	requestDispatcher = request.getRequestDispatcher("/login.jsp");
+	requestDispatcher.forward(request,response);
+	return;
+}
+Integer quesid=Integer.parseInt(request.getParameter("qid"));
 //Enter code for session. User can only answer if they have logged in. Else redirect to Login Page.
 %>
 <div class ="input">

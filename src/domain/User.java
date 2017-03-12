@@ -105,5 +105,13 @@ public class User {
 	public Date getDOB() {
 		return DOB;
 	}
+	public void setEmailId(String Email)
+	{
+		this.EmailId=Email;
+	}
+	public void setPassword(String Password)
+	{
+		this.Password=Password;
+	}
 	
 }

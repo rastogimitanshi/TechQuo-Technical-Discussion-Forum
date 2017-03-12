@@ -136,20 +136,18 @@ function validateEmail(email) {
 <body>
 	<h1 style="text-align: center; color: white;">EDIT PROFILE</h1>
 
-	<%-- 
-			if(session.getAttribute("USER_DETAILS")==null){
+	<%	if(session.getAttribute("user_details")==null){
 				request.setAttribute("SessionExpired", "Your session has expired. Please log in again.");
 				RequestDispatcher requestDispatcher;
-				requestDispatcher = request.getRequestDispatcher("/UserLogin.jsp");
+				requestDispatcher = request.getRequestDispatcher("/login.jsp");
 				requestDispatcher.forward(request,response);
 				return;
 			}
-		--%>
+ 
+	 %>	
  
  
- 
- 
- <% User user= (User)session.getAttribute("USER_DETAILS");%>
+ <% User user= (User)session.getAttribute("user_details");%>
 	
 
 
@@ -164,31 +162,31 @@ function validateEmail(email) {
 				action="UpdateProfile" method="post" enctype="multipart/form-data">
 				<br>
 				<br>User ID: <br> <input type="number" name="UserId"
-					id="UserId" value="123"> 
+					id="UserId" value="<%=user.getUserId()%>"> 
 
 				<br>
 				<br>First Name:<br> <input type="text" name="FirstName"
-					id="FirstName" value="Default" autocomplete="on"> <br>
+					id="FirstName" value="<%=user.getFirstName()%>" autocomplete="on"> <br>
 				<br>Last Name:<br> <input type="text" name="LastName"
-					id="LastName" value="Default" autocomplete="on"> <br>
+					id="LastName" value="<%=user.getLastName()%>" autocomplete="on"> <br>
 				<p id="comment" style="color: red; position: absolute;"></p>
 
 				<br>
 				<br>Email ID: <br> <input type="email" name="EmailId"
-					id="EmailId" value="Default@gmail.com">
+					id="EmailId" value="<%=user.getEmailId()%>">
 					<br>
 				<br>Country: <br> <input type="text" name="Country"
-					id="Country" value="Default"> <br>
+					id="Country" value="<%=user.getCountry()%>"> <br>
 				<br>City:<br> <input type="text" name="City" id="City"
-					value=""> <br>
+					value="<%=user.getCity()%>"> <br>
 				<br>Date of birth: <br> <input type="date" name="DOB"
-					id="DOB" value="1995-10-12" max="1999-01-02"> <br>
+					id="DOB" value="<%=user.getDOB()%>" max="1999-01-02"> <br>
 				<br>Job Position: <br> <input type="text" name="JobPosition"
-					id="JobPosition" value="Default"> <br>
+					id="JobPosition" value="<%=user.getJobPosition()%>"> <br>
 				<script src="addInput.js" language="Javascript" type="text/javascript">
 				</script>
      		<div id="dynamicInput">
-          Enter Interests:<br><input type="text" value="Default" name="myInputs">
+          Enter Interests:<br><input type="text" value="" name="myInputs">
      	</div>
      		<input type="button" value="Add more interests" onClick="addInput('dynamicInput');">
 		<br>
@@ -196,7 +194,7 @@ function validateEmail(email) {
 		<script src="addEducation.js" language="Javascript" type="text/javascript">
 				</script>
      		<div id="dynamicEducation">
-          Enter Education:<br><input type="text" value="Default" name="myEducation">
+          Enter Education:<br><input type="text" value="" name="myEducation">
      	</div>
      		<input type="button" value="Add more Education" onClick="addEducation('dynamicEducation');">
 		<br>

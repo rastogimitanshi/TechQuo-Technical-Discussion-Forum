@@ -11,7 +11,7 @@
 		<h2>Enter your login credentials</h2>
 		<form action="login" method="post">
 
-			Enter your username <br> <input type="text" name="username" /><br> 
+			Enter your Email ID <br> <input type="text" name="username" /><br> 
 			<br> Enter your password <br>
 			<input type="password" name="password" /> <br>
 			<input type="submit" value="Login">

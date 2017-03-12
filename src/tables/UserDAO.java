@@ -1,6 +1,8 @@
 package tables;
-
+import domain.User;
 import java.sql.*;
+
+import connection.ConnectionManager;
 
 public class UserDAO 
 {
@@ -8,52 +10,40 @@ public class UserDAO
 	static ResultSet rs = null; 
 	static int flag = 0;
 
-	public static UserBean login(UserBean bean) {
+	public static User login(User bean) {
 
-		String user = bean.getUsername();   
+		String Email = bean.getEmailId();   
 		String pass = bean.getPassword();   
-		String searchQuery;
-
-
+		//String searchQuery;
 		try 
 		{
-			//connect to DB
-			Class.forName("com.mysql.jdbc.Driver");    
-			Connection myConn= DriverManager.getConnection("jdbc:mysql://localhost:3306/techquo?user=root&password=dnsingh87"); //database and table name=hello
-
-			Statement stmt= (Statement) myConn.createStatement();
-			searchQuery="SELECT Email, Password FROM user";
-			stmt.executeQuery(searchQuery);
-			ResultSet rs=stmt.getResultSet();
-			while(rs.next())
-			{
-				if((user.equals(rs.getString("Email")))&&pass.equals(rs.getString("Password")))   //username=pragya ,password=pragya
-				{
-
+			Connection conn=null;
+			conn = ConnectionManager.getConnection();
+			PreparedStatement pst= (PreparedStatement) conn.prepareStatement("SELECT user_id,Fname, Lname, Email, DOB,"
+        			+"Country, City, JobPosition FROM"+
+        		"`user` WHERE Email=? AND Password=?");
+        pst.setString(1, Email);
+        pst.setString(2,pass);
+        ResultSet rs=pst.executeQuery();
+			if(rs.next()){
 					System.out.println("Login successful");
 					flag = 1;
-					break;
-
-				}
+					bean =new User(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(6),rs.getString(4),rs.getString(7),
+		            		rs.getString(8),rs.getDate(5));
 			}
-			if(flag != 1){
+			
+			else if(flag==0){
 				System.out.println("Login unsuccessful. Check credentials.");
 				return null;
 			}
 			
 		}			
-
-		
-
-
-
 		catch (Exception ex) 
 		{
 
 			System.out.println("Log In failed: An Exception has occurred! " + ex);
 		}
 		return bean;
-
 	}	
 }
 

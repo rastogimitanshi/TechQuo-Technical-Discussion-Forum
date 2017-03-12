@@ -1,4 +1,4 @@
-package com.TechQuo.Controller;
+package controller;
 import java.io.IOException;
 import java.io.PrintWriter; 
 
@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 
-import tables.UserBean;
+import domain.User;
 import tables.UserDAO;
 
 /**
@@ -38,15 +38,15 @@ public class LoginServlet extends HttpServlet {
 		try
 		{	    
 
-			UserBean user = new UserBean();
-			user.setUsername(request.getParameter("username"));
+			User user = new User();
+			user.setEmailId(request.getParameter("username"));
 			user.setPassword(request.getParameter("password"));
 			user = UserDAO.login(user);
 			if(user != null){
-				out.print("Welcome "+ user.getUsername());  
-				request.setAttribute("NAME", user.getUsername());
+				out.print("Welcome "+ user.getUserId());  
+				request.setAttribute("NAME", user.getEmailId());
 				HttpSession session = request.getSession();
-				session.setAttribute("name", user.getUsername());
+				session.setAttribute("user_details", user);
 			}
 		} 
 

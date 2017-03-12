@@ -1,11 +1,11 @@
-package com.TechQuo.Controller;
+package controller;
 import connection.ConnectionManager;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
-import java.sql.DriverManager;
+//import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+//import java.sql.ResultSet;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -39,7 +39,7 @@ public class RegistrationServlet extends HttpServlet {
 			con = ConnectionManager.getConnection();
 																													
 					
-						ps = con.prepareStatement("insert into user values(DEFAULT,?,?,?,?,?,?,?,DEFAULT,?,?,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT)"); // user is the table name no of ?= no of columns
+			ps = con.prepareStatement("insert into `user`(Fname,Lname,Q1,A1,Q2,A2,Role,Email,Password) values(?,?,?,?,?,?,?,?,?)");  // user is the table name no of ?= no of columns
 																													
 						//ps.setString(1, Eid); // 0,1,2,3 depicts the serial order of question marks in table. All question markks are in 1 to 1 corrospondence with column names
 						ps.setString(1, Fname);

@@ -18,6 +18,13 @@
 </head>
 <body>
 	<%
+    if(session.getAttribute("USER_DETAILS")==null){
+		request.setAttribute("SessionExpired", "Your session has expired. Please log in again.");
+		RequestDispatcher requestDispatcher;
+		requestDispatcher = request.getRequestDispatcher("/UserLogin.jsp");
+		requestDispatcher.forward(request,response);
+		return;
+	}
 	Integer quesid=Integer.parseInt(request.getParameter("QID")); 
 	
 	try {
