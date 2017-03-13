@@ -70,7 +70,6 @@ public class UpdateProfileServlet extends HttpServlet {
 		try{
 			Connection con=null;
 			con = ConnectionManager.getConnection();
-			System.out.println("Established");
 		
 			
 			PreparedStatement ps = (PreparedStatement) con.prepareStatement("UPDATE `user` SET Fname=?, Lname=?, City=?, Email=?, Country=? , DOB=?, JobPosition=?, Profile_Picture=? WHERE user_id=?");
@@ -121,10 +120,10 @@ public class UpdateProfileServlet extends HttpServlet {
 				throw new Exception();
 			}*/
 		
-			User UserDetails;
+			User user_details;
 			rs.next();
-			UserDetails = new User(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getDate(8));
-			session.setAttribute("USER_DETAILS", UserDetails);
+			user_details = new User(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getDate(8));
+			session.setAttribute("user_details",user_details);
 				logger.info("Profile edited successfully");
 				out.println("<script type=\"text/javascript\">");        // creating alert message using java
 				out.println("alert('Profile Edited Successfully');");

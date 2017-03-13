@@ -6,16 +6,17 @@ import java.sql.Connection;
 //import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 //import java.sql.ResultSet;
+import java.sql.ResultSet;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import service.SendMail;
 
 
 public class RegistrationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L; // internally id maintained for class
-
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PreparedStatement ps;
@@ -37,7 +38,15 @@ public class RegistrationServlet extends HttpServlet {
 		try {
 			Connection con=null;
 			con = ConnectionManager.getConnection();
-																													
+			ps=con.prepareStatement("Select Email from `user` where Email=?");
+			ps.setString(1, mailid);
+				
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()){
+				out.println("User with email"+ mailid+"  already exists");
+				
+			}
+			else{																												
 					
 			ps = con.prepareStatement("insert into `user`(Fname,Lname,Q1,A1,Q2,A2,Role,Email,Password) values(?,?,?,?,?,?,?,?,?)");  // user is the table name no of ?= no of columns
 																													
@@ -54,14 +63,13 @@ public class RegistrationServlet extends HttpServlet {
 						
 						int i = ps.executeUpdate();
 						if (i > 0) {
-
+							SendMail.sendMail(mailid, Fname, "Dear" +Fname+" Your account has been created. Welcome to TechQuo-Technical Discussion Forum" );
 							System.out.println("You are successfully registered...");
 							
 							out.println("Registeration Successful");
-							
-	//						System.out.println("values Enterd are" + Eid + Fname + Lname + Contact + email + Dept + Post + Role
-	//								+ UName + Pass);
 						}
+	
+		}
 		}
 							
 		catch(Exception se)
