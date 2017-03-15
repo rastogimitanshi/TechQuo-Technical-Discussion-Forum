@@ -33,21 +33,21 @@ public class EnterAnswerServlet extends HttpServlet {
 			String ans=request.getParameter("ans");
 			System.out.println(ans);
 			Integer qid=Integer.parseInt(request.getParameter("qid"));
+			Integer uid=Integer.parseInt(request.getParameter("uid"));
 			
 			System.out.println(qid);
             PreparedStatement pstI= (PreparedStatement) conn.prepareStatement("INSERT INTO"+
-			"`answer`(Ques_id_A,Answer,user_id_A) VALUES (?,?,123)");//change 123 to user id of the logged in user
+			"`answer`(Ques_id_A,Answer,user_id_A) VALUES (?,?,?)");//change 123 to user id of the logged in user
 			pstI.setInt(1,qid);
 			pstI.setString(2,ans);
-            
+            pstI.setInt(3,uid);
             int i= pstI.executeUpdate();
-            conn.close();
 			if(i>0)
 			{
 				System.out.println("Answer Posted Successfully");
 			}
 			out.println("<script type=\"text/javascript\">");        // creating alert message using java
-			out.println("alert('Profile Edited Successfully');");
+			out.println("alert('Answer Posted Successfully');");
 			out.println("location='UserLogin.jsp';");
 			out.println("</script>");
 			
@@ -58,7 +58,7 @@ public class EnterAnswerServlet extends HttpServlet {
         	ex.printStackTrace();
         	out.println("<script type=\"text/javascript\">");        // creating alert message using java
 			out.println("alert('Some unexpected error occured. Please try again later');");
-			out.println("location='UserLogin.jsp';");
+			out.println("location='/login.jsp';");
 			out.println("</script>");
         }
         }

@@ -133,6 +133,7 @@ public class UpdateProfileServlet extends HttpServlet {
 		}
 		catch(Exception e){
 			System.out.println(e);
+			
 				logger.error(e);
 				logger.info("Profile edited successfully");
 				out.println("<script type=\"text/javascript\">");        // creating alert message using java

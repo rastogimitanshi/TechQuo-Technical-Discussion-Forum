@@ -47,6 +47,7 @@ public class LoginServlet extends HttpServlet {
 				request.setAttribute("NAME", user.getEmailId());
 				HttpSession session = request.getSession();
 				session.setAttribute("user_details", user);
+				response.sendRedirect(request.getParameter("from"));
 			}
 		} 
 

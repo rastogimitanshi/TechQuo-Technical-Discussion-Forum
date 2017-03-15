@@ -144,10 +144,7 @@ function validateEmail(email) {
 				return;
 			}
  
-	 %>	
- 
- 
- <% User user= (User)session.getAttribute("user_details");%>
+	User user= (User)session.getAttribute("user_details");%>
 	
 
 

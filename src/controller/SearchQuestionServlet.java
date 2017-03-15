@@ -53,8 +53,6 @@ public class SearchQuestionServlet extends HttpServlet {
  
             request.setAttribute("quesList", ques_list);   
             getServletConfig().getServletContext().getRequestDispatcher("/searchview.jsp").forward(request,response);
-            conn.close();      
-            System.out.println("Disconnected!");
             
         } catch (Exception e) {
         	System.out.println(e);

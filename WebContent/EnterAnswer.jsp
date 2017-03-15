@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ page import="domain.User"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -15,14 +16,15 @@
 	requestDispatcher.forward(request,response);
 	return;
 }
-Integer quesid=Integer.parseInt(request.getParameter("qid"));
-//Enter code for session. User can only answer if they have logged in. Else redirect to Login Page.
+	Integer quesid=Integer.parseInt(request.getParameter("qid"));
+ 	User user= (User)session.getAttribute("user_details");
 %>
 <div class ="input">
 	   <form action="EnterAnswer">
 	   <textarea name="ans" rows="4" cols="50">
   </textarea>
    <input type="hidden" name="qid" value="<%=quesid%>">
+   <input type="hidden" name="uid" value="<%=user.getUserId()%>">
   <input type="submit" value="Submit the Answer">
 </form>
 </div>
