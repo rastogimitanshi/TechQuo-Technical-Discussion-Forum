@@ -63,15 +63,17 @@ public class SearchUserServlet extends HttpServlet{
             }
             
             System.out.println(Education);
-            conn.close();
             request.setAttribute("UserDetails", user);
             request.setAttribute("Interests",Interests);
             request.setAttribute("Education",Education);
             request.setAttribute("ProfileViews",pv);
-            }
             RequestDispatcher requestDispatcher;			
     		requestDispatcher =request.getRequestDispatcher("UserProfile.jsp"); //change name later
     		requestDispatcher.forward(request, response); 
+			
+     
+            }
+            
 }
         catch(Exception e){
         	System.out.println(e);
@@ -79,7 +81,7 @@ public class SearchUserServlet extends HttpServlet{
 			logger.info("Some Error Occured");
 			out.println("<script type=\"text/javascript\">");        // creating alert message using java
 			out.println("alert('Some unexpected error occured. Please try again later');");
-			out.println("location='QuestionDetails.jsp';");
+			out.println("location='Home.jsp';");
 			out.println("</script>");
         }
     }

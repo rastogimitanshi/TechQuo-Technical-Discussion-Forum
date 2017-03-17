@@ -112,7 +112,7 @@
 			Integer profileV =(Integer)request.getAttribute("ProfileViews");
 				%>
 				
-				<img src="/TechQuo/GetProfilePicture?Uid=<%=user.getUserId()%>" width="50" height="50" alt="User Profile Picture"/>
+				<img src="/TechQuo/GetProfilePicture?Uid=<%=user.getUserId()%>" width="100" height="100" alt="User Profile Picture"/>
 			<div class="contents"> 
 				<div id="fields">
 					<br>User Id 

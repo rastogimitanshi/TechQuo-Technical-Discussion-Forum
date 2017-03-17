@@ -1,7 +1,8 @@
 package controller;
 import java.io.IOException;
-import java.io.PrintWriter; 
+import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,6 +36,7 @@ public class LoginServlet extends HttpServlet {
 	{
 		
 		PrintWriter out=response.getWriter(); 
+		response.setContentType("text/html");
 		try
 		{	    
 
@@ -47,7 +49,17 @@ public class LoginServlet extends HttpServlet {
 				request.setAttribute("NAME", user.getEmailId());
 				HttpSession session = request.getSession();
 				session.setAttribute("user_details", user);
-				response.sendRedirect(request.getParameter("from"));
+				RequestDispatcher requestDispatcher;			
+	    		requestDispatcher =request.getRequestDispatcher("Home.jsp"); //change name later
+	    		requestDispatcher.forward(request, response); 
+				
+			}
+			else
+			{
+				out.println("<script type=\"text/javascript\">");        // creating alert message using java
+				out.println("alert('User Not Registered. Login with correct Credentials');");
+				out.println("location='login.jsp';");
+				out.println("</script>");
 			}
 		} 
 

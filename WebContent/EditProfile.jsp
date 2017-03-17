@@ -134,9 +134,13 @@ function validateEmail(email) {
 
 
 <body>
+<jsp:include page="header.jsp"></jsp:include>
+     <jsp:include page="menu.jsp"></jsp:include>
 	<h1 style="text-align: center; color: white;">EDIT PROFILE</h1>
 
-	<%	if(session.getAttribute("user_details")==null){
+	<%	   
+    	 session=request.getSession(false);  
+	if(session.getAttribute("user_details")==null){
 				request.setAttribute("SessionExpired", "Your session has expired. Please log in again.");
 				RequestDispatcher requestDispatcher;
 				requestDispatcher = request.getRequestDispatcher("/login.jsp");
@@ -206,6 +210,7 @@ function validateEmail(email) {
 			
 			</div>
 		</div>
+		 <jsp:include page="footer.jsp"></jsp:include>
 	
 </body>
 </html>

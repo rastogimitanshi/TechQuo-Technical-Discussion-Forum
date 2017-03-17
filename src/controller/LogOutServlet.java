@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
+
+import connection.ConnectionManager;
 
 public class LogOutServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
@@ -22,12 +25,18 @@ public class LogOutServlet extends HttpServlet{
 		HttpSession session=request.getSession(); 
 		session.invalidate(); 
 		logger.info("session invalidated");
+		try {
+			ConnectionManager.closeconnection();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		System.out.println("You are successfully logged out!");  
 		logger.info("You have successfully logged out");
 		
 		RequestDispatcher requestDispatcher;			
-		requestDispatcher =request.getRequestDispatcher("UserLogin.jsp"); //change name later
+		requestDispatcher =request.getRequestDispatcher("login.jsp"); //change name later
 		requestDispatcher.forward(request, response); 
 		
 	}  

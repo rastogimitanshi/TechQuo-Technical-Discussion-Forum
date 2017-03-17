@@ -48,7 +48,7 @@ public class EnterAnswerServlet extends HttpServlet {
 			}
 			out.println("<script type=\"text/javascript\">");        // creating alert message using java
 			out.println("alert('Answer Posted Successfully');");
-			out.println("location='UserLogin.jsp';");
+			out.println("location='Home.jsp';");
 			out.println("</script>");
 			
 			
