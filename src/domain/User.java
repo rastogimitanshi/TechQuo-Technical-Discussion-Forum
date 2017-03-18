@@ -24,7 +24,7 @@ public class User {
 	{
 	}
 	
-	public User(Integer UserId,String FirstName,String LastName,String Country,String EmailId,String City,String JobPosition,Date DOB)
+	public User(Integer UserId,String FirstName,String LastName,String Country,String EmailId,String City,String JobPosition,Date DOB,String Password)
 	{	
 	this.UserId = UserId;
 	this.FirstName = FirstName;
@@ -41,7 +41,7 @@ public class User {
 	//this.Role = Role;
 	//this.Activity = Activity;
 	
-	//this.Password = Password;
+	this.Password = Password;
 	//this.create_time = create_time;
 	//this.expiry_date = expiry_date;
 	this.DOB = DOB;

@@ -39,9 +39,8 @@ public class SearchUserServlet extends HttpServlet{
             pst.setInt(1, Uid);
             ResultSet rs=pst.executeQuery();
             rs.next();
-            
             User user =new User(Uid,rs.getString(1),rs.getString(2),rs.getString(5),rs.getString(3),rs.getString(6),
-            		rs.getString(7),rs.getDate(4));
+            		rs.getString(7),rs.getDate(4),"");
             Integer pv=rs.getInt(8);
             PreparedStatement pstI= (PreparedStatement) conn.prepareStatement("SELECT Interests FROM `interests_user`"+
             					"WHERE user_id_I=?");

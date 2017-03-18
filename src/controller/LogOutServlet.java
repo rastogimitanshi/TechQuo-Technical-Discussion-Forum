@@ -25,13 +25,6 @@ public class LogOutServlet extends HttpServlet{
 		HttpSession session=request.getSession(); 
 		session.invalidate(); 
 		logger.info("session invalidated");
-		try {
-			ConnectionManager.closeconnection();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
 		System.out.println("You are successfully logged out!");  
 		logger.info("You have successfully logged out");
 		

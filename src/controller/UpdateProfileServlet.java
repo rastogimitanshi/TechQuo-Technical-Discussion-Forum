@@ -110,7 +110,7 @@ public class UpdateProfileServlet extends HttpServlet {
 			}
 			pstE.executeBatch();
 		
-			PreparedStatement p = (PreparedStatement) con.prepareStatement("SELECT user_id, Fname, Lname, Country, Email, City, JobPosition, DOB FROM `user` WHERE user_id=?");
+			PreparedStatement p = (PreparedStatement) con.prepareStatement("SELECT user_id, Fname, Lname, Country, Email, City, JobPosition, DOB, Password FROM `user` WHERE user_id=?");
 			p.setInt(1, UserId); //change to getUserId() later
 			
 			ResultSet rs = p.executeQuery();
@@ -122,7 +122,7 @@ public class UpdateProfileServlet extends HttpServlet {
 		
 			User user_details;
 			rs.next();
-			user_details = new User(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getDate(8));
+			user_details = new User(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getDate(8),rs.getString(9));
 			session.setAttribute("user_details",user_details);
 				logger.info("Profile edited successfully");
 				out.println("<script type=\"text/javascript\">");        // creating alert message using java
