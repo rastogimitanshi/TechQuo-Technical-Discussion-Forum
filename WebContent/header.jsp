@@ -7,7 +7,7 @@
   <div style="float: right; padding: 10px; text-align: right;">
    <br/>
     <form method="post" name="frm" action="SearchQuestionServlet">
-      <table border="0" width="300">
+      <table>
         <tr><td colspan=2 style="font-size:12pt;" align="center">
         <h3>Search Question</h3></td></tr>
         <tr><td ><b>TAG</b></td>

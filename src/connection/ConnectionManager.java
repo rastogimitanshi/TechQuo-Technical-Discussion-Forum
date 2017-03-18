@@ -14,8 +14,6 @@ public class ConnectionManager {
     		
     		conn=(Connection) DriverManager.getConnection("jdbc:mysql://localhost/techquo?" +
     	                                           "user=root&password=tiger");
-    	
-    				System.out.println("Connection Established");
     	}
     	
     	catch (Exception ex) {
@@ -23,9 +21,5 @@ public class ConnectionManager {
     	}
     	}
     	return conn;
-    }
-    public static  void closeconnection() throws SQLException
-    {
-    	conn.close();
     }
 }

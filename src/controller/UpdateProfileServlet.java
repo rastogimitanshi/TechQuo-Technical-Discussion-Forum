@@ -70,8 +70,6 @@ public class UpdateProfileServlet extends HttpServlet {
 		try{
 			Connection con=null;
 			con = ConnectionManager.getConnection();
-		
-			
 			PreparedStatement ps = (PreparedStatement) con.prepareStatement("UPDATE `user` SET Fname=?, Lname=?, City=?, Email=?, Country=? , DOB=?, JobPosition=?, Profile_Picture=? WHERE user_id=?");
 		
 			
@@ -87,10 +85,11 @@ public class UpdateProfileServlet extends HttpServlet {
                 ps.setBlob(8, inputStream);
             }
 			ps.setInt(9, UserId); 	// change to getUserId() later
- 
+			
             // sends the statement to the database server
 			
 			int i = ps.executeUpdate();
+			System.out.printf("User Table Updates");
 			PreparedStatement pst = (PreparedStatement) con.prepareStatement("INSERT INTO interests_user VALUES(?,?)");
 		
 			for(i=0;i<Interests.length;i++){
@@ -127,7 +126,7 @@ public class UpdateProfileServlet extends HttpServlet {
 				logger.info("Profile edited successfully");
 				out.println("<script type=\"text/javascript\">");        // creating alert message using java
 				out.println("alert('Profile Edited Successfully');");
-				out.println("location='UserLogin.jsp';");
+				out.println("location='Home.jsp';");
 				out.println("</script>");
 			
 		}
@@ -138,7 +137,7 @@ public class UpdateProfileServlet extends HttpServlet {
 				logger.info("Profile edited successfully");
 				out.println("<script type=\"text/javascript\">");        // creating alert message using java
 				out.println("alert('Some unexpected error occured. Please try again later');");
-				out.println("location='UserLogin.jsp';");
+				out.println("location='Home.jsp';");
 				out.println("</script>");
 			}
 		}

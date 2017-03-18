@@ -1,7 +1,7 @@
 package controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
+//import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 
-import connection.ConnectionManager;
+//import connection.ConnectionManager;
 
 public class LogOutServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;

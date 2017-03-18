@@ -1,7 +1,7 @@
 package tables;
 import domain.User;
 
-import java.io.PrintWriter;
+//import java.io.PrintWriter;
 import java.sql.*;
 
 import connection.ConnectionManager;

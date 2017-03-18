@@ -38,7 +38,6 @@ public class GetProfilePicture extends HttpServlet {
 		        oImage.flush();
 		        oImage.close();
 		    }
-		    conn.close();
 		}
 
 		catch(Exception ex){
