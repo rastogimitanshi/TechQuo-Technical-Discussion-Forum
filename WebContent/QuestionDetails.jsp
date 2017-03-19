@@ -43,6 +43,7 @@
 	 	rst.next();
 	 	PreparedStatement qstU= (PreparedStatement) conn.prepareStatement("UPDATE `question` set count=count+1 where Ques_id=?");
 		qstU.setInt(1,quesid);
+		qstU.executeUpdate();
 	 	Question Q1;
 		Q1=new Question(quesid,rst.getString(1),rst.getDate(3),rst.getInt(2));%>
 		<ul>

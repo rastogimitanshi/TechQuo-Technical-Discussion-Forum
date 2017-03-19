@@ -12,6 +12,7 @@
    |<a href="EditProfile.jsp">Edit Profile</a>
    | <a href="EditPassword.jsp">Change Password</a>
    |<a href="http://localhost:8080/TechQuo/SearchUserServlet?UID=<%=user.getUserId()%>">View Profile</a>
+   | <a href="PostQuestion.jsp">Post Question</a>
    |<a href="LogOut">Log Out</a>
    
 </div>  

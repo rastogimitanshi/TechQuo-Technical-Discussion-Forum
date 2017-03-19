@@ -61,4 +61,12 @@
     <servlet-name>RegistrationServlet</servlet-name>
     <url-pattern>/RegistrationServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+        <servlet-name>LoadPostsServlet</servlet-name>
+        <servlet-class>controller.LoadPostsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoadPostsServlet</servlet-name>
+        <url-pattern>/LoadPosts</url-pattern>
+    </servlet-mapping> 
 </web-app>

@@ -28,6 +28,14 @@ public class SearchQuestionServlet extends HttpServlet {
 			conn = ConnectionManager.getConnection();
             String tag = request.getParameter("tag");
             System.out.println(tag);
+            if(tag==null)
+            {
+            	logger.info("Search UnSuccessful!");
+    			out.println("<script type=\"text/javascript\">");        // creating alert message using java
+    			out.println("alert('Some unexpected error occured. Please try again later');");
+    			out.println("location='Home.jsp';");
+    			out.println("</script>");
+            }
             Question Q1 = null;
             ArrayList<Question> ques_list = new ArrayList<Question>();
             
@@ -57,10 +65,10 @@ public class SearchQuestionServlet extends HttpServlet {
         } catch (Exception e) {
         	System.out.println(e);
 			logger.error(e);
-			logger.info("Search Successful!");
+			logger.info("Search UnSuccessful!");
 			out.println("<script type=\"text/javascript\">");        // creating alert message using java
 			out.println("alert('Some unexpected error occured. Please try again later');");
-			out.println("location='UserLogin.jsp';");
+			out.println("location='Home.jsp';");
 			out.println("</script>");
 		}
         }
