@@ -28,7 +28,7 @@ public class SearchQuestionServlet extends HttpServlet {
 			conn = ConnectionManager.getConnection();
             String tag = request.getParameter("tag");
             System.out.println(tag);
-            if(tag==null)
+            if(tag=="")
             {
             	logger.info("Search UnSuccessful!");
     			out.println("<script type=\"text/javascript\">");        // creating alert message using java

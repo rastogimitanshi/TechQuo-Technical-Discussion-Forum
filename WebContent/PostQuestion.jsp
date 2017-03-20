@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%@page import=domain.User %>
+    <%@page import="domain.User" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -20,8 +20,8 @@
 	User user= (User)session.getAttribute("user_details");
 	%>
 	<div class ="input">
-	   <form action="PostQuestion">
-	   <textarea name="ans" rows="4" cols="50">
+	   <form action="PostQuestion" method="post">
+	   <textarea name="ques" rows="4" cols="50">
   </textarea>
   <script src="addInput.js" language="Javascript" type="text/javascript">
 				</script>
@@ -29,8 +29,8 @@
           Enter tag:<br><input type="text" value="" name="myInputs">
      	</div>
      		<input type="button" value="Add tag" onClick="addInput('dynamicInput');">
-   <input type="hidden" name="uid" value="<%=user.getUserId()%>">
-  <input type="submit" value="Submit the Question">
+     		   <input type="hidden" name="uid" value="<%=user.getUserId()%>">
+     <input type="submit" value="Submit the Question">
 </form>
 </div>
 </body>

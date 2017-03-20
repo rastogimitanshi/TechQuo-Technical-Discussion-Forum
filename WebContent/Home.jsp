@@ -17,8 +17,15 @@
     
       <h3>Home Page</h3>
       
-     TechQuo is a technical Discussion Forum! <br><br>
-     View the top 20 Posts! <br>
+     TechQuo is a technical Discussion Forum! <br>
+     <%
+     session=request.getSession(false);
+     if(session.getAttribute("user_details")!=null)
+     {
+   %>
+    
+     <br>View the top 20 Posts! <br>
+ 
       <jsp:include page="/LoadPosts" flush="true"></jsp:include>
       <c:forEach items="${quesList}" var="q">
     
@@ -26,6 +33,8 @@
       <br>
       
       </c:forEach>
+      <%
+      }%>
      <jsp:include page="footer.jsp"></jsp:include>
       
  

@@ -33,7 +33,7 @@ public class LoadPostsServlet extends HttpServlet {
 		con = ConnectionManager.getConnection();
 		Statement stmt = null;
 		stmt = con.createStatement();
-		String query = "SELECT ques_id, create_time, question,user_id, Question from `question` LIMIT=3;";
+		String query = "SELECT ques_id, create_time, question,user_id, Question from `question` ORDER BY create_time DESC LIMIT 20";
 		ResultSet rs = stmt.executeQuery(query);
 		Question Q1=null;
 		ArrayList<Question> ques_list = new ArrayList<Question>();
@@ -52,7 +52,7 @@ public class LoadPostsServlet extends HttpServlet {
         {
         	out.println("<script type=\"text/javascript\">");        // creating alert message using java
 			out.println("alert('Some unexpected error occured. Please try again later');");
-			out.println("location='Home.jsp';");
+			out.println("location='login.jsp';");
 			out.println("</script>");
         }
         }

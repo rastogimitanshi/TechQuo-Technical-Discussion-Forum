@@ -37,7 +37,7 @@
     <servlet-name>SearchUserServlet</servlet-name>
     <url-pattern>/SearchUserServlet</url-pattern>
   </servlet-mapping>
-    <servlet>
+  <servlet>
     <servlet-name>EnterAnswerServlet</servlet-name>
     <servlet-class>controller.EnterAnswerServlet</servlet-class>
   </servlet>
@@ -45,7 +45,7 @@
     <servlet-name>EnterAnswerServlet</servlet-name>
     <url-pattern>/EnterAnswer</url-pattern>
   </servlet-mapping>
-   <servlet>
+  <servlet>
     <servlet-name>GetProfilePicture</servlet-name>
     <servlet-class>controller.GetProfilePicture</servlet-class>
   </servlet>
@@ -53,7 +53,7 @@
     <servlet-name>GetProfilePicture</servlet-name>
     <url-pattern>/GetProfilePicture</url-pattern>
   </servlet-mapping>
-     <servlet>
+  <servlet>
     <servlet-name>RegistrationServlet</servlet-name>
     <servlet-class>controller.RegistrationServlet</servlet-class>
   </servlet>
@@ -62,11 +62,11 @@
     <url-pattern>/RegistrationServlet</url-pattern>
   </servlet-mapping>
   <servlet>
-        <servlet-name>LoadPostsServlet</servlet-name>
-        <servlet-class>controller.LoadPostsServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>LoadPostsServlet</servlet-name>
-        <url-pattern>/LoadPosts</url-pattern>
-    </servlet-mapping> 
+    <servlet-name>LoadPostsServlet</servlet-name>
+    <servlet-class>controller.LoadPostsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoadPostsServlet</servlet-name>
+    <url-pattern>/LoadPosts</url-pattern>
+  </servlet-mapping>
 </web-app>
