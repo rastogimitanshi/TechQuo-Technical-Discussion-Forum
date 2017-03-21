@@ -28,14 +28,6 @@ public class SearchQuestionServlet extends HttpServlet {
 			conn = ConnectionManager.getConnection();
             String tag = request.getParameter("tag");
             System.out.println(tag);
-            if(tag=="")
-            {
-            	logger.info("Search UnSuccessful!");
-    			out.println("<script type=\"text/javascript\">");        // creating alert message using java
-    			out.println("alert('Some unexpected error occured. Please try again later');");
-    			out.println("location='Home.jsp';");
-    			out.println("</script>");
-            }
             Question Q1 = null;
             ArrayList<Question> ques_list = new ArrayList<Question>();
             
@@ -47,7 +39,7 @@ public class SearchQuestionServlet extends HttpServlet {
             while(rs.next()) {
             	Integer qid=rs.getInt(1);
             	System.out.println(qid);
-            	PreparedStatement ps= (PreparedStatement) conn.prepareStatement("SELECT Question, user_id, create_time FROM `question` WHERE Ques_id=?");
+            	PreparedStatement ps= (PreparedStatement) conn.prepareStatement("SELECT Question, user_id, create_time,count FROM `question` WHERE Ques_id=?");
             	ps.setInt(1,qid);
             	ResultSet rst = ps.executeQuery();
             	rst.next();
@@ -55,6 +47,7 @@ public class SearchQuestionServlet extends HttpServlet {
                 System.out.println(rst.getString(1));
                 System.out.println(rst.getInt(2));
                 System.out.println(rst.getDate(3));
+                Q1.setCount(rst.getInt(4));
                 ques_list.add(Q1);
             	
             }

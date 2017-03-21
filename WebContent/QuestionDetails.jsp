@@ -32,34 +32,36 @@
 	try {
 		Connection conn=null;
 		conn = ConnectionManager.getConnection();
+		PreparedStatement qstU= (PreparedStatement) conn.prepareStatement("UPDATE `question` set count=count+1 where Ques_id=?");
+		qstU.setInt(1,quesid);
+		qstU.executeUpdate();
 		PreparedStatement pst= (PreparedStatement) conn.prepareStatement("SELECT Question, user_id,"+
-				"create_time FROM `question` WHERE Ques_id=?");
+				"create_time,count FROM `question` WHERE Ques_id=?");
 		
 		%>
 		<div class ="question">
-		<h3 class="main"><strong>Question ID: </strong><%=quesid%></h3>
+		<h3 class="main"><strong>Question</strong></h3>
 		<% pst.setInt(1,quesid);
 		ResultSet rst = pst.executeQuery();
 	 	rst.next();
-	 	PreparedStatement qstU= (PreparedStatement) conn.prepareStatement("UPDATE `question` set count=count+1 where Ques_id=?");
-		qstU.setInt(1,quesid);
-		qstU.executeUpdate();
+	 	
 	 	Question Q1;
-		Q1=new Question(quesid,rst.getString(1),rst.getDate(3),rst.getInt(2));%>
-		<ul>
+		Q1=new Question(quesid,rst.getString(1),rst.getDate(3),rst.getInt(2));
+		Q1.setCount(rst.getInt(4));
+		PreparedStatement pstu=(PreparedStatement) conn.prepareStatement("SELECT Fname FROM"+
+					"`user` WHERE user_id=?");
+pstu.setInt(1,rst.getInt(2));
+Integer uid=rst.getInt(2);
+ResultSet rstu =pstu.executeQuery();
+rstu.next();%>
 		
-		<li><strong>Question Statement:</strong>   <%=rst.getString(1)%><li>
-	    <%PreparedStatement pstu=(PreparedStatement) conn.prepareStatement("SELECT Fname FROM"+
-									"`user` WHERE user_id=?");
-	    pstu.setInt(1,rst.getInt(2));
-	    Integer uid=rst.getInt(2);
-	    ResultSet rstu =pstu.executeQuery();
-	    rstu.next();%>
-	    
+		<ul style="list-style-type:disc">
+		<li><strong>Question</strong>
+	   <%=rst.getString(1)%><li>
 	   <li><strong>Question Posted By:</strong><a href="http://localhost:8080/TechQuo/SearchUserServlet?UID=<%=uid%>"><%=rstu.getString(1)%></a></li>
 	    <li><strong>Posted on: </strong><%=rst.getDate(3)%></li>
-	    
-	   </ul>
+	    <li><strong>View Count: <%=Q1.getCount()%></strong>
+	    </ul>
 	   <p>Think you can answer the question? Post an answer by clicking <a href="EnterAnswer.jsp?qid=<%=quesid%>">here</a>
 	   </div>
 	   
@@ -95,7 +97,6 @@
             <input type="hidden" name="id" value="<%=A1.getAns_id()%>">
             Like</button>
             <span class="likes">0</span>
-           
             <button class="btn btn-default dislike">
              <input type="hidden" name="id" value="<%=A1.getAns_id()%>">Dislike</button>
             <span class="dislikes">0</span>

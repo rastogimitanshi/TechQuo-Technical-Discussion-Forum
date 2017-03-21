@@ -11,7 +11,7 @@
         <tr><td colspan=2 style="font-size:12pt;" align="center">
         <h3>Search Question</h3></td></tr>
         <tr><td ><b>TAG</b></td>
-          <td>: <input  type="text" name="tag" id="tag">
+          <td>: <input  type="text" name="tag" id="tag" required>
         </td></tr>        
         <tr><td colspan=2 align="center">
         <input  type="submit" name="submit" value="Search"></td></tr>

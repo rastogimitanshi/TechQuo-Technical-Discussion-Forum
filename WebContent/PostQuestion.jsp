@@ -31,6 +31,8 @@
      		<input type="button" value="Add tag" onClick="addInput('dynamicInput');">
      		   <input type="hidden" name="uid" value="<%=user.getUserId()%>">
      <input type="submit" value="Submit the Question">
+    <br>
+    <p>Make sure you <mark> add tag.</mark> You wont be able to search you question without a meaningful tag</p>
 </form>
 </div>
 </body>

@@ -31,7 +31,7 @@ public class GetProfilePicture extends HttpServlet {
 		pstmt.setInt(1, img_id);
 		rs = pstmt.executeQuery();
 		    if(rs.next()) {
-		        byte barray[] = rs.getBytes(1);
+		        byte barray[] = rs.getBytes(100);
 		        response.setContentType("image/jpeg");
 		        oImage=response.getOutputStream();
 		        oImage.write(barray);
