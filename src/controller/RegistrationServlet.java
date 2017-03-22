@@ -44,6 +44,11 @@ public class RegistrationServlet extends HttpServlet {
 			ResultSet rs = ps.executeQuery();
 			if(rs.next()){
 				out.println("User with email"+ mailid+"  already exists");
+				out.println("<script type=\"text/javascript\">");        // creating alert message using java
+				out.println("alert('User Already Exists!!');");
+				out.println("location='Register.html';");
+				out.println("</script>");
+				
 				
 			}
 			else{																												
@@ -67,6 +72,11 @@ public class RegistrationServlet extends HttpServlet {
 							System.out.println("You are successfully registered...");
 							
 							out.println("Registeration Successful");
+							//logger.info("Registered successfully");
+							out.println("<script type=\"text/javascript\">");        // creating alert message using java
+							out.println("alert('Registered Successfully');");
+							out.println("location='login.jsp';");
+							out.println("</script>");
 						}
 	
 		}
@@ -75,6 +85,10 @@ public class RegistrationServlet extends HttpServlet {
 		catch(Exception se)
         {
             se.printStackTrace();
+            out.println("<script type=\"text/javascript\">");        // creating alert message using java
+			out.println("alert('Some unexpected error occured. Please try again later');");
+			out.println("location='Register.html';");
+			out.println("</script>");
         }	
 	}
 	

@@ -40,11 +40,11 @@ public class UpdatePasswordServlet extends HttpServlet{
 			ps.setInt(2, user.getUserId());
 			int i = ps.executeUpdate();
 			if(i>0)
-//			logger.info("Password updated successfully");
-//			out.println("<script type=\"text/javascript\">");        // creating alert message using java
-//			out.println("alert('Password Changed successfully');");
-//			out.println("location='home.jsp';");
-//			out.println("</script>");
+			logger.info("Password updated successfully");
+			out.println("<script type=\"text/javascript\">");        // creating alert message using java
+			out.println("alert('Password Changed successfully');");
+			out.println("location='Home.jsp';");
+			out.println("</script>");
 			out.println("user");
 		
 

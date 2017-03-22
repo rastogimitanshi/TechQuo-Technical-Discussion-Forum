@@ -71,42 +71,43 @@ $(document).ready(function() {
 				$("#NewPass").attr("placeholder", "Passwords do not match");
 				return false;
 			}
-	   	
 	        
-	   	 $.ajax({
-	            type : "POST",
-	            url : "UpdatePassword",
-	            data : "&CurrPass=" + CurrPass + "&NewPass=" + NewPass + "&ConPass" + ConPass,
-	            success : function(data) {
-	    
-	   	             if(data.toString().indexOf("admin") != -1) {   // means if the message received from servlet in form of out.print.ln contains invalid or not
-	   	            	alert("Password Updated successfully.");
-	   			             	$(location).attr('href',"Home.jsp");
-	   			            
-	   	             }
-	   	             else if(data.toString().indexOf("user") != -1) {   // means if the message received from servlet in form of out.print.ln contains invalid or not
-	   		            	alert("Password Updated successfully.");
-	   		             	$(location).attr('href',"Home.jsp");
-	   		            
-	                }
-	   	          else if(data.toString().indexOf("admine") != -1) {
-	   	            	alert("Some unexpected error has occured. Please try again later.")
-	   	            	$(location).attr('href',"Home.jsp");
-	   	        }
-	   	          else if(data.toString().indexOf("usere") != -1) {
-	   	            	alert("Some unexpected error has occured. Please try again later.")
-	   	            	$(location).attr('href',"Home.jsp");
-	   	        }
-	          },
-	   	   error: function(data) {
-	   		   alert("Some unexpected error has occured. Please try again later.")
-	   		   $(location).attr('href',"LogOut");
-	   	   }
-	        });
-	   return false;
-	    });  
-	   return false;
-	    });  
+	        
+	 $.ajax({
+         type : "POST",
+         url : "UpdatePassword",
+         data : "CurrPass=" + CurrPass + "&NewPass=" + NewPass + "&ConPass" + ConPass,
+         success : function(data) {
+ 
+	             if(data.toString().indexOf("admin") != -1) {   // means if the message received from servlet in form of out.print.ln contains invalid or not
+	            	alert("Password Updated successfully.");
+			             	$(location).attr('href',"Admin.jsp");
+			            
+	             }
+	             else if(data.toString().indexOf("user") != -1) {   // means if the message received from servlet in form of out.print.ln contains invalid or not
+		            	alert("Password Updated successfully.");
+		             	$(location).attr('href',"Home.jsp");
+		            
+             }
+	          else if(data.toString().indexOf("admine") != -1) {
+	            	alert("Some unexpected error has occured. Please try again later.")
+	            	$(location).attr('href',"Admin.jsp");
+	        }
+	          else if(data.toString().indexOf("usere") != -1) {
+	            	alert("Some unexpected error has occured. Please try again later.")
+	            	$(location).attr('href',"Home.jsp");
+	        }
+       },
+	   error: function(data) {
+		   alert("Some unexpected error has occured. Please try again later.")
+		   $(location).attr('href',"LogOut");
+	   }
+     });
+return false;
+ });    
+	
+	
+	
 });
 	</script>
 	
@@ -216,7 +217,7 @@ $(document).ready(function() {
 		</style>
 
 	<body>
-<%		session = request.getSession(false);
+<%
 		if(session.getAttribute("user_details")==null){
 			request.setAttribute("SessionExpired", "Your session has expired. Please log in again.");
 			RequestDispatcher requestDispatcher;
@@ -254,7 +255,7 @@ $(document).ready(function() {
 					<br><br>
 					<button id="submit">submit</button>
 							
-					<input type="hidden" id="Pass" name="Pass" value="<%=user.getPassword()%>">
+					<input type="hidden" id="Pass" value="<%=  user.getPassword() %>">
 				</form>
 		</div>
 		</div>
