@@ -13,16 +13,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<style>
-.example { margin:20px auto;}
-.container {
-  margin: 150px auto;
-  max-width: 480px;
-}
-</style>
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+	
 	<title>TechQuo-Question View</title>
 </head>
 <body>
@@ -90,18 +82,7 @@ rstu.next();%>
 			<li><strong>Up votes : </strong><%=A1.getUpvotes()%></li>
 			<li><strong>Down votes : </strong><%=A1.getDownvotes()%></li>
 			</ul></li>
-			<div class="example">
-
-        <div class="rating" id="rating2">
-            <button class="btn btn-default like">
-            <input type="hidden" name="id" value="<%=A1.getAns_id()%>">
-            Like</button>
-            <span class="likes">0</span>
-            <button class="btn btn-default dislike">
-             <input type="hidden" name="id" value="<%=A1.getAns_id()%>">Dislike</button>
-            <span class="dislikes">0</span>
-        </div>
-    </div>	
+			
 <%
 			}	
 	}	 
@@ -112,51 +93,6 @@ rstu.next();%>
 	</ol>
 	
 		</div>
-		<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script> 
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> 
-<script src="like-dislike.js"></script> 
-<script>
-$('#rating2').likeDislike({
-    reverseMode: true,
-    disabledClass: 'disable',
-    click: function (value, l, d, event) {
-        var likes = $(this.element).find('.likes');
-        var dislikes =  $(this.element).find('.dislikes');
-
-        likes.text(parseInt(likes.text()) + l);
-        dislikes.text(parseInt(dislikes.text()) + d);
-        $.ajax({
-  url: '/LikeDislike',
-  type: 'GET',
-  data: '&id' + id + '&likes=' + likes + '&dislikes=' + dislikes,
-  success: function (data) {
-    $(self).find('.likes').text(data.likes);
-	 $(self).find('.dislikes').text(data.dislikes);
-	localStorage['key'] = btnType;
-	self.readOnly(false);
-  }
-
-});
-
-    }
-});
-
-</script>
-
-<script type="text/javascript">
-
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-36251023-1']);
-  _gaq.push(['_setDomainName', 'jqueryscript.net']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-
-</script>
-
+		
 </body>
 </html>

@@ -32,7 +32,8 @@
      		   <input type="hidden" name="uid" value="<%=user.getUserId()%>">
      <input type="submit" value="Submit the Question">
     <br>
-    <p>Make sure you <mark> add tag.</mark> You wont be able to search you question without a meaningful tag</p>
+    <p>A tag is a keyword or label that categorizes your question with other, similar questions. Using the right tags makes it easier for others to find and answer your question.
+    Make sure you <mark> add tag.</mark> You wont be able to search you question without a meaningful tag</p>
 </form>
 </div>
 </body>
