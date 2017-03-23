@@ -1,11 +1,12 @@
 package controller;
 import connection.ConnectionManager;
 import java.io.IOException;
-import java.io.OutputStream;
+//import java.io.OutputStream;
 import java.sql.Connection;
 //import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 //import javax.servlet.annotation.WebServlet;
@@ -19,34 +20,38 @@ public class GetProfilePicture extends HttpServlet {
 	protected void doGet (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int img_id = Integer.parseInt(request.getParameter("Uid"));
-		try {
 			Connection conn=null;
 			conn = ConnectionManager.getConnection();
-		            
-		System.out.println("Connection Established");
-		ResultSet rs = null;
 		PreparedStatement pstmt = null;
-		OutputStream oImage;
-		pstmt = conn.prepareStatement("SELECT Profile_Picture from `user` WHERE user_id=?");
-		pstmt.setInt(1, img_id);
-		rs = pstmt.executeQuery();
-		    if(rs.next()) {
-		        byte barray[] = rs.getBytes(100);
-		        response.setContentType("image/jpeg");
-		        oImage=response.getOutputStream();
-		        oImage.write(barray);
-		        oImage.flush();
-		        oImage.close();
-		    }
+		//OutputStream oImage;
+		try {
+			pstmt = conn.prepareStatement("SELECT Profile_Picture from `user` WHERE user_id=?");
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
+		try {
+			pstmt.setInt(1, img_id);
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	
+			 try(ResultSet rs = pstmt.executeQuery()){
+		    if(rs.next()) {
+		    	byte[] content = rs.getBytes("Profile_Picture");
+                response.setContentLength(content.length);
+                response.getOutputStream().write(content);
+		    }
+		    else {
+                response.sendError(HttpServletResponse.SC_NOT_FOUND); 
+		}
+		 }
 
-		catch(Exception ex){
-		    ex.printStackTrace();
+		 catch (SQLException e) {
+	            
 		}
 	}	       
-		
+	}	
 	
 
-	
-
-}

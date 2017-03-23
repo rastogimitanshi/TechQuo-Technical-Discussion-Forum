@@ -33,7 +33,7 @@ public class LoadPostsServlet extends HttpServlet {
 		con = ConnectionManager.getConnection();
 		Statement stmt = null;
 		stmt = con.createStatement();
-		String query = "SELECT ques_id, create_time, question,user_id, Question from `question` ORDER BY create_time DESC LIMIT 20";
+		String query = "SELECT ques_id, create_time, question,user_id, Question from `question` ORDER BY count DESC LIMIT 10";
 		ResultSet rs = stmt.executeQuery(query);
 		Question Q1=null;
 		ArrayList<Question> ques_list = new ArrayList<Question>();

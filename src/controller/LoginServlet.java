@@ -41,8 +41,26 @@ public class LoginServlet extends HttpServlet {
 		{	    
 
 			User user = new User();
-			user.setEmailId(request.getParameter("username"));
-			user.setPassword(request.getParameter("password"));
+			String errorMsg=null;
+			String email= (request.getParameter("username"));
+			String password = (request.getParameter("password"));
+		    if(email == null || email.equals("")){
+	            errorMsg ="User Email can't be null or empty";
+	        }
+		    else if(password == null || password.equals("")){
+	            errorMsg = "Password can't be null or empty";
+	        }
+
+	        if(errorMsg != null){
+	            RequestDispatcher rd = getServletContext().getRequestDispatcher("/login.jsp");
+	            //PrintWriter out= response.getWriter();
+	            out.println("<font color=red>"+errorMsg+"</font>");
+	            rd.include(request, response);
+	        }else{
+	        	
+	        
+			user.setEmailId(email);
+			user.setPassword(password);
 			user = UserDAO.login(user);
 			if(user != null){
 				out.print("Welcome "+ user.getUserId());  
@@ -62,6 +80,7 @@ public class LoginServlet extends HttpServlet {
 				out.println("</script>");
 			}
 		} 
+		}
 
 
 		catch (Throwable theException) 	    

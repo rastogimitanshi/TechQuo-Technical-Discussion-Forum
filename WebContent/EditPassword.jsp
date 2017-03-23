@@ -217,7 +217,7 @@ return false;
 		</style>
 
 	<body>
-<%
+<%		session=request.getSession(false);  
 		if(session.getAttribute("user_details")==null){
 			request.setAttribute("SessionExpired", "Your session has expired. Please log in again.");
 			RequestDispatcher requestDispatcher;

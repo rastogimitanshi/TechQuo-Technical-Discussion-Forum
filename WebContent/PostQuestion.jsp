@@ -21,12 +21,12 @@
 	%>
 	<div class ="input">
 	   <form action="PostQuestion" method="post">
-	   <textarea name="ques" rows="4" cols="50">
+	   <textarea name="ques" rows="4" cols="50" required>
   </textarea>
   <script src="addInput.js" language="Javascript" type="text/javascript">
 				</script>
      		<div id="dynamicInput">
-          Enter tag:<br><input type="text" value="" name="myInputs">
+          Enter tag:<br><input type="text" value="" name="myInputs" required>
      	</div>
      		<input type="button" value="Add tag" onClick="addInput('dynamicInput');">
      		   <input type="hidden" name="uid" value="<%=user.getUserId()%>">

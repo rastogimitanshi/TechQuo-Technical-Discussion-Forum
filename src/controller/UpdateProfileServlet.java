@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
@@ -29,7 +31,14 @@ public class UpdateProfileServlet extends HttpServlet {
 		logger.info("Inside update profile servlet");
 		response.setContentType("text/html");
 		
-		HttpSession session = request.getSession();
+		HttpSession session = request.getSession(false);
+		if(session.getAttribute("user_details")==null){
+					request.setAttribute("SessionExpired", "Your session has expired. Please log in again.");
+					RequestDispatcher requestDispatcher;
+					requestDispatcher = request.getRequestDispatcher("/login.jsp");
+					requestDispatcher.forward(request,response);
+					return;
+				}
 		User user =(User) session.getAttribute("USER_DETAILS");
 		int UserId = Integer.parseInt(request.getParameter("UserId"));
 		String Fname = request.getParameter("FirstName");

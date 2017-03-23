@@ -23,7 +23,7 @@
 %>
 <div class ="input">
 	   <form action="EnterAnswer">
-	   <textarea name="ans" rows="4" cols="50">
+	   <textarea name="ans" rows="4" cols="50" required>
   </textarea>
    <input type="hidden" name="qid" value="<%=quesid%>">
    <input type="hidden" name="uid" value="<%=user.getUserId()%>">

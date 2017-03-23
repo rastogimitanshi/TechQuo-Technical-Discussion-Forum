@@ -20,6 +20,8 @@ public class User {
 	private Date create_time;
 	private Date expiry_date;
 	private Date DOB;
+	private Integer QuestionsPosted;
+	private Integer AnswersAnswered;
 	public User()
 	{
 	}
@@ -112,6 +114,22 @@ public class User {
 	public void setPassword(String Password)
 	{
 		this.Password=Password;
+	}
+
+	public Integer getQuestionsPosted() {
+		return QuestionsPosted;
+	}
+
+	public void setQuestionsPosted(Integer questionsPosted) {
+		QuestionsPosted = questionsPosted;
+	}
+
+	public Integer getAnswersAnswered() {
+		return AnswersAnswered;
+	}
+
+	public void setAnswersAnswered(Integer answersAnswered) {
+		AnswersAnswered = answersAnswered;
 	}
 	
 }

@@ -6,6 +6,7 @@ import java.sql.Connection;
 //import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,6 +18,7 @@ import org.apache.log4j.Logger;
 
 import connection.ConnectionManager;
 import domain.User;
+import service.SendMail;
 @WebServlet(urlPatterns = { "/UpdatePassword"})
 public class UpdatePasswordServlet extends HttpServlet{
 
@@ -31,7 +33,13 @@ public class UpdatePasswordServlet extends HttpServlet{
 		HttpSession session = request.getSession(false);
 		User user =(User) session.getAttribute("user_details");
 		String Password =request.getParameter("NewPass");
-		
+		if(session.getAttribute("user_details")==null){
+					request.setAttribute("SessionExpired", "Your session has expired. Please log in again.");
+					RequestDispatcher requestDispatcher;
+					requestDispatcher = request.getRequestDispatcher("/login.jsp");
+					requestDispatcher.forward(request,response);
+					return;
+				}
 		try{
 			Connection con=null;
 			con = ConnectionManager.getConnection();
@@ -40,6 +48,7 @@ public class UpdatePasswordServlet extends HttpServlet{
 			ps.setInt(2, user.getUserId());
 			int i = ps.executeUpdate();
 			if(i>0)
+			SendMail.sendMail(user.getEmailId(), user.getFirstName(), "Dear" +user.getFirstName()+" Your Password has been changed sucessfully on TechQuo-Technical Discussion Forum!Login to you TechQuo account with new Password " );
 			logger.info("Password updated successfully");
 			out.println("<script type=\"text/javascript\">");        // creating alert message using java
 			out.println("alert('Password Changed successfully');");

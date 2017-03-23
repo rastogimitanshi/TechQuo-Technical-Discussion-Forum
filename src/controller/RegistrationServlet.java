@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 //import java.sql.ResultSet;
 import java.sql.ResultSet;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -33,8 +34,36 @@ public class RegistrationServlet extends HttpServlet {
 		String mailid = request.getParameter("mailid");
 		String pwd = request.getParameter("pwd");
 		PrintWriter out= response.getWriter();
-		
-		
+		String errorMsg=null;
+		if(Fname == null || Fname.equals("")){
+            errorMsg ="First Name Cannot be empty!!";
+        }
+		 if(Lname == null || Lname.equals("")){
+            Lname=" ";
+        }
+		 if(Q1 == null || Q1.equals("")){
+            errorMsg ="Security Question Cannot be empty!!";
+        }
+		else if(A1 == null || A1.equals("")){
+            errorMsg ="Security Answer Cannot be empty!!";
+        }
+		else if(Q2 == null || Q2.equals("")){
+	            errorMsg ="Security Question Cannot be empty!!";
+	        }
+		else if(Role== null || Role.equals("")){
+            errorMsg ="Role Cannot be empty!!";
+        }else if(mailid == null || mailid.equals("")){
+            errorMsg ="Email ID Cannot be empty!!";
+        }
+        else if(pwd == null || pwd.equals("")){
+            errorMsg ="Password Cannot be empty!!";
+        }
+		 if(errorMsg != null){
+	            RequestDispatcher rd = getServletContext().getRequestDispatcher("/Register.html");
+	            //PrintWriter out= response.getWriter();
+	            out.println("<font color=red>"+errorMsg+"</font>");
+	            rd.include(request, response);
+	        }	
 		try {
 			Connection con=null;
 			con = ConnectionManager.getConnection();
@@ -43,7 +72,7 @@ public class RegistrationServlet extends HttpServlet {
 				
 			ResultSet rs = ps.executeQuery();
 			if(rs.next()){
-				out.println("User with email"+ mailid+"  already exists");
+				out.println("<font color=red>User with email"+ mailid+"  already exists </font>");
 				out.println("<script type=\"text/javascript\">");        // creating alert message using java
 				out.println("alert('User Already Exists!!');");
 				out.println("location='Register.html';");

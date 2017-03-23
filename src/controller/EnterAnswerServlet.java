@@ -5,6 +5,8 @@ import connection.ConnectionManager;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
+
+import javax.servlet.RequestDispatcher;
 //import java.util.ArrayList;
 //import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 //import domain.Question;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 
@@ -26,11 +29,30 @@ public class EnterAnswerServlet extends HttpServlet {
     	logger.info("Inside Enter Answer servlet");
 		//response.setContentType("text/html");
         response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
+        PrintWriter out = response.getWriter();	   
+   	 HttpSession session=request.getSession(false);  
+	if(session.getAttribute("user_details")==null){
+				request.setAttribute("SessionExpired", "Your session has expired. Please log in again.");
+				RequestDispatcher requestDispatcher;
+				requestDispatcher = request.getRequestDispatcher("/login.jsp");
+				requestDispatcher.forward(request,response);
+				return;
+			}
+
         try{
         Connection conn=null;
 		conn = ConnectionManager.getConnection();
 			String ans=request.getParameter("ans");
+			String errorMsg=null;
+			if(ans == null || ans.equals("")){
+	            errorMsg ="Answer Cannot be empty!!";
+	        }
+			 if(errorMsg != null){
+		            RequestDispatcher rd = getServletContext().getRequestDispatcher("/Home.jsp");
+		           // PrintWriter out= response.getWriter();
+		            out.println("<font color=red>"+errorMsg+"</font>");
+		            rd.include(request, response);
+		        }
 			System.out.println(ans);
 			Integer qid=Integer.parseInt(request.getParameter("qid"));
 			Integer uid=Integer.parseInt(request.getParameter("uid"));
@@ -42,6 +64,9 @@ public class EnterAnswerServlet extends HttpServlet {
 			pstI.setString(2,ans);
             pstI.setInt(3,uid);
             int i= pstI.executeUpdate();
+            PreparedStatement pstU=(PreparedStatement) conn.prepareStatement("UPDATE `user` SET AnswersAnswered=AnswersAnswered+1 WHERE user_id=?");
+    		pstU.setInt(1,uid);
+            pstU.executeUpdate();
 			if(i>0)
 			{
 				System.out.println("Answer Posted Successfully");

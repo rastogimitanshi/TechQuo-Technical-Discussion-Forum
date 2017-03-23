@@ -110,9 +110,10 @@
 			String Interests =(String)request.getAttribute("Interests");	
 			String Education =(String)request.getAttribute("Education");	
 			Integer profileV =(Integer)request.getAttribute("ProfileViews");
+		
 				%>
 				
-				<img src="/TechQuo/GetProfilePicture?Uid=<%=user.getUserId()%>" width="100" height="100" alt="User Profile Picture"/>
+				<img src="http://localhost:8080/TechQuo/GetProfilePicture?Uid=<%=user.getUserId()%>" width="100" height="100" alt="User Profile Picture"/>
 			<div class="contents"> 
 				<div id="fields">
 					<br>User Id 
@@ -142,7 +143,7 @@
 						out.println("<BR>: "+ Interests);
 						out.println("<BR>: "+ Education);
 						out.println("<BR>: "+ profileV);
-						
+					
 					%>
 				 </div>
 	

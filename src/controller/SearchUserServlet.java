@@ -34,13 +34,15 @@ public class SearchUserServlet extends HttpServlet{
             int i = pstU.executeUpdate();
             if(i>0){
             PreparedStatement pst= (PreparedStatement) conn.prepareStatement("SELECT Fname, Lname, Email, DOB,"
-            			+"Country, City, JobPosition, Profile_views FROM"+
+            			+"Country, City, JobPosition, Profile_views, QuestionsPosted, AnswersAnswered FROM"+
             		"`user` WHERE user_id=?");
             pst.setInt(1, Uid);
             ResultSet rs=pst.executeQuery();
             rs.next();
             User user =new User(Uid,rs.getString(1),rs.getString(2),rs.getString(5),rs.getString(3),rs.getString(6),
             		rs.getString(7),rs.getDate(4),"");
+            user.setAnswersAnswered(rs.getInt(10));
+            user.setQuestionsPosted(rs.getInt(9));
             Integer pv=rs.getInt(8);
             PreparedStatement pstI= (PreparedStatement) conn.prepareStatement("SELECT Interests FROM `interests_user`"+
             					"WHERE user_id_I=?");
@@ -66,14 +68,16 @@ public class SearchUserServlet extends HttpServlet{
             request.setAttribute("Interests",Interests);
             request.setAttribute("Education",Education);
             request.setAttribute("ProfileViews",pv);
+            //request.setAttribute("QuestionsPosted",Q);
+            //request.setAttribute("AnswersAnswered",A);
             RequestDispatcher requestDispatcher;			
     		requestDispatcher =request.getRequestDispatcher("UserProfile.jsp"); //change name later
     		requestDispatcher.forward(request, response); 
-			
-     
+		
             }
+        }
             
-}
+
         catch(Exception e){
         	System.out.println(e);
 			logger.error(e);

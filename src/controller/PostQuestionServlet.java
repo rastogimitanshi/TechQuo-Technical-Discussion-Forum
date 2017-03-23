@@ -5,11 +5,13 @@ import java.io.PrintWriter;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 
@@ -37,11 +39,29 @@ public class PostQuestionServlet extends HttpServlet {
 		response.setContentType("text/html");
         response.setContentType("text/html");
        // PrintWriter out = response.getWriter();
+        HttpSession session=request.getSession(false);  
+    	if(session.getAttribute("user_details")==null){
+    				request.setAttribute("SessionExpired", "Your session has expired. Please log in again.");
+    				RequestDispatcher requestDispatcher;
+    				requestDispatcher = request.getRequestDispatcher("/login.jsp");
+    				requestDispatcher.forward(request,response);
+    				return;
+    			}
         try{
         Connection conn=null;
 		conn = ConnectionManager.getConnection();
 		String ques=request.getParameter("ques");
 		Integer uid=Integer.parseInt(request.getParameter("uid"));
+		String errorMsg=null;
+		if(ques == null || ques.equals("")){
+            errorMsg ="Question Field Cannot Be Empty!!";
+        }
+		 if(errorMsg != null){
+	            RequestDispatcher rd = getServletContext().getRequestDispatcher("/Home.jsp");
+	           // PrintWriter out= response.getWriter();
+	            out.println("<font color=red>"+errorMsg+"</font>");
+	            rd.include(request, response);
+	        }
 		String []tags;
 		tags = request.getParameterValues("myInputs");
 		System.out.println(ques);
@@ -69,6 +89,9 @@ public class PostQuestionServlet extends HttpServlet {
 			pstT.setString(2,tag);
 			pstT.executeUpdate();
 		}
+		PreparedStatement pstU=(PreparedStatement) conn.prepareStatement("UPDATE `user` SET QuestionsPosted=QuestionsPosted+1 WHERE user_id=?");
+		pstU.setInt(1,uid);
+		pstU.executeUpdate();
 		out.println("<script type=\"text/javascript\">");        // creating alert message using java
 		out.println("alert('Answer Posted Successfully');");
 		out.println("location='Home.jsp';");
