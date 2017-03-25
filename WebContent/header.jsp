@@ -77,9 +77,8 @@ color: #04A3ED;
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity = "sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin = "anonymous">
+</script>
 
 <div class="menu">
     <div class="container-fluid">
@@ -95,7 +94,7 @@ crossorigin="anonymous"></script>
             <tr><td colspan=2 style="font-size:10pt; padding-top :3px; padding-bottom: 3px; " align="center">
             <tr><td style="font-family: 'Ubuntu Condensed', sans-serif; color: white;
             font-size: 15px;" >TAG</td>
-              <td>: <input  type="text" name="tag" id="tag" required>
+              <td>: <input  type="text" name="tag" id="tag" placeholder="Search" required>
             </td>
             <td colspan=2 align="center">
             <input  type="submit" name="submit" value="Submit" ></td></tr>
