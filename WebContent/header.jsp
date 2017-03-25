@@ -1,5 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-  pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,6 +20,9 @@
     <script src="https://oss.maxcdn.com/respon
     d/1.4.2/respond.min.js"></script>
   <![endif]-->
+
+  <title> HEADER </title>
+
   <style>
   .menu
 {
@@ -77,8 +78,9 @@ color: #04A3ED;
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity = "sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin = "anonymous">
-</script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+crossorigin="anonymous"></script>
 
 <div class="menu">
     <div class="container-fluid">
@@ -89,17 +91,15 @@ color: #04A3ED;
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="Register.html" ><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
 				<li><a href="login.jsp"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-        <li> <form method="get" name="frm" action="SearchQuestionServlet">
-          <table>
-            <tr><td colspan=2 style="font-size:10pt; padding-top :3px; padding-bottom: 3px; " align="center">
-            <tr><td style="font-family: 'Ubuntu Condensed', sans-serif; color: white;
-            font-size: 15px;" >TAG</td>
-              <td>: <input  type="text" name="tag" id="tag" placeholder="Search" required>
-            </td>
-            <td colspan=2 align="center">
-            <input  type="submit" name="submit" value="Submit" ></td></tr>
-          </table>
-        </form> </li>
+        <li>
+          <form class="navbar-form navbar-left" method="get" name="frm" action="SearchQuestionServlet">
+            <div class="form-group">
+              <input type="text" name="tag" id="tag" required class="form-control" placeholder="Enter Tag">
+          </div>
+  <button type="submit" name ="submit" class="btn btn-default">Search</button>
+</form>
+
+  </li>
 			</ul>
 		</div>
 	</div>

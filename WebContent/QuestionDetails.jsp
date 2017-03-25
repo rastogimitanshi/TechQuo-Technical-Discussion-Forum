@@ -10,17 +10,55 @@
 <%@ page import ="connection.ConnectionManager" %>
 <%@ page import ="com.mysql.jdbc.Connection" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+  <meta charset="ISO-8859-1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-	
-	<title>TechQuo-Question View</title>
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+  integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <!--<link href="faq/style.css" rel="stylesheet">-->
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respon
+
+
+
+
+    d/1.4.2/respond.min.js"></script>
+  <![endif]-->
+  <title>TechQuo-Question View</title>
+
+  <style>
+  body{padding-top:30px;}
+
+  </style>
+
+
+
+
+
 </head>
+
+
 <body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+crossorigin="anonymous"></script>
+
 <%
-	Integer quesid=Integer.parseInt(request.getParameter("QID")); 
-	
+	Integer quesid=Integer.parseInt(request.getParameter("QID"));
+
 	try {
 		Connection conn=null;
 		conn = ConnectionManager.getConnection();
@@ -29,70 +67,98 @@
 		qstU.executeUpdate();
 		PreparedStatement pst= (PreparedStatement) conn.prepareStatement("SELECT Question, user_id,"+
 				"create_time,count FROM `question` WHERE Ques_id=?");
-		
+
 		%>
-		<div class ="question">
-		<h3 class="main"><strong>Question</strong></h3>
-		<% pst.setInt(1,quesid);
-		ResultSet rst = pst.executeQuery();
-	 	rst.next();
-	 	
-	 	Question Q1;
-		Q1=new Question(quesid,rst.getString(1),rst.getDate(3),rst.getInt(2));
-		Q1.setCount(rst.getInt(4));
-		PreparedStatement pstu=(PreparedStatement) conn.prepareStatement("SELECT Fname FROM"+
-					"`user` WHERE user_id=?");
-pstu.setInt(1,rst.getInt(2));
-Integer uid=rst.getInt(2);
-ResultSet rstu =pstu.executeQuery();
-rstu.next();%>
-		
-		<ul style="list-style-type:disc">
-		<li><strong>Question</strong>
-	   <%=rst.getString(1)%><li>
-	   <li><strong>Question Posted By:</strong><a href="http://localhost:8080/TechQuo/SearchUserServlet?UID=<%=uid%>"><%=rstu.getString(1)%></a></li>
-	    <li><strong>Posted on: </strong><%=rst.getDate(3)%></li>
-	    <li><strong>View Count: <%=Q1.getCount()%></strong>
-	    </ul>
-	   <p>Think you can answer the question? Post an answer by clicking <a href="EnterAnswer.jsp?qid=<%=quesid%>">here</a>
-	   </div>
-	   
-		<div class="answers">
-		<h3 class="main" > ANSWERS: </h3>
-		<ol>
-		<%PreparedStatement ps= (PreparedStatement) conn.prepareStatement("SELECT Ans_id, Answer, create_time,"+
-							"user_id_A, upvotes, downvotes FROM `answer` WHERE Ques_id_A=?");
-		ps.setInt(1,quesid);
-		ResultSet rs = ps.executeQuery();
-		
-		while(rs.next()){
-			Answer A1=new Answer(rs.getInt(1),quesid,rs.getString(2),rs.getDate(3),rs.getInt(4),
-					rs.getInt(5),rs.getInt(6));%>
-			<li><ul> <li><strong>Answer ID: </strong><%=A1.getAns_id()%></li>
-			<li><strong>Answer Statement: </strong><%=A1.getAnswer()%></li>
-			<li><strong>Answer Posted On: </strong><%=A1.getCreate_time()%></li>
-		
-			<%PreparedStatement pstau=(PreparedStatement) conn.prepareStatement("SELECT Fname FROM"+
-									"`user` WHERE user_id=?");
-	    	pstau.setInt(1,rs.getInt(4));
-	    	ResultSet rstau =pstau.executeQuery();
-	    	rstau.next();%>
-	    	<li><strong>Posted By:</strong>
-	   		<a href ="http://localhost:8080/TechQuo/SearchUserServlet?UID=<%=rs.getInt(4)%>"><%=rstau.getString(1)%></a></li>
-			<li><strong>Up votes : </strong><%=A1.getUpvotes()%></li>
-			<li><strong>Down votes : </strong><%=A1.getDownvotes()%></li>
-			</ul></li>
-			
-<%
-			}	
-	}	 
-	catch (Exception e) {
-	    e.printStackTrace();
-	}
-	%>
-	</ol>
-	
+
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12 col-sm-10 col-md-10">
+			<div class="well well-sm">
+				<div class="row">
+					<div class="col-sm-6 col-md-8">
+            <strong> Question : </strong></h3>
+        		<% pst.setInt(1,quesid);
+        		ResultSet rst = pst.executeQuery();
+        	 	rst.next();
+
+        	 	Question Q1;
+        		Q1=new Question(quesid,rst.getString(1),rst.getDate(3),rst.getInt(2));
+        		Q1.setCount(rst.getInt(4));
+        		PreparedStatement pstu=(PreparedStatement) conn.prepareStatement("SELECT Fname FROM"+
+        					"`user` WHERE user_id=?");
+        pstu.setInt(1,rst.getInt(2));
+        Integer uid=rst.getInt(2);
+        ResultSet rstu =pstu.executeQuery();
+        rstu.next();%>
+        <%=rst.getString(1)%>
+						<div style="padding-top:15px;"></div>
+						<h5><span class="label label-info">Posted on:<%=rst.getDate(3)%></span></h5>
+					</div>
+					<div class="col-sm-6 col-md-4">
+						<h4><span class="label label-info  pull-right">View Count: <%=Q1.getCount()%></span><h4>
+<br>
+<br>
+        	  <h6> Question Posted By </h6> <h4> <a href="http://localhost:8080/TechQuo/SearchUserServlet?UID=<%=uid%>"><%=rstu.getString(1)%></a></h4>
+
+
+        	   <p class="well">Think you can answer the question? Post an answer by clicking <a href="EnterAnswer.jsp?qid=<%=quesid%>">here</a>
+
+
+
+					</div>
+				</div>
+			</div>
 		</div>
-		
-</body>
+	</div>
+</div>
+
+<!--Answers-->
+
+<div class="container">
+<div class="row">
+			<div class="col-sm-7">
+        <h4> ANSWERS </h4>
+				<hr/>
+				<div class="review-block">
+					<div class="row">
+						<div class="col-sm-3">
+              <%PreparedStatement ps= (PreparedStatement) conn.prepareStatement("SELECT Ans_id, Answer, create_time,"+
+          							"user_id_A, upvotes, downvotes FROM `answer` WHERE Ques_id_A=?");
+          		ps.setInt(1,quesid);
+          		ResultSet rs = ps.executeQuery();
+
+          		while(rs.next()){
+          			Answer A1=new Answer(rs.getInt(1),quesid,rs.getString(2),rs.getDate(3),rs.getInt(4),
+          					rs.getInt(5),rs.getInt(6));%>
+
+
+          			<%PreparedStatement pstau=(PreparedStatement) conn.prepareStatement("SELECT Fname FROM"+
+          									"`user` WHERE user_id=?");
+          	    	pstau.setInt(1,rs.getInt(4));
+          	    	ResultSet rstau =pstau.executeQuery();
+          	    	rstau.next();%>
+							<div class="review-block-name"><a href ="http://localhost:8080/TechQuo/SearchUserServlet?UID=<%=rs.getInt(4)%>"><%=rstau.getString(1)%></a></div>
+							<div class="review-block-date"><%=A1.getCreate_time()%></div>
+						</div>
+						<div class="col-sm-9">
+							<div class="review-block-description"><%=A1.getAnswer()%></div>
+              <span class="label label-info">Up votes : <%=A1.getUpvotes()%></span>
+              <span class="label label-info">Down votes : <%=A1.getDownvotes()%></span>
+						</div>
+            <%
+            			}
+            	}
+            	catch (Exception e) {
+            	    e.printStackTrace();
+            	}
+            	%>
+					</div>
+
+				</div>
+			</div>
+		</div>
+</div>
+
+
+  </body>
 </html>
