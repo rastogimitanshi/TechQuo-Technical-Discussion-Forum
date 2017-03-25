@@ -5,12 +5,15 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 //import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 //import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.apache.log4j.Logger;
 import com.mysql.jdbc.Connection;
 import connection.ConnectionManager;
@@ -24,9 +27,18 @@ public class LoadPostsServlet extends HttpServlet {
 	final static Logger logger= Logger.getLogger(LoadPostsServlet.class);
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    	logger.info("Inside Load Postss servlet");
+    	logger.info("Inside Load Posts servlet");
 		response.setContentType("text/html");
         response.setContentType("text/html");
+        HttpSession session=request.getSession(false);  
+    	if(session.getAttribute("user_details")==null){
+    				request.setAttribute("SessionExpired", "Your session has expired. Please log in again.");
+    				RequestDispatcher requestDispatcher;
+    				requestDispatcher = request.getRequestDispatcher("Home.jsp");
+    				requestDispatcher.forward(request,response);
+    				return;
+    			}
+
         PrintWriter out = response.getWriter();
         try{
         Connection con=null;

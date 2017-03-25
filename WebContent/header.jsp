@@ -90,7 +90,7 @@ crossorigin="anonymous"></script>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="Register.html" ><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
 				<li><a href="login.jsp"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-        <li> <form method="post" name="frm" action="SearchQuestionServlet">
+        <li> <form method="get" name="frm" action="SearchQuestionServlet">
           <table>
             <tr><td colspan=2 style="font-size:10pt; padding-top :3px; padding-bottom: 3px; " align="center">
             <tr><td style="font-family: 'Ubuntu Condensed', sans-serif; color: white;

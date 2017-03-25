@@ -69,4 +69,13 @@
     <servlet-name>LoadPostsServlet</servlet-name>
     <url-pattern>/LoadPosts</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>ViewTopTagsServlet</servlet-name>
+    <servlet-class>controller.ViewTopTagsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ViewTopTagsServlet</servlet-name>
+    <url-pattern>/ViewTopTags</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

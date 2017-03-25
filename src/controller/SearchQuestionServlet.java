@@ -17,7 +17,7 @@ import com.mysql.jdbc.Connection;
 public class SearchQuestionServlet extends HttpServlet {
 	private static final long serialVersionUID =1L;
 	final static Logger logger= Logger.getLogger(UpdateProfileServlet.class);
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     	logger.info("Inside Search Question servlet");
 		//response.setContentType("text/html");

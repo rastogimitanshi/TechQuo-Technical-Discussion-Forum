@@ -25,7 +25,8 @@
                     	<li><ul>
                     	<li>Question: <a href ="QuestionDetails.jsp?QID=<%= Q1.getQuesid() %>"><%=Q1.getQuestion() %></a><li> 
                     	<li>Posted on: <%=Q1.getcreate_time() %></li>
-                    	<li>View count: <%=Q1.getCount() %> </li>                    	</ul>
+                    	<li>View count: <%=Q1.getCount() %> </li>   
+                    	</ul>
                     	</li>
                     <%
                     }

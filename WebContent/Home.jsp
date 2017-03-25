@@ -12,6 +12,8 @@
   <body>
  
      <jsp:include page="header.jsp"></jsp:include>
+     <br>
+     <br>
      <jsp:include page="menu.jsp"></jsp:include>
     
     
@@ -24,17 +26,27 @@
      {
    %>
     
-     <br>View the top 20 Posts! <br>
- 
       <jsp:include page="/LoadPosts" flush="true"></jsp:include>
+      <div style="float: left;">
+      <br>View the top 20 Posts! <br>
       <c:forEach items="${quesList}" var="q">
     
       <a href="QuestionDetails.jsp?QID=<c:out value="${q.getQuesid()}"/>"><c:out value="${q.getQuestion()}"></c:out></a>
       <br>
       
       </c:forEach>
-      <%
-      }%>
+      </div>
+
+      <jsp:include page="/ViewTopTags" flush="true"></jsp:include>
+      <div style="float: right;">
+       <br>View the top trending tags! <br>
+      <c:forEach items="${toptags}" var="tag">
+      <a href="http://localhost:8080/TechQuo/SearchQuestionServlet?tag=<c:out value="${tag}"/>"><c:out value="${tag}"></c:out></a>
+      <br>
+      </c:forEach>
+      </div>
+         <%
+      }%>  
      <jsp:include page="footer.jsp"></jsp:include>
       
  

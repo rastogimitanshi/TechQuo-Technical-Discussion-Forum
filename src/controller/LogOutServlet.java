@@ -22,14 +22,14 @@ public class LogOutServlet extends HttpServlet{
 		logger.info("Inside log out servlet");
 		response.setContentType("text/html");  
 					
-		HttpSession session=request.getSession(); 
+		HttpSession session=request.getSession(false); 
 		session.invalidate(); 
 		logger.info("session invalidated");
 		System.out.println("You are successfully logged out!");  
 		logger.info("You have successfully logged out");
 		
 		RequestDispatcher requestDispatcher;			
-		requestDispatcher =request.getRequestDispatcher("login.jsp"); //change name later
+		requestDispatcher =request.getRequestDispatcher("/login.jsp"); //change name later
 		requestDispatcher.forward(request, response); 
 		
 	}  
