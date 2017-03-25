@@ -16,7 +16,6 @@ p {
 	font-size: 15px;
 	margin: 4px 8px 2px;
 }
-
 .logout button {
 	text-align: center;
 	margin-top: 0px;
@@ -36,7 +35,6 @@ p {
 	transition: all 0.3 ease;
 	cursor: pointer;
 }
-
 .logout button:hover, .form button:active, .form button:focus {
 	background: #4CAF50;
 	color: #FFFFFF;
@@ -44,18 +42,15 @@ p {
 	border-style: solid;
 	border-color: #FFFFFF;
 }
-
 body {
 	background: #76b852;
 }
-
 .login-page {
 	align: center;
 	width: 750px;
 	padding: 8% 0 0;
 	margin: auto;
 }
-
 .f {
 	align: center;
 	position: relative;
@@ -68,7 +63,6 @@ body {
 	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0
 		rgba(0, 0, 0, 0.24);
 }
-
 .f input {
 	outline: 0;
 	background: #e5e5e5;
@@ -79,7 +73,6 @@ body {
 	box-sizing: border-box;
 	font-size: 14px;
 }
-
 .f button {
 	text-transform: uppercase;
 	outline: 0;
@@ -95,7 +88,6 @@ body {
 	transition: all 0.3 ease;
 	cursor: pointer;
 }
-
 .f button:hover, .form button:active, .form button:focus {
 	background: #FFFFFF;
 	color: #4CAF50;
@@ -103,7 +95,6 @@ body {
 	border-style: solid;
 	border-color: #4CAF50;
 }
-
 .f .abc {
 	margin: 14px 0 0;
 	font-size: 14px;
@@ -115,7 +106,6 @@ function validateEmail(email) {
 	  var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 	  return re.test(email);
 	}
-
 	function validate() {
 	  $("#result").text("");
 	  var email = $("#email").val();

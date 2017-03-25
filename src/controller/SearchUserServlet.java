@@ -49,9 +49,13 @@ public class SearchUserServlet extends HttpServlet{
             pstI.setInt(1, Uid);
             String Interests="";
             ResultSet rstI=pstI.executeQuery();
+            if(rstI.next())
+            {
+                Interests= Interests.concat(rstI.getString(1)).concat(",");
+            
             while(rstI.next()){
             	Interests= Interests.concat(rstI.getString(1)).concat(",");
-            	
+            }
             }
             System.out.println(Interests);
             PreparedStatement pstE= (PreparedStatement) conn.prepareStatement("SELECT Education FROM `education_user`"+
@@ -59,8 +63,13 @@ public class SearchUserServlet extends HttpServlet{
             pstE.setInt(1, Uid);
             String Education="";
             ResultSet rstE=pstE.executeQuery();
+            if(rstE.next())
+            {
+                Education= Education.concat(rstE.getString(1)).concat(",");
+            
             while(rstE.next()){
             Education= Education.concat(rstE.getString(1)).concat(",");
+            }
             }
             
             System.out.println(Education);

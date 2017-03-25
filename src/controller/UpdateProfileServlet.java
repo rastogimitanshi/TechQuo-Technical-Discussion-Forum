@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -39,15 +42,24 @@ public class UpdateProfileServlet extends HttpServlet {
 					requestDispatcher.forward(request,response);
 					return;
 				}
-		User user =(User) session.getAttribute("USER_DETAILS");
-		int UserId = Integer.parseInt(request.getParameter("UserId"));
+		
+		User user =(User) session.getAttribute("user_details");
 		String Fname = request.getParameter("FirstName");
 		String Lname= request.getParameter("LastName");
 		String EmailId = request.getParameter("EmailId");
 		String City = request.getParameter("City");
 		String Country = request.getParameter("Country");
 		String JobPosition = request.getParameter("JobPosition");
+	
 		String DOB = request.getParameter("DOB");
+		Date date= new Date();
+		try {
+			date = new SimpleDateFormat("dd-MM-yyyy").parse(DOB);
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		java.sql.Date date3 = new java.sql.Date(date.getTime());
 		InputStream inputStream = null; 
 		String []Interests;
 		Interests = request.getParameterValues("myInputs");
@@ -75,7 +87,7 @@ public class UpdateProfileServlet extends HttpServlet {
 		if(EmailId==null || EmailId==""){
 			EmailId=user.getEmailId();
 		}
-		
+		int UserId=user.getUserId();
 		try{
 			Connection con=null;
 			con = ConnectionManager.getConnection();
@@ -87,7 +99,7 @@ public class UpdateProfileServlet extends HttpServlet {
 			ps.setString(3, City);
 			ps.setString(4, EmailId);
 			ps.setString(5, Country);
-			ps.setDate(6, java.sql.Date.valueOf(DOB));
+			ps.setDate(6, date3);
 			ps.setString(7, JobPosition);
 			if (inputStream != null) {
                 
@@ -98,9 +110,9 @@ public class UpdateProfileServlet extends HttpServlet {
             // sends the statement to the database server
 			
 			int i = ps.executeUpdate();
-			System.out.printf("User Table Updates");
-			PreparedStatement pst = (PreparedStatement) con.prepareStatement("INSERT INTO interests_user VALUES(?,?)");
-		
+			System.out.println("User Table Updates");
+			PreparedStatement pst = (PreparedStatement) con.prepareStatement("INSERT INTO `interests_user` VALUES(?,?)");
+		if(Interests!=null){
 			for(i=0;i<Interests.length;i++){
 				pst.setInt(1, UserId);
 				pst.setString(2, Interests[i]);
@@ -108,8 +120,9 @@ public class UpdateProfileServlet extends HttpServlet {
 				System.out.println(Interests[i]);
 			}
 			pst.executeBatch();
-			
-			PreparedStatement pstE = (PreparedStatement) con.prepareStatement("INSERT INTO education_user VALUES(?,?)");
+		}
+			if(Education!=null){
+			PreparedStatement pstE = (PreparedStatement) con.prepareStatement("INSERT INTO `education_user` VALUES(?,?)");
 			for(int j=0;j<Education.length;j++){
 				pstE.setInt(1, UserId);
 				pstE.setString(2, Education[j]);
@@ -117,6 +130,7 @@ public class UpdateProfileServlet extends HttpServlet {
 				System.out.println(Education[j]);
 			}
 			pstE.executeBatch();
+			}
 		
 			PreparedStatement p = (PreparedStatement) con.prepareStatement("SELECT user_id, Fname, Lname, Country, Email, City, JobPosition, DOB, Password FROM `user` WHERE user_id=?");
 			p.setInt(1, UserId); //change to getUserId() later
@@ -140,10 +154,10 @@ public class UpdateProfileServlet extends HttpServlet {
 			
 		}
 		catch(Exception e){
-			System.out.println(e);
+			e.printStackTrace();
 			
 				logger.error(e);
-				logger.info("Profile edited successfully");
+				logger.info("Profile Not Edited");
 				out.println("<script type=\"text/javascript\">");        // creating alert message using java
 				out.println("alert('Some unexpected error occured. Please try again later');");
 				out.println("location='Home.jsp';");
