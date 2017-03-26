@@ -40,7 +40,7 @@ public class SearchUserServlet extends HttpServlet{
             ResultSet rs=pst.executeQuery();
             rs.next();
             User user =new User(Uid,rs.getString(1),rs.getString(2),rs.getString(5),rs.getString(3),rs.getString(6),
-            		rs.getString(7),rs.getDate(4),"");
+            		rs.getString(7),rs.getDate(4),"","");
             user.setAnswersAnswered(rs.getInt(10));
             user.setQuestionsPosted(rs.getInt(9));
             Integer pv=rs.getInt(8);
@@ -65,7 +65,7 @@ public class SearchUserServlet extends HttpServlet{
             ResultSet rstE=pstE.executeQuery();
             if(rstE.next())
             {
-                Education= Education.concat(rstE.getString(1)).concat(",");
+                Education= Education.concat(rstE.getString(1)).concat(", ");
             
             while(rstE.next()){
             Education= Education.concat(rstE.getString(1)).concat(",");
@@ -77,8 +77,6 @@ public class SearchUserServlet extends HttpServlet{
             request.setAttribute("Interests",Interests);
             request.setAttribute("Education",Education);
             request.setAttribute("ProfileViews",pv);
-            //request.setAttribute("QuestionsPosted",Q);
-            //request.setAttribute("AnswersAnswered",A);
             RequestDispatcher requestDispatcher;			
     		requestDispatcher =request.getRequestDispatcher("UserProfile.jsp"); //change name later
     		requestDispatcher.forward(request, response); 
@@ -88,7 +86,7 @@ public class SearchUserServlet extends HttpServlet{
             
 
         catch(Exception e){
-        	System.out.println(e);
+        	e.printStackTrace();
 			logger.error(e);
 			logger.info("Some Error Occured");
 			out.println("<script type=\"text/javascript\">");        // creating alert message using java
