@@ -14,6 +14,8 @@
      <jsp:include page="header.jsp"></jsp:include>
      <br>
      <br>
+     <br>
+     <br>
      <jsp:include page="menu.jsp"></jsp:include>
     
     
@@ -35,9 +37,17 @@
       <br>
       <br>
       
-      <div>
+     <!-- <div>
      <a href="index.jsp">Click here to view All posts</a>
       </div>
+        -->
+        <div>
+		
+		<form action="pagination" method="post">
+			<input type="hidden" name="action" value="load"> <input
+				type="submit" class="button" value="View All">
+		</form>
+		</div>
 
       <jsp:include page="/ViewTopTags" flush="true"></jsp:include>
       <div style="float: right;">

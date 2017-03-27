@@ -45,13 +45,7 @@
 <title>Pagination-Results</title>
 </head>
 <body>
-	<div>
-		
-		<form action="pagination" method="post">
-			<input type="hidden" name="action" value="load"> <input
-				type="submit" class="button" value="View All">
-		</form>
-		</div>
+	
 	<br>
 	<c:if test="${not empty list}">
 
