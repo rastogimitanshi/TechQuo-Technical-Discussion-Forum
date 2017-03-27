@@ -237,7 +237,7 @@ return false;
           <div class="form-group">
             <label class="col-md-4 control-label" > Current Password</label>
             <div class="col-md-4">
-              <input type="password" id ="CurrPass" name ="CurrPass" placeholder="Current Password" class="form-control input-md" required="">
+              <input type="password" id ="CurrPass" name ="CurrPass" placeholder="Current Password" class="form-control input-md" required>
 
             </div>
           </div>
@@ -245,7 +245,7 @@ return false;
           <div class="form-group">
             <label class="col-md-4 control-label">New Password</label>
             <div class="col-md-4">
-              <input type="password" id ="NewPass" name="NewPass" placeholder="New Password" class="form-control input-md" required="">
+              <input type="password" id ="NewPass" name="NewPass" placeholder="New Password" class="form-control input-md" required>
 
             </div>
           </div>
@@ -253,7 +253,7 @@ return false;
           <div class="form-group">
             <label class="col-md-4 control-label" >Confirm Password</label>
             <div class="col-md-4">
-              <input type="password" type="password" id="ConPass" name="ConPass" placeholder="Re-enter New Password" class="form-control input-md" required="">
+              <input type="password" type="password" id="ConPass" name="ConPass" placeholder="Re-enter New Password" class="form-control input-md" required>
 
             </div>
           </div>

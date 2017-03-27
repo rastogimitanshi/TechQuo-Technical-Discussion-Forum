@@ -10,7 +10,7 @@
 	<center>
 		<h2>Enter your login credentials</h2>
 		<form action="login" method="post">
-			Enter your Email ID <br> <input type="text" name="username" required/><br> 
+			Enter your Email ID <br> <input type="text" name="username" required></input><br> 
 			<br> Enter your password <br>
 			<input type="password" name="password" required/> <br>
 			<input type="submit" value="Login">

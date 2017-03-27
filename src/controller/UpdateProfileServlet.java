@@ -50,7 +50,6 @@ public class UpdateProfileServlet extends HttpServlet {
 		String City = request.getParameter("City");
 		String Country = request.getParameter("Country");
 		String JobPosition = request.getParameter("JobPosition");
-	
 		String DOB = request.getParameter("DOB");
 		Date date= new Date();
 		try {
@@ -61,10 +60,10 @@ public class UpdateProfileServlet extends HttpServlet {
 		}
 		java.sql.Date date3 = new java.sql.Date(date.getTime());
 		InputStream inputStream = null; 
-		String []Interests;
-		Interests = request.getParameterValues("myInputs");
-		String []Education;
-		Education = request.getParameterValues("myEducation");
+		String []Interests=new String[]{};
+		Interests=request.getParameterValues("myInputs");
+		String []Education=new String[]{};
+		Education=request.getParameterValues("myEducation");
 	
 		
         Part filePart = request.getPart("photo");
@@ -87,6 +86,8 @@ public class UpdateProfileServlet extends HttpServlet {
 		if(EmailId==null || EmailId==""){
 			EmailId=user.getEmailId();
 		}
+		System.out.println(Education.length);
+		System.out.println(Interests.length);
 		int UserId=user.getUserId();
 		try{
 			Connection con=null;
@@ -111,8 +112,9 @@ public class UpdateProfileServlet extends HttpServlet {
 			
 			int i = ps.executeUpdate();
 			System.out.println("User Table Updates");
-			PreparedStatement pst = (PreparedStatement) con.prepareStatement("INSERT INTO `interests_user` VALUES(?,?)");
-		if(Interests!=null){
+			PreparedStatement pst = (PreparedStatement) con.prepareStatement("INSERT INTO `interests_user`(user_id_I,Interests) VALUES(?,?)");
+			if (Interests!=null)
+			{
 			for(i=0;i<Interests.length;i++){
 				pst.setInt(1, UserId);
 				pst.setString(2, Interests[i]);
@@ -120,9 +122,11 @@ public class UpdateProfileServlet extends HttpServlet {
 				System.out.println(Interests[i]);
 			}
 			pst.executeBatch();
-		}
-			if(Education!=null){
+			}
+			
 			PreparedStatement pstE = (PreparedStatement) con.prepareStatement("INSERT INTO `education_user` VALUES(?,?)");
+			if (Education!=null)
+			{
 			for(int j=0;j<Education.length;j++){
 				pstE.setInt(1, UserId);
 				pstE.setString(2, Education[j]);
@@ -131,16 +135,15 @@ public class UpdateProfileServlet extends HttpServlet {
 			}
 			pstE.executeBatch();
 			}
-		
 			PreparedStatement p = (PreparedStatement) con.prepareStatement("SELECT user_id, Fname, Lname, Country, Email, City, JobPosition, DOB, Password, Role FROM `user` WHERE user_id=?");
 			p.setInt(1, UserId); //change to getUserId() later
 			
 			ResultSet rs = p.executeQuery();
 			
-			/*if(!rs.next()){
+			if(!rs.next()){
 				logger.info("User not found");
 				throw new Exception();
-			}*/
+			}
 		
 			User user_details;
 			rs.next();

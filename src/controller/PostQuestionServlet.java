@@ -93,7 +93,7 @@ public class PostQuestionServlet extends HttpServlet {
 		pstU.setInt(1,uid);
 		pstU.executeUpdate();
 		out.println("<script type=\"text/javascript\">");        // creating alert message using java
-		out.println("alert('Answer Posted Successfully');");
+		out.println("alert('Question Posted Successfully');");
 		out.println("location='Home.jsp';");
 		out.println("</script>");
 		

@@ -76,7 +76,7 @@ crossorigin="anonymous"></script>
 			<div class="well well-sm">
 				<div class="row">
 					<div class="col-sm-6 col-md-8">
-            <strong> Question : </strong></h3>
+            <h3><strong> Question : </strong></h3>
         		<% pst.setInt(1,quesid);
         		ResultSet rst = pst.executeQuery();
         	 	rst.next();
@@ -95,7 +95,7 @@ crossorigin="anonymous"></script>
 						<h5><span class="label label-info">Posted on:<%=rst.getDate(3)%></span></h5>
 					</div>
 					<div class="col-sm-6 col-md-4">
-						<h4><span class="label label-info  pull-right">View Count: <%=Q1.getCount()%></span><h4>
+						<h4><span class="label label-info  pull-right">View Count: <%=Q1.getCount()%></span></h4>
 <br>
 <br>
         	  <h6> Question Posted By </h6> <h4> <a href="http://localhost:8080/TechQuo/SearchUserServlet?UID=<%=uid%>"><%=rstu.getString(1)%></a></h4>

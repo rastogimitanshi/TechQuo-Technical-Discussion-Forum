@@ -83,13 +83,13 @@
                 </div>
               </div>
 
-              <script src="addInput.js" language="Javascript" type="text/javascript">
+              <script src="addInput.js" type="text/javascript">
             				</script>
 
                     <div class="form-group">
                       <div id="dynamicInput">
                       <label class="col-lg-3 control-label">Enter Tags:</label>
-                      <input type="text" value="" name="myInputs" required="" >
+                      <input type="text" value="" name="myInputs" >
                       </div>
                       <div class="col-lg-8">
                         <br>
