@@ -20,12 +20,8 @@
       <h3>Home Page</h3>
       
      TechQuo is a technical Discussion Forum! <br>
-     <%
-     session=request.getSession(false);
-     if(session.getAttribute("user_details")!=null)
-     {
-   %>
-    
+    <br>
+    <br>
       <jsp:include page="/LoadPosts" flush="true"></jsp:include>
       <div style="float: left;">
       <br>View the top 20 Posts! <br>
@@ -36,6 +32,12 @@
       
       </c:forEach>
       </div>
+      <br>
+      <br>
+      
+      <div>
+     <a href="index.jsp">Click here to view All posts</a>
+      </div>
 
       <jsp:include page="/ViewTopTags" flush="true"></jsp:include>
       <div style="float: right;">
@@ -45,8 +47,7 @@
       <br>
       </c:forEach>
       </div>
-         <%
-      }%>  
+      
      <jsp:include page="footer.jsp"></jsp:include>
       
  

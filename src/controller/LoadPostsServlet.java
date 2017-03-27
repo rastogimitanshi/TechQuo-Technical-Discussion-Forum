@@ -30,15 +30,6 @@ public class LoadPostsServlet extends HttpServlet {
     	logger.info("Inside Load Posts servlet");
 		response.setContentType("text/html");
         response.setContentType("text/html");
-        HttpSession session=request.getSession(false);  
-    	if(session.getAttribute("user_details")==null){
-    				request.setAttribute("SessionExpired", "Your session has expired. Please log in again.");
-    				RequestDispatcher requestDispatcher;
-    				requestDispatcher = request.getRequestDispatcher("Home.jsp");
-    				requestDispatcher.forward(request,response);
-    				return;
-    			}
-
         PrintWriter out = response.getWriter();
         try{
         Connection con=null;
