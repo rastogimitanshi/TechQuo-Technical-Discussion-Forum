@@ -151,7 +151,7 @@ function validateEmail(email) {
                  <div id="dynamicInput">
                  <label class="col-lg-3 control-label">Your Interests:</label>
                  <div class="col-lg-8">
-                   <input type="text" name="myInputs" class="form-control input-md" >
+                   <input type="text" name="myInputs" value=" " class="form-control input-md" >
                    
 
                  <input type="button" value="Add more interests" onClick="addInput('dynamicInput');" >
@@ -167,7 +167,7 @@ function validateEmail(email) {
                  <div id="dynamicEducation">
                  <label class="col-lg-3 control-label">Educational Qualifications</label>
                  <div class="col-lg-8">
-                   <input type="text"  name="myEducation" class="form-control input-md" >
+                   <input type="text"  name="myEducation" value=" " class="form-control input-md" >
 
                  <input type="button" value="Add more Education" onClick="addEducation('dynamicEducation');">
                   </div>

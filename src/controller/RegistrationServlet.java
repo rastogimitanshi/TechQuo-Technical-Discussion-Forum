@@ -82,7 +82,7 @@ public class RegistrationServlet extends HttpServlet {
 			}
 			else{																												
 					
-			ps = con.prepareStatement("insert into `user`(Fname,Lname,Q1,A1,Q2,A2,Role,Email,Password) values(?,?,?,?,?,?,?,?,?)");  // user is the table name no of ?= no of columns
+			ps = con.prepareStatement("insert into `user`(Fname,Lname,Q1,A1,Q2,A2,Role,Email,Password,Activity) values(?,?,?,?,?,?,?,?,?,1)");  // user is the table name no of ?= no of columns
 																													
 						//ps.setString(1, Eid); // 0,1,2,3 depicts the serial order of question marks in table. All question markks are in 1 to 1 corrospondence with column names
 						ps.setString(1, Fname);

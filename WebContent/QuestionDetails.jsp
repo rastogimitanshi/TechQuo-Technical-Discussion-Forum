@@ -35,7 +35,25 @@
     d/1.4.2/respond.min.js"></script>
   <![endif]-->
   <title>TechQuo-Question View</title>
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+  
+ <script type="text/javascript">
 
+ var form = $('#ajaxform');
+ form.submit(function () {
+
+ $.ajax({
+ url: "/Upvote",
+ data: form.serialize(),
+ type="get",
+ cache= false,
+ success: function (data) {
+ var result=data;
+ $('#content').html(result);
+
+ }
+ });
+ }); </script>
   <style>
   body{padding-top:30px;}
 
@@ -145,6 +163,12 @@ crossorigin="anonymous"></script>
               <span class="label label-info">Up votes : <%=A1.getUpvotes()%></span>
               <span class="label label-info">Down votes : <%=A1.getDownvotes()%></span>
 						</div>
+					 <form id="ajaxform" name="ajaxform" action="Upvote" method="get">
+     <input type="hidden" name="ansid" id="ansid" value="<%=A1.getAns_id() %>" />
+     <input type="submit" id="submit" value="Upvote"/>
+   <div id='content'>
+</div>
+</form>
             <%
             			}
             	}

@@ -16,6 +16,9 @@
 			<input type="submit" value="Login">
 			<br><br>New User?
 			<a href="Register.html">Sign In</a>
+			<br><br>Forgot Password?
+			<a href="ForgotPassword.jsp">Click here</a>
+			
 			
 
 		</form>

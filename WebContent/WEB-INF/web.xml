@@ -77,7 +77,6 @@
     <servlet-name>ViewTopTagsServlet</servlet-name>
     <url-pattern>/ViewTopTags</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>PaginationServlet</servlet-name>
     <servlet-class>controller.PaginationServlet</servlet-class>
@@ -86,5 +85,4 @@
     <servlet-name>PaginationServlet</servlet-name>
     <url-pattern>/pagination</url-pattern>
   </servlet-mapping>
-  
 </web-app>

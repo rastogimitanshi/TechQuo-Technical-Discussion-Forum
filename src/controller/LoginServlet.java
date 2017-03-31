@@ -57,19 +57,34 @@ public class LoginServlet extends HttpServlet {
 	            out.println("<font color=red>"+errorMsg+"</font>");
 	            rd.include(request, response);
 	        }else{
-	        	
+	        	System.out.println("Email is"+email);
+	        	System.out.println("Password is"+password);
 	        
 			user.setEmailId(email);
 			user.setPassword(password);
 			user = UserDAO.login(user);
 			if(user != null){
-				out.print("Welcome "+ user.getUserId());  
+				out.print("Welcome "+ user.getUserId()+""+user.getRole());
+				System.out.println("Role is"+user.getRole()+"User id"+user.getUserId());
 				request.setAttribute("NAME", user.getEmailId());
 				HttpSession session = request.getSession();
 				session.setAttribute("user_details", user);
-				RequestDispatcher requestDispatcher;			
-	    		requestDispatcher =request.getRequestDispatcher("Home.jsp"); //change name later
-	    		requestDispatcher.forward(request, response); 
+				session.setAttribute("roles", user.getRole());
+				if(user.getRole().equalsIgnoreCase("User"))
+				{
+					RequestDispatcher requestDispatcher;			
+		    		requestDispatcher =request.getRequestDispatcher("Home.jsp"); //change name later
+		    		requestDispatcher.forward(request, response); 
+					
+				}
+				else
+				{
+					RequestDispatcher requestDispatcher;			
+		    		requestDispatcher =request.getRequestDispatcher("Admin.jsp"); //change name later
+		    		requestDispatcher.forward(request, response); 
+					
+				}
+				
 				
 			}
 			else
