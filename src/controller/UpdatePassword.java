@@ -1,4 +1,4 @@
-package com.TechQuo.Controller;
+package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -41,7 +41,7 @@ public class UpdatePassword extends HttpServlet {
 		if(pass.equals(cpass)){
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
-				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/techquo", "root", "dnsingh87");
+				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/techquo", "root", "tiger");
 				stmt = con.createStatement();
 				//String query = "Update user set Password='"+pass+"' where Email='"+mailid+"'";
 				int i = stmt.executeUpdate("Update user set Password='"+pass+"' where Email='"+mailid+"'");

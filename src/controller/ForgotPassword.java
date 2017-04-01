@@ -1,4 +1,4 @@
-package com.TechQuo.Controller;
+package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -43,7 +43,7 @@ public class ForgotPassword extends HttpServlet {
 		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/techquo", "root", "dnsingh87");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/techquo", "root", "tiger");
 			stmt = con.createStatement();
 			String query = "SELECT user_id from user where Email='"+mailid+"' AND ((Q1 ='"+Question+"' AND A1 ='"+Answer+"') OR (Q2 ='"+Question+"' AND A2 ='"+Answer+"'))";
 			ResultSet rs = stmt.executeQuery(query);		

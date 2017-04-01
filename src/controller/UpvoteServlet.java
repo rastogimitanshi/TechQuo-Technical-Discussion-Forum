@@ -68,7 +68,7 @@ public class UpvoteServlet extends HttpServlet {
 			PreparedStatement psI =(PreparedStatement)con.prepareStatement("INSERT INTO `user_ans_likes`(user_id,ans_id) VALUES(?,?)");
 			psI.setInt(1,user.getUserId());
 			psI.setInt(2,ansid);
-			int j = psU.executeUpdate();
+			int j = psI.executeUpdate();
 			
 			if(i>0&&j>0)
 			{

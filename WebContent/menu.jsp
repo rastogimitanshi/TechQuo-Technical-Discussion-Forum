@@ -5,7 +5,7 @@
  <%	session = request.getSession(false);
  	User user =new User();
  	if(session.getAttribute("user_details")!=null)
- 	user = (User)session.getAttribute("user_details");
+ 	 user = (User)session.getAttribute("user_details");
  	%>
    <a href="Home.jsp">Home</a>
    | <a href="login.jsp">Login</a>
