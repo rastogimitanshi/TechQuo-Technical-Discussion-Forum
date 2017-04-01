@@ -4,11 +4,31 @@
 <%@ page import="java.io.*" %> 
 <html>
 <head>
+ <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+
+function deactivate(id)
+{
+	/* alert("User deactivated Successfully");
+	
+	alert("Flag value is"+myVar);
+	$.post('ChangingFlags.jsp'); */
+	  var f=document.form;
+    f.method="post";
+    f.action='ChangingFlags.jsp?id='+id;
+    f.submit();
+
+	// window.history.back();
+	}
+</script>
 <title>Admin Console</title>
 </head>
 <body>
 <h2>Details of Users</h2>
+<form method="post" name="form">
 <%
+String value=(String)session.getAttribute("flag_val");
+//out.println("value is"+value);
 try {
 /* Create string of connection url within specified format with machine
 name, port number and database name. Here machine name id localhost and 
@@ -30,7 +50,7 @@ connection = DriverManager.getConnection(connectionURL, "root", "tiger");
 sending sql statements to the specified database. */
 statement = connection.createStatement();
 // sql query to retrieve values from the secified table.
-String QueryString = "SELECT * from user";
+String QueryString = "SELECT * from user where Role!='Admin' and Flag!='DeActivate'";
 rs = statement.executeQuery(QueryString);
 %>
 <TABLE cellpadding="15" border="1" style="background-color: #ffffcc;">
@@ -49,7 +69,7 @@ while (rs.next()) {
 <TD><%=rs.getString(2)%></TD>
 <TD><%=rs.getString(3)%></TD>
 <TD><%=rs.getString(8)%></TD>
-<TD><input type="button" value="Deactivate"></TD>
+<TD><input type="button" value="Deactivate" onclick="deactivate(<%=rs.getInt(1)%>)"></TD>
 </TR>
 <% } %>
 <%

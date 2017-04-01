@@ -13,6 +13,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import service.SendMail;
 
 
@@ -35,6 +37,7 @@ public class RegistrationServlet extends HttpServlet {
 		String pwd = request.getParameter("pwd");
 		PrintWriter out= response.getWriter();
 		String errorMsg=null;
+		
 		if(Fname == null || Fname.equals("")){
             errorMsg ="First Name Cannot be empty!!";
         }
@@ -69,6 +72,7 @@ public class RegistrationServlet extends HttpServlet {
 			con = ConnectionManager.getConnection();
 			ps=con.prepareStatement("Select Email from `user` where Email=?");
 			ps.setString(1, mailid);
+	
 				
 			ResultSet rs = ps.executeQuery();
 			if(rs.next()){
@@ -81,8 +85,8 @@ public class RegistrationServlet extends HttpServlet {
 				
 			}
 			else{																												
-					
-			ps = con.prepareStatement("insert into `user`(Fname,Lname,Q1,A1,Q2,A2,Role,Email,Password,Activity) values(?,?,?,?,?,?,?,?,?,1)");  // user is the table name no of ?= no of columns
+				String flag="Activate";	
+			ps = con.prepareStatement("insert into `user`(Fname,Lname,Q1,A1,Q2,A2,Role,Email,Password,Flag) values(?,?,?,?,?,?,?,?,?,?)");  // user is the table name no of ?= no of columns
 																													
 						//ps.setString(1, Eid); // 0,1,2,3 depicts the serial order of question marks in table. All question markks are in 1 to 1 corrospondence with column names
 						ps.setString(1, Fname);
@@ -94,13 +98,16 @@ public class RegistrationServlet extends HttpServlet {
 						ps.setString(7, Role);
 						ps.setString(8, mailid);
 						ps.setString(9, pwd);
+						ps.setString(10,flag);
 						
 						int i = ps.executeUpdate();
 						if (i > 0) {
+							
+							System.out.println("flag is"+flag);
 							SendMail.sendMail(mailid, Fname, "Dear" +Fname+" Your account has been created. Welcome to TechQuo-Technical Discussion Forum" );
 							System.out.println("You are successfully registered...");
-							
 							out.println("Registeration Successful");
+							//session.setAttribute("flag_value", flag);
 							//logger.info("Registered successfully");
 							out.println("<script type=\"text/javascript\">");        // creating alert message using java
 							out.println("alert('Registered Successfully');");

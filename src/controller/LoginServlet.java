@@ -1,6 +1,9 @@
 package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
+import connection.ConnectionManager;
 import domain.User;
 import tables.UserDAO;
 
@@ -34,12 +37,13 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		
+		PreparedStatement ps;
 		PrintWriter out=response.getWriter(); 
 		response.setContentType("text/html");
 		try
 		{	    
-
+			Connection con=null;
+			con = ConnectionManager.getConnection();
 			User user = new User();
 			String errorMsg=null;
 			String email= (request.getParameter("username"));
@@ -63,13 +67,24 @@ public class LoginServlet extends HttpServlet {
 			user.setEmailId(email);
 			user.setPassword(password);
 			user = UserDAO.login(user);
-			if(user != null){
+			ps=con.prepareStatement("Select Flag from `user` where user_id=?");
+			ps.setInt(1, user.getUserId());
+			ResultSet rs = ps.executeQuery();
+			String flag="";
+			if(rs.next())
+			{
+				 flag=rs.getString(1);
+			}
+			System.out.println("flag before checking"+flag);
+			if(user != null && flag.equalsIgnoreCase("Activate")){
 				out.print("Welcome "+ user.getUserId()+""+user.getRole());
 				System.out.println("Role is"+user.getRole()+"User id"+user.getUserId());
 				request.setAttribute("NAME", user.getEmailId());
-				HttpSession session = request.getSession();
+				HttpSession session=request.getSession();
 				session.setAttribute("user_details", user);
 				session.setAttribute("roles", user.getRole());
+				//String flag_session=(String)session.getAttribute("flag_value");
+				session.setAttribute("flag_val", flag);
 				if(user.getRole().equalsIgnoreCase("User"))
 				{
 					RequestDispatcher requestDispatcher;			
@@ -86,6 +101,13 @@ public class LoginServlet extends HttpServlet {
 				}
 				
 				
+			}
+			else if(flag.equalsIgnoreCase("Deactivate"))
+			{
+				out.println("<script type=\"text/javascript\">");        // creating alert message using java
+				out.println("alert('User is Deactivate by admin');");
+				out.println("location='login.jsp';");
+				out.println("</script>");
 			}
 			else
 			{
