@@ -10,17 +10,16 @@
 	<center>
 		<h2>Enter your login credentials</h2>
 		<form action="login" method="post">
-
-			Enter your email <br> <input type="text" name="username" /><br> 
+			Enter your Email ID <br> <input type="text" name="username" required></input><br> 
 			<br> Enter your password <br>
-			<input type="password" name="password" /> <br>
-			<br>Role <br>
-			<select name="Role" id="Role">
-						<option value="User">User</option>
-						<option value="Admin">Admin</option>
-			</select>
-			<br><br>
+			<input type="password" name="password" required/> <br>
 			<input type="submit" value="Login">
+			<br><br>New User?
+			<a href="Register.html">Sign In</a>
+			<br><br>Forgot Password?
+			<a href="ForgotPassword.jsp">Click here</a>
+			
+			
 
 		</form>
 	</center>
