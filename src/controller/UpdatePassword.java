@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import service.SendMail;
+
 /**
  * Servlet implementation class UpdatePassword
  */
@@ -45,6 +47,8 @@ public class UpdatePassword extends HttpServlet {
 				stmt = con.createStatement();
 				//String query = "Update user set Password='"+pass+"' where Email='"+mailid+"'";
 				int i = stmt.executeUpdate("Update user set Password='"+pass+"' where Email='"+mailid+"'");
+				SendMail.sendMail(mailid,"User", "Dear User Your Password has been changed sucessfully on TechQuo-Technical Discussion Forum!"
+						+ "Login to you TechQuo account with new Password " );
 				if(i > 0){
 					out.println("<p>Password changed</p>");
 					out.println("<p><a href=\"http://localhost:8080/TechQuo/login.jsp\">"+"Login"+ "</a></p>");
