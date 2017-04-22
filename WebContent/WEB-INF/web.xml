@@ -85,6 +85,14 @@
     <servlet-name>PaginationServlet</servlet-name>
     <url-pattern>/pagination</url-pattern>
   </servlet-mapping>
+   <servlet>
+    <servlet-name>ForgotPassword</servlet-name>
+    <servlet-class>controller.ForgotPassword</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ForgotPassword</servlet-name>
+    <url-pattern>/ForgotPassword</url-pattern>
+  </servlet-mapping>
   <session-config>
         <session-timeout>30</session-timeout>
     </session-config>

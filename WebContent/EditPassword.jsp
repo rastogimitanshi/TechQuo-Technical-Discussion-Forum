@@ -1,7 +1,8 @@
 <%@ page import="domain.User"%>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="ISO-8859-1">
+  <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
@@ -11,6 +12,23 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
   integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <!--<link href="faq/style.css" rel="stylesheet">-->
+  <style>
+  /*FAQS*/
+  .faq_question {
+      margin: 0px;
+      padding: 0px 0px 5px 0px;
+      display: inline-block;
+      cursor: pointer;
+      font-weight: bold;
+  }
+
+  .faq_answer_container {
+      height: 0px;
+      overflow: hidden;
+      padding: 0px;
+  }
+  </style>
+
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -24,7 +42,7 @@
     d/1.4.2/respond.min.js"></script>
   <![endif]-->
 
-  <title>Edit Password</title>
+  <title>Change Password</title>
   <style>
   .menu
   {
@@ -76,8 +94,6 @@
   </style>
 
 </head>
-
-
 <body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -89,6 +105,10 @@ crossorigin="anonymous"></script>
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 
 <script type = "text/javascript" src = "JS/jquery-min.js"> </script>
+
+<script>
+
+</script>
 
 
 <script>
@@ -144,53 +164,42 @@ $("#CurrPass").blur(function(){
     }
 
 
- $.ajax({
-       type : "POST",
-       url : "UpdatePassword",
-       data : "CurrPass=" + CurrPass + "&NewPass=" + NewPass + "&ConPass" + ConPass,
-       success : function(data) {
+     $.ajax({
+            type : "POST",
+            url : "UpdatePassword",
+            data : "&CurrPass=" + CurrPass + "&NewPass=" + NewPass + "&ConPass" + ConPass,
+            success : function(data) {
 
-             if(data.toString().indexOf("admin") != -1) {   // means if the message received from servlet in form of out.print.ln contains invalid or not
-              alert("Password Updated successfully.");
-                  $(location).attr('href',"Admin.jsp");
+                 if(data.toString().indexOf("admin") != -1) {   // means if the message received from servlet in form of out.print.ln contains invalid or not
+                  alert("Password Updated successfully.");
+                      $(location).attr('href',"Home.jsp");
 
-             }
-             else if(data.toString().indexOf("user") != -1) {   // means if the message received from servlet in form of out.print.ln contains invalid or not
-                alert("Password Updated successfully.");
-                $(location).attr('href',"Home.jsp");
+                 }
+                 else if(data.toString().indexOf("user") != -1) {   // means if the message received from servlet in form of out.print.ln contains invalid or not
+                    alert("Password Updated successfully.");
+                    $(location).attr('href',"Home.jsp");
 
-           }
-          else if(data.toString().indexOf("admine") != -1) {
-              alert("Some unexpected error has occured. Please try again later.")
-              $(location).attr('href',"Admin.jsp");
-        }
-          else if(data.toString().indexOf("usere") != -1) {
-              alert("Some unexpected error has occured. Please try again later.")
-              $(location).attr('href',"Home.jsp");
-        }
-     },
-   error: function(data) {
-     alert("Some unexpected error has occured. Please try again later.")
-     $(location).attr('href',"LogOut");
-   }
-   });
-return false;
-});
-
-
-
+                }
+              else if(data.toString().indexOf("admine") != -1) {
+                  alert("Some unexpected error has occured. Please try again later.")
+                  $(location).attr('href',"Home.jsp");
+            }
+              else if(data.toString().indexOf("usere") != -1) {
+                  alert("Some unexpected error has occured. Please try again later.")
+                  $(location).attr('href',"Home.jsp");
+            }
+          },
+       error: function(data) {
+         alert("Some unexpected error has occured. Please try again later.")
+         $(location).attr('href',"LogOut");
+       }
+        });
+   return false;
+    });
+   return false;
+    });
 });
 </script>
-
-<%		session=request.getSession(false);
-		if(session.getAttribute("user_details")==null){
-			request.setAttribute("SessionExpired", "Your session has expired. Please log in again.");
-			RequestDispatcher requestDispatcher;
-			requestDispatcher = request.getRequestDispatcher("/login.jsp");
-			requestDispatcher.forward(request,response);
-			return;
-		}
-%>
 
 <div class="menu">
     <div class="container-fluid">
@@ -220,32 +229,33 @@ return false;
 <br>
 <br>
 <br>
-<%
-  User user= (User)session.getAttribute("user_details");
-%>
 <div class="container">
  <div class="row">
 
-
-   <form  class="login-form form-horizontal" action = "UpdatePassword" method="post" onsubmit="return CurrentPassword();">
 <fieldset>
 
 <!-- Form Name -->
-<legend> Edit Password </legend>
+<legend> Change Password </legend>
 
+
+
+		<% User user= (User)session.getAttribute("user_details"); %>
+
+
+				<form  class="login-form form-horizontal" action = "UpdatePassword" method="post" onsubmit="return CurrentPassword();">
 
           <div class="form-group">
             <label class="col-md-4 control-label" > Current Password</label>
             <div class="col-md-4">
-              <input type="password" id ="CurrPass" name ="CurrPass" placeholder="Current Password" class="form-control input-md" required>
+              <input type="password" id ="CurrPass" name ="CurrPass" placeholder="Current Password" class="form-control input-md" required="">
 
             </div>
           </div>
 
           <div class="form-group">
-            <label class="col-md-4 control-label">New Password</label>
+            <label class="col-md-4 control-label" >New Password</label>
             <div class="col-md-4">
-              <input type="password" id ="NewPass" name="NewPass" placeholder="New Password" class="form-control input-md" required>
+              <input type="password" id ="NewPass" name="NewPass" placeholder="New Password" class="form-control input-md" required="">
 
             </div>
           </div>
@@ -253,7 +263,7 @@ return false;
           <div class="form-group">
             <label class="col-md-4 control-label" >Confirm Password</label>
             <div class="col-md-4">
-              <input type="password" type="password" id="ConPass" name="ConPass" placeholder="Re-enter New Password" class="form-control input-md" required>
+              <input type="password" type="password" id="ConPass" name="ConPass" placeholder="Re-enter New Password" class="form-control input-md" required="">
 
             </div>
           </div>
@@ -264,7 +274,7 @@ return false;
             <label class="col-md-4 control-label" for="confirmation"></label>
             <div class="col-md-4">
               <button id="submit" class="btn btn-primary">Submit</button>
-              <input type="hidden" id="Pass" name="Pass" value="<%= user.getPassword() %>">
+              <input type="hidden" id="Pass" name="Pass" value="<%=user.getPassword()%>">
             </div>
           </div>
 
@@ -281,6 +291,11 @@ return false;
   <a href ="EditPassword.jsp">  <button  class="btn btn-outline-secondary">Reset</button></a>
 </div>
   </div>
+
+
+            </div>
+
+
 
 	</body>
 </html>

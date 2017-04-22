@@ -36,26 +36,22 @@ margin: 0px;
 z-index: 1;
 opacity: 0.9;
 }
-
 .menu  .navbar-nav > .active > a
 {
 background-color : #04A3ED;
 color: white;
 font-weight: bold;
 }
-
 .menu  .navbar-nav >  li >  a
 {
 font-size: 13px;
 color: white;
 padding: 10px 35px;
-
 }
 .menu  .navbar-nav >  li >  a:hover
 {
 background-color: #04A3ED;
 }
-
 .navbar-header > a
 {
 font-family: 'Ubuntu Condensed', sans-serif;
@@ -71,6 +67,7 @@ padding: 5px 30px;
 text-decoration: none;
 color: #04A3ED;
 }
+
 </style>
 
 </head>
@@ -83,12 +80,46 @@ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7T
 crossorigin="anonymous"></script>
 
 <div class="menu">
+
     <div class="container-fluid">
+      <%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
+          <%@page import="domain.User" %>
+      <div class="dropdown navbar-left">
+        <%	session = request.getSession(false);
+        	User user =new User();
+        	if(session.getAttribute("user_details")!=null)
+        	 user = (User)session.getAttribute("user_details");
+        	%>
+      <button class="btn btn-default dropdown-toggle " type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+      <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+      </button>
+
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+
+        <li><a href="Home.jsp">Home</a></li>
+         <li><a href="login.jsp">Login</a></li>
+         <li role="separator" class="divider"></li>
+        <li><a href="EditProfile.jsp">Edit Profile</a></li>
+         <li><a href="EditPassword.jsp">Change Password</a></li>
+        <li><a href="http://localhost:8080/TechQuo/SearchUserServlet?UID=<%=user.getUserId()%>">View Profile</a></li>
+        <li role="separator" class="divider"></li>
+         <li><a href="PostQuestion.jsp">Post Question</a></li>
+         <li role="separator" class="divider"></li>
+        <li><a href="LogOut">Log Out</a></li></li>
+
+
+
+      </ul>
+    </div>
+
 		<div class="navbar-header">
+
 			<a href="#">TechQuo</a>
 		</div>
 		<div>
 			<ul class="nav navbar-nav navbar-right">
+
 				<li><a href="Register.html" ><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
 				<li><a href="login.jsp"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
         <li>
@@ -97,10 +128,15 @@ crossorigin="anonymous"></script>
               <input type="text" name="tag" id="tag" required class="form-control" placeholder="Enter Tag">
           </div>
   <button type="submit" name ="submit" class="btn btn-default">Search</button>
+
 </form>
+
 
   </li>
 			</ul>
+
+
+      </div>
 		</div>
 	</div>
 </div>

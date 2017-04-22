@@ -28,20 +28,14 @@
   <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respon
-
-
-
-
     d/1.4.2/respond.min.js"></script>
   <![endif]-->
   <title>TechQuo-Question View</title>
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-  
- <script type="text/javascript">
 
+ <script type="text/javascript">
  var form = $('#ajaxform');
  form.submit(function () {
-
  $.ajax({
  url: "/Upvote",
  data: form.serialize(),
@@ -50,13 +44,11 @@
  success: function (data) {
  var result=data;
  $('#content').html(result);
-
  }
  });
- }); </script>
+ }); </script>
   <style>
   body{padding-top:30px;}
-
   </style>
 
 
@@ -76,7 +68,6 @@ crossorigin="anonymous"></script>
 
 <%
 	Integer quesid=Integer.parseInt(request.getParameter("QID"));
-
 	try {
 		Connection conn=null;
 		conn = ConnectionManager.getConnection();
@@ -85,7 +76,6 @@ crossorigin="anonymous"></script>
 		qstU.executeUpdate();
 		PreparedStatement pst= (PreparedStatement) conn.prepareStatement("SELECT Question, user_id,"+
 				"create_time,count FROM `question` WHERE Ques_id=?");
-
 		%>
 
 <div class="container">
@@ -98,7 +88,6 @@ crossorigin="anonymous"></script>
         		<% pst.setInt(1,quesid);
         		ResultSet rst = pst.executeQuery();
         	 	rst.next();
-
         	 	Question Q1;
         		Q1=new Question(quesid,rst.getString(1),rst.getDate(3),rst.getInt(2));
         		Q1.setCount(rst.getInt(4));
@@ -137,6 +126,8 @@ crossorigin="anonymous"></script>
 			<div class="col-sm-7">
         <h4> ANSWERS </h4>
 				<hr/>
+        <div class="panel panel-default">
+    <div class="panel-body">
 				<div class="review-block">
 					<div class="row">
 						<div class="col-sm-3">
@@ -144,7 +135,6 @@ crossorigin="anonymous"></script>
           							"user_id_A, upvotes, downvotes FROM `answer` WHERE Ques_id_A=?");
           		ps.setInt(1,quesid);
           		ResultSet rs = ps.executeQuery();
-
           		while(rs.next()){
           			Answer A1=new Answer(rs.getInt(1),quesid,rs.getString(2),rs.getDate(3),rs.getInt(4),
           					rs.getInt(5),rs.getInt(6));%>
@@ -179,6 +169,8 @@ crossorigin="anonymous"></script>
 					</div>
 
 				</div>
+      </div>
+    </div>
 			</div>
 		</div>
 </div>

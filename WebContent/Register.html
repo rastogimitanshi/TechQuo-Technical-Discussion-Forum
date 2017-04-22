@@ -22,55 +22,7 @@
   <![endif]-->
 
 <title>Registration</title>
-<style>
-.menu
-{
-background-color: #00547E;
-border-bottom: 4px solid #04A3ED;
-width:100%;
-height: auto;
-padding: 0 10px;
-position: fixed;
-margin: 0px;
-z-index: 1;
-opacity: 0.9;
-}
 
-.menu  .navbar-nav > .active > a
-{
-background-color : #04A3ED;
-color: white;
-font-weight: bold;
-}
-
-.menu  .navbar-nav >  li >  a
-{
-font-size: 13px;
-color: white;
-padding: 10px 35px;
-
-}
-.menu  .navbar-nav >  li >  a:hover
-{
-background-color: #04A3ED;
-}
-
-.navbar-header > a
-{
-font-family: 'Ubuntu Condensed', sans-serif;
-padding: 0px;
-margin: 0px;
-text-decoration: none;
-color: white;
-font-size: 25px;
-padding: 5px 30px;
-}
-.navbar-header > a:hover
-{
-text-decoration: none;
-color: #04A3ED;
-}
-</style>
 
 </head>
 <body>
@@ -81,30 +33,7 @@ color: #04A3ED;
 integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
 crossorigin="anonymous"></script>
 
-<div class="menu">
-    <div class="container-fluid">
-		<div class="navbar-header">
-			<a href="#">TechQuo</a>
-		</div>
-		<div>
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="login.jsp" ><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-				<li><a href="Register.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-        <li> <form method="get" name="frm" action="SearchQuestionServlet">
-          <table>
-            <tr><td colspan=2 style="font-size:10pt; padding-top :3px; padding-bottom: 3px; " align="center">
-            <tr><td style="font-family: 'Ubuntu Condensed', sans-serif; color: white;
-            font-size: 15px;" >TAG</td>
-              <td>: <input  type="text" name="tag" id="tag" required>
-            </td>
-            <td colspan=2 align="center">
-            <input  type="submit" name="submit" value="Submit" ></td></tr>
-          </table>
-        </form> </li>
-			</ul>
-		</div>
-	</div>
-</div>
+
 
  <!--Form Begins-->
  <br>
@@ -126,7 +55,7 @@ crossorigin="anonymous"></script>
 
 
 
-      <input id="FirstName" name="FirstName" type="text" placeholder="Your first name" class="form-control input-md" required>
+      <input id="FirstName" name="FirstName" type="text" placeholder="Your first name" class="form-control input-md" required="">
 
   </div>
 </div>
@@ -135,7 +64,7 @@ crossorigin="anonymous"></script>
 <div class="form-group">
   <label class="col-md-4 control-label">Last Name</label>
   <div class="col-md-5">
-      <input id="LastName" name="LastName" type="text" placeholder="Your last name" class="form-control input-md" required>
+      <input id="LastName" name="LastName" type="text" placeholder="Your last name" class="form-control input-md" required="">
 
   </div>
 </div>
@@ -158,7 +87,7 @@ crossorigin="anonymous"></script>
 <div class="form-group">
   <label class="col-md-4 control-label" for="username">Answer 1</label>
   <div class="col-md-5">
-  <input name="A1" id="A1" type="text" placeholder="Your answer" class="form-control input-md" required>
+  <input iname="A1" id="A1" type="text" placeholder="Your answer" class="form-control input-md" required="">
 
   </div>
 </div>
@@ -181,7 +110,7 @@ crossorigin="anonymous"></script>
 <div class="form-group">
   <label class="col-md-4 control-label" for="username">Answer 2</label>
   <div class="col-md-5">
-  <input name="A2" id="A2" type="text" placeholder="Your answer" class="form-control input-md" required>
+  <input iname="A2" id="A2" type="text" placeholder="Your answer" class="form-control input-md" required="">
 
   </div>
 </div>
@@ -204,7 +133,7 @@ crossorigin="anonymous"></script>
 <div class="form-group">
   <label class="col-md-4 control-label" >Email</label>
   <div class="col-md-4">
-  <input name="mailid" id="mailid" type="email" placeholder="Enter your email id" class="form-control input-md" required>
+  <input name="mailid" id="mailid" type="email" placeholder="Enter your email id" class="form-control input-md" required="">
 
   </div>
 </div>
@@ -213,7 +142,7 @@ crossorigin="anonymous"></script>
 <div class="form-group">
   <label class="col-md-4 control-label" for="password">Password</label>
   <div class="col-md-4">
-    <input type="password" name="pwd" id="pwd" placeholder="Enter a password" class="form-control input-md" required>
+    <input type="password" name="pwd" id="pwd" placeholder="Enter a password" class="form-control input-md" required="">
 
   </div>
 </div>
