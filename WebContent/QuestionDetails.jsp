@@ -77,7 +77,7 @@ crossorigin="anonymous"></script>
 		PreparedStatement pst= (PreparedStatement) conn.prepareStatement("SELECT Question, user_id,"+
 				"create_time,count FROM `question` WHERE Ques_id=?");
 		%>
-
+    <jsp:include page="header.jsp"></jsp:include>
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12 col-sm-10 col-md-10">

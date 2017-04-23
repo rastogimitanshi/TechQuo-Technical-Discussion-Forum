@@ -24,6 +24,7 @@ function deactivate(id)
 <title>Admin Console</title>
 </head>
 <body>
+    <jsp:include page="header.jsp"></jsp:include>
 <h2>Details of Users</h2>
 <form method="post" name="form">
 <%

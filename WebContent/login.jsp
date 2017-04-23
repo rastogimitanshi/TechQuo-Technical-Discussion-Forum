@@ -15,7 +15,7 @@
 			<input type="password" name="password" required/> <br>
 			<input type="submit" value="Login">
 			<br><br>New User?
-			<a href="Register.html">Sign In</a>
+			<a href="Register.jsp">Sign In</a>
 			<br><br>Forgot Password?
 			<a href="ForgotPassword.jsp">Click here</a>
 			

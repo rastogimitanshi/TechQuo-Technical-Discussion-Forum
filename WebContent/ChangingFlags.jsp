@@ -9,6 +9,7 @@
 <%@ page import="java.io.*" %> 
 </head>
 <body>
+    <jsp:include page="header.jsp"></jsp:include>
 <%
 String value=(String)session.getAttribute("flag_val");
 int id=Integer.parseInt(request.getParameter("id"));

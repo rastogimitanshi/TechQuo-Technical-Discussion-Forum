@@ -45,7 +45,7 @@
 <title>Pagination-Results</title>
 </head>
 <body>
-	
+    <jsp:include page="header.jsp"></jsp:include>	
 	<br>
 	<c:if test="${not empty list}">
 

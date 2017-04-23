@@ -200,7 +200,7 @@ $("#CurrPass").blur(function(){
     });
 });
 </script>
-
+    <jsp:include page="header.jsp"></jsp:include>
 <div class="menu">
     <div class="container-fluid">
 		<div class="navbar-header">

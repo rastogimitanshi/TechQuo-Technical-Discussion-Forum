@@ -31,7 +31,7 @@ public class PaginationServlet extends HttpServlet {
 	private HttpSession session;
 
 	// Number of article per page you wnat to diplay
-	public final int perPagesArticles = 2;
+	public final int perPagesArticles = 10;
 	public PaginationServlet() {
 		// TODO Auto-generated constructor stub
 	}

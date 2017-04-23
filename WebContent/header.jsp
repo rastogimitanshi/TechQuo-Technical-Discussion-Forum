@@ -120,7 +120,7 @@ crossorigin="anonymous"></script>
 		<div>
 			<ul class="nav navbar-nav navbar-right">
 
-				<li><a href="Register.html" ><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+				<li><a href="Register.jsp" ><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
 				<li><a href="login.jsp"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
         <li>
           <form class="navbar-form navbar-left" method="get" name="frm" action="SearchQuestionServlet">

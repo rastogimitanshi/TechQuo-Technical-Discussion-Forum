@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+  pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,7 +35,7 @@
 integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
 crossorigin="anonymous"></script>
 
-
+    <jsp:include page="header.jsp"></jsp:include>
 
  <!--Form Begins-->
  <br>
@@ -77,7 +79,7 @@ crossorigin="anonymous"></script>
     <select name="Q1" id="Q1" class="form-control">
             <option value="-1">Select</option>
           <option value="1">What is your favourite colour?</option>
-          <option value="2">What is your Pokémon of choice?</option>
+          <option value="2">What is your PokÃ©mon of choice?</option>
         </select>
 
   </div>

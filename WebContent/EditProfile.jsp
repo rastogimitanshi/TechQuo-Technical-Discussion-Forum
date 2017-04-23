@@ -56,7 +56,6 @@ function validateEmail(email) {
 	</script>
 
   <jsp:include page="header.jsp"></jsp:include>
-       <jsp:include page="menu.jsp"></jsp:include>
 
        <%
          	 session=request.getSession(false);

@@ -46,7 +46,7 @@ crossorigin="anonymous"></script>
 <script type = "text/javascript" src = "JS/jquery-min.js"> </script>
 <% String mail = (String)request.getAttribute("Mail"); %>
 
-<form class="login-form form-horizontal" action="UpdatePassword" method="post">
+<form class="login-form form-horizontal" action="UpdatePasswordF" method="post">
   <fieldset>
 
   <!-- Form Name -->
