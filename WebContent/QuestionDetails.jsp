@@ -77,7 +77,7 @@ crossorigin="anonymous"></script>
 		PreparedStatement pst= (PreparedStatement) conn.prepareStatement("SELECT Question, user_id,"+
 				"create_time,count FROM `question` WHERE Ques_id=?");
 		%>
-    <jsp:include page="header.jsp"></jsp:include>
+ <jsp:include page="header.jsp"></jsp:include>
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12 col-sm-10 col-md-10">
@@ -126,51 +126,59 @@ crossorigin="anonymous"></script>
 			<div class="col-sm-7">
         <h4> ANSWERS </h4>
 				<hr/>
-        <div class="panel panel-default">
-    <div class="panel-body">
-				<div class="review-block">
-					<div class="row">
-						<div class="col-sm-3">
-              <%PreparedStatement ps= (PreparedStatement) conn.prepareStatement("SELECT Ans_id, Answer, create_time,"+
-          							"user_id_A, upvotes, downvotes FROM `answer` WHERE Ques_id_A=?");
-          		ps.setInt(1,quesid);
-          		ResultSet rs = ps.executeQuery();
-          		while(rs.next()){
-          			Answer A1=new Answer(rs.getInt(1),quesid,rs.getString(2),rs.getDate(3),rs.getInt(4),
-          					rs.getInt(5),rs.getInt(6));%>
+<!-- fetching data from db -->
+        <%PreparedStatement ps= (PreparedStatement) conn.prepareStatement("SELECT Ans_id, Answer, create_time,"+
+                  "user_id_A, upvotes, downvotes FROM `answer` WHERE Ques_id_A=?");
+        ps.setInt(1,quesid);
+        ResultSet rs = ps.executeQuery();
+        while(rs.next()){
+          Answer A1=new Answer(rs.getInt(1),quesid,rs.getString(2),rs.getDate(3),rs.getInt(4),
+              rs.getInt(5),rs.getInt(6));%>
 
 
-          			<%PreparedStatement pstau=(PreparedStatement) conn.prepareStatement("SELECT Fname FROM"+
-          									"`user` WHERE user_id=?");
-          	    	pstau.setInt(1,rs.getInt(4));
-          	    	ResultSet rstau =pstau.executeQuery();
-          	    	rstau.next();%>
-							<div class="review-block-name"><a href ="http://localhost:8080/TechQuo/SearchUserServlet?UID=<%=rs.getInt(4)%>"><%=rstau.getString(1)%></a></div>
-							<div class="review-block-date"><%=A1.getCreate_time()%></div>
-						</div>
-						<div class="col-sm-9">
-							<div class="review-block-description"><%=A1.getAnswer()%></div>
-              <span class="label label-info">Up votes : <%=A1.getUpvotes()%></span>
-              <span class="label label-info">Down votes : <%=A1.getDownvotes()%></span>
-						</div>
-					 <form id="ajaxform" name="ajaxform" action="Upvote" method="get">
-     <input type="hidden" name="ansid" id="ansid" value="<%=A1.getAns_id() %>" />
-     <input type="submit" id="submit" value="Upvote"/>
-   <div id='content'>
-</div>
-</form>
-            <%
-            			}
-            	}
-            	catch (Exception e) {
-            	    e.printStackTrace();
-            	}
-            	%>
-					</div>
+          <%PreparedStatement pstau=(PreparedStatement) conn.prepareStatement("SELECT Fname FROM"+
+                      "`user` WHERE user_id=?");
+            pstau.setInt(1,rs.getInt(4));
+            ResultSet rstau =pstau.executeQuery();
+            rstau.next();%>
+            <!-- ended -->
+<!--new panel code  -->
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <div class="row">
+                  <div class="name col-md-8"><a href ="http://localhost:8080/TechQuo/SearchUserServlet?UID=<%=rs.getInt(4)%>"><%=rstau.getString(1)%></a></div>
+                  <div class="review-block-date col-md-4"><%=A1.getCreate_time()%></div>
+                </div>
+              </div>
+              <div class="panel-body">
+                <div class="row">
+                <div class="answer col-md-10"><%=A1.getAnswer()%></div>
+                <div class="upvotebutton col-md-2">
+      <form id="ajaxform" name="ajaxform" action="Upvote" method="get">
+            <input type="hidden" name="ansid" id="ansid" value="<%=A1.getAns_id() %>" />
+            <input type="submit" id="submit" value="Upvote"/ class="btn btn-info">
+          <div id='content'></div>
+       </form>
+     
+                </div>
+              </div>
+            </div>
+      <div class="panel-footer">
+        <div class="row">
+                  <div class="upvote col-md-3">Up votes : <%=A1.getUpvotes()%></div>
+                  <div class="downvote col-md-3">Down votes : <%=A1.getDownvotes()%></div>
+            </div>
+          </div>
+        </div>
+        <!--ended  -->
 
-				</div>
-      </div>
-    </div>
+  <%
+             }
+         }
+         catch (Exception e) {
+             e.printStackTrace();
+         }
+         %>
 			</div>
 		</div>
 </div>

@@ -19,6 +19,9 @@ public class Answer {
 		this.setUpvotes(Upvotes);
 		this.setDownvotes(Downvotes);
 			}
+	public Answer(){
+		
+	}
 	public Integer getDownvotes() {
 		return downvotes;
 	}
