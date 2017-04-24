@@ -1,8 +1,7 @@
 <%@ page import="domain.User"%>
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="utf-8">
+  <meta charset="ISO-8859-1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
@@ -12,23 +11,6 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
   integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <!--<link href="faq/style.css" rel="stylesheet">-->
-  <style>
-  /*FAQS*/
-  .faq_question {
-      margin: 0px;
-      padding: 0px 0px 5px 0px;
-      display: inline-block;
-      cursor: pointer;
-      font-weight: bold;
-  }
-
-  .faq_answer_container {
-      height: 0px;
-      overflow: hidden;
-      padding: 0px;
-  }
-  </style>
-
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -42,58 +24,12 @@
     d/1.4.2/respond.min.js"></script>
   <![endif]-->
 
-  <title>Change Password</title>
-  <style>
-  .menu
-  {
-  background-color: #00547E;
-  border-bottom: 4px solid #04A3ED;
-  width:100%;
-  height: auto;
-  padding: 0 10px;
-  position: fixed;
-  margin: 0px;
-  z-index: 1;
-  opacity: 0.9;
-  }
-
-  .menu  .navbar-nav > .active > a
-  {
-  background-color : #04A3ED;
-  color: white;
-  font-weight: bold;
-  }
-
-  .menu  .navbar-nav >  li >  a
-  {
-  font-size: 13px;
-  color: white;
-  padding: 10px 35px;
-
-  }
-  .menu  .navbar-nav >  li >  a:hover
-  {
-  background-color: #04A3ED;
-  }
-
-  .navbar-header > a
-  {
-  font-family: 'Ubuntu Condensed', sans-serif;
-  padding: 0px;
-  margin: 0px;
-  text-decoration: none;
-  color: white;
-  font-size: 25px;
-  padding: 5px 30px;
-  }
-  .navbar-header > a:hover
-  {
-  text-decoration: none;
-  color: #04A3ED;
-  }
-  </style>
+  <title>Edit Password</title>
+  
 
 </head>
+
+
 <body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -105,10 +41,6 @@ crossorigin="anonymous"></script>
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 
 <script type = "text/javascript" src = "JS/jquery-min.js"> </script>
-
-<script>
-
-</script>
 
 
 <script>
@@ -164,85 +96,72 @@ $("#CurrPass").blur(function(){
     }
 
 
-     $.ajax({
-            type : "POST",
-            url : "UpdatePassword",
-            data : "&CurrPass=" + CurrPass + "&NewPass=" + NewPass + "&ConPass" + ConPass,
-            success : function(data) {
+ $.ajax({
+       type : "POST",
+       url : "UpdatePassword",
+       data : "CurrPass=" + CurrPass + "&NewPass=" + NewPass + "&ConPass" + ConPass,
+       success : function(data) {
 
-                 if(data.toString().indexOf("admin") != -1) {   // means if the message received from servlet in form of out.print.ln contains invalid or not
-                  alert("Password Updated successfully.");
-                      $(location).attr('href',"Home.jsp");
+             if(data.toString().indexOf("admin") != -1) {   // means if the message received from servlet in form of out.print.ln contains invalid or not
+              alert("Password Updated successfully.");
+                  $(location).attr('href',"Admin.jsp");
 
-                 }
-                 else if(data.toString().indexOf("user") != -1) {   // means if the message received from servlet in form of out.print.ln contains invalid or not
-                    alert("Password Updated successfully.");
-                    $(location).attr('href',"Home.jsp");
+             }
+             else if(data.toString().indexOf("user") != -1) {   // means if the message received from servlet in form of out.print.ln contains invalid or not
+                alert("Password Updated successfully.");
+                $(location).attr('href',"Home.jsp");
 
-                }
-              else if(data.toString().indexOf("admine") != -1) {
-                  alert("Some unexpected error has occured. Please try again later.")
-                  $(location).attr('href',"Home.jsp");
-            }
-              else if(data.toString().indexOf("usere") != -1) {
-                  alert("Some unexpected error has occured. Please try again later.")
-                  $(location).attr('href',"Home.jsp");
-            }
-          },
-       error: function(data) {
-         alert("Some unexpected error has occured. Please try again later.")
-         $(location).attr('href',"LogOut");
-       }
-        });
-   return false;
-    });
-   return false;
-    });
+           }
+          else if(data.toString().indexOf("admine") != -1) {
+              alert("Some unexpected error has occured. Please try again later.")
+              $(location).attr('href',"Admin.jsp");
+        }
+          else if(data.toString().indexOf("usere") != -1) {
+              alert("Some unexpected error has occured. Please try again later.")
+              $(location).attr('href',"Home.jsp");
+        }
+     },
+   error: function(data) {
+     alert("Some unexpected error has occured. Please try again later.")
+     $(location).attr('href',"LogOut");
+   }
+   });
+return false;
+});
+
+
+
 });
 </script>
-    <jsp:include page="header.jsp"></jsp:include>
-<div class="menu">
-    <div class="container-fluid">
-		<div class="navbar-header">
-			<a href="#">TechQuo</a>
-		</div>
-		<div>
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#" ><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-				<li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-        <li> <form method="post" name="frm" action="SearchQuestionServlet">
-          <table>
-            <tr><td colspan=2 style="font-size:10pt; padding-top :3px; padding-bottom: 3px; " align="center">
-            <tr><td style="font-family: 'Ubuntu Condensed', sans-serif; color: white;
-            font-size: 15px;" >TAG</td>
-              <td>: <input  type="text" name="tag" id="tag" required>
-            </td>
-            <td colspan=2 align="center">
-            <input  type="submit" name="submit" value="Submit" ></td></tr>
-          </table>
-        </form> </li>
-			</ul>
-		</div>
-	</div>
-</div>
+
+<%		session=request.getSession(false);
+		if(session.getAttribute("user_details")==null){
+			request.setAttribute("SessionExpired", "Your session has expired. Please log in again.");
+			RequestDispatcher requestDispatcher;
+			requestDispatcher = request.getRequestDispatcher("/login.jsp");
+			requestDispatcher.forward(request,response);
+			return;
+		}
+%>
+
+
 <!--Form Begins-->
 <br>
 <br>
 <br>
+<%
+  User user= (User)session.getAttribute("user_details");
+%>
 <div class="container">
  <div class="row">
 
+
+   <form  class="login-form form-horizontal" action = "UpdatePassword" method="post" onsubmit="return CurrentPassword();">
 <fieldset>
 
 <!-- Form Name -->
-<legend> Change Password </legend>
+<legend> Edit Password </legend>
 
-
-
-		<% User user= (User)session.getAttribute("user_details"); %>
-
-
-				<form  class="login-form form-horizontal" action = "UpdatePassword" method="post" onsubmit="return CurrentPassword();">
 
           <div class="form-group">
             <label class="col-md-4 control-label" > Current Password</label>
@@ -253,7 +172,7 @@ $("#CurrPass").blur(function(){
           </div>
 
           <div class="form-group">
-            <label class="col-md-4 control-label" >New Password</label>
+            <label class="col-md-4 control-label">New Password</label>
             <div class="col-md-4">
               <input type="password" id ="NewPass" name="NewPass" placeholder="New Password" class="form-control input-md" required="">
 
@@ -274,7 +193,7 @@ $("#CurrPass").blur(function(){
             <label class="col-md-4 control-label" for="confirmation"></label>
             <div class="col-md-4">
               <button id="submit" class="btn btn-primary">Submit</button>
-              <input type="hidden" id="Pass" name="Pass" value="<%=user.getPassword()%>">
+              <input type="hidden" id="Pass" name="Pass" value="<%= user.getPassword() %>">
             </div>
           </div>
 
@@ -291,11 +210,6 @@ $("#CurrPass").blur(function(){
   <a href ="EditPassword.jsp">  <button  class="btn btn-outline-secondary">Reset</button></a>
 </div>
   </div>
-
-
-            </div>
-
-
 
 	</body>
 </html>

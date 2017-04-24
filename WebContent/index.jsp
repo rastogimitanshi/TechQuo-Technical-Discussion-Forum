@@ -1,13 +1,23 @@
-
 <%@page import="domain.Question"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<html lang="en">
 <head>
-<style type="text/css">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<!--<link href="faq/style.css" rel="stylesheet">-->
+
+<!---style type="text/css">
 .button {
 	border-top: 1px solid #96d1f8;
 	background: #65a9d7;
@@ -40,12 +50,12 @@
 	border-top-color: #1b435e;
 	background: #1b435e;
 }
-</style>
+</style>-->
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Pagination-Results</title>
 </head>
 <body>
-    <jsp:include page="header.jsp"></jsp:include>	
+    <jsp:include page="header.jsp"></jsp:include>
 	<br>
 	<c:if test="${not empty list}">
 
@@ -57,10 +67,21 @@
 			<div class="col-md-12">
 				<!-- if number size of list is eq to number of news to be displayed in a page button next will not be displayed -->
 				<c:if test="${btnPrevious!='' && btnPrevious!='Previous Disabled'}">
-					<form action="pagination" method="post">
-						<input type="hidden" name="action" value="previous"> <input
-							type="submit" class="button" value="${btnPrevious}">
-					</form>
+				 <form  class="login-form form-horizontal" action="pagination" method="post">
+		    <fieldset>
+						<input type="hidden" name="action" value="previous">
+
+
+						<div class="form-group">
+							<label class="col-md-3 control-label"></label>
+							<div class="col-md-8">
+								<input type="submit" class="btn btn-primary" value="${btnPrevious}">
+								</div>
+						</div>
+
+						</fieldset>
+						</form>
+
 				</c:if>
 				<c:forEach var="q" items="${list}">
 					<hr>
@@ -70,10 +91,20 @@
 				<hr>
 				<!-- if number size of list is eq to number of news to be displayed in a page button next will not be displayed -->
 				<c:if test="${btnNext!=''&& btnNext!='Next Disabled'}">
-					<form action="pagination" method="post">
-						<input type="hidden" name="action" value="next"> <input
-							type="submit" class="button" value="${btnNext}">
-					</form>
+				
+					<form  class="login-form form-horizontal" action="pagination" method="post">
+ 		    <fieldset>
+ 						<input type="hidden" name="action" value="next">
+
+
+ 						<div class="form-group">
+ 							<label class="col-md-3 control-label"></label>
+ 							<div class="col-md-8">
+ 								<input type="submit" class="btn btn-primary" value="${btnNext}">
+ 								</div>
+ 						</div>
+ 						</fieldset>
+ 						</form>
 				</c:if>
 			</div>
 		</div>

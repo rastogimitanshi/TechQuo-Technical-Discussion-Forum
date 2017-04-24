@@ -79,7 +79,7 @@
               <div class="form-group">
                 <label class="col-md-4 control-label" > </label>
                 <div class="col-md-4">
-                    <textarea class="form-control" name="ans" rows="4" cols="50" required>
+                    <textarea class="form-control" name="ans" rows="4" cols="50" required="">
                     </textarea>
 
                 </div>

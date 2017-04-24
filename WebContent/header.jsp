@@ -78,7 +78,11 @@ color: #04A3ED;
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
 integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
 crossorigin="anonymous"></script>
-
+ <%	session = request.getSession(false);
+        	User user =new User();
+        	if(session.getAttribute("user_details")!=null)
+        	 user = (User)session.getAttribute("user_details");
+        	%>
 <div class="menu">
 
     <div class="container-fluid">
@@ -86,11 +90,7 @@ crossorigin="anonymous"></script>
          pageEncoding="UTF-8"%>
           <%@page import="domain.User" %>
       <div class="dropdown navbar-left">
-        <%	session = request.getSession(false);
-        	User user =new User();
-        	if(session.getAttribute("user_details")!=null)
-        	 user = (User)session.getAttribute("user_details");
-        	%>
+       
       <button class="btn btn-default dropdown-toggle " type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
       <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
       </button>

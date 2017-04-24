@@ -101,6 +101,14 @@
     <servlet-name>UpdatePassword</servlet-name>
     <url-pattern>/UpdatePasswordF</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>UpdatePasswordServlet</servlet-name>
+    <servlet-class>controller.UpdatePasswordServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdatePasswordServlet</servlet-name>
+    <url-pattern>/UpdatePassword</url-pattern>
+  </servlet-mapping>
   <session-config>
         <session-timeout>30</session-timeout>
     </session-config>
