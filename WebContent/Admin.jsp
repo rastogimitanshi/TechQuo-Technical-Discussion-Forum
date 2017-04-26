@@ -2,7 +2,6 @@
 "http://www.w3.org/TR/html4/loose.dtd">
 <%@ page import="java.sql.*" %>
 <%@ page import="java.io.*" %>
-<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -44,9 +43,10 @@ function deactivate(id)
     <br>
     <br>
     <br>
-    <br>
 <h2>Details of Users</h2>
-<form method="post" name="form">
+<form  class="login-form form-horizontal"  method="post" name="form">
+<fieldset>
+
 <%
 String value=(String)session.getAttribute("flag_val");
 //out.println("value is"+value);
@@ -66,7 +66,7 @@ ResultSet rs = null;
 Class.forName("com.mysql.jdbc.Driver").newInstance();
 /* Create a connection by using getConnection() method that takes parameters
 of string type connection url, user name and password to connect to database.*/
-connection = DriverManager.getConnection(connectionURL, "root", "tiger");
+connection = DriverManager.getConnection(connectionURL, "root", "dnsingh87");
 /* createStatement() is used for create statement object that is used for
 sending sql statements to the specified database. */
 statement = connection.createStatement();
@@ -74,76 +74,51 @@ statement = connection.createStatement();
 String QueryString = "SELECT * from user where Role!='Admin' and Flag!='DeActivate'";
 rs = statement.executeQuery(QueryString);
 %>
-<TABLE cellpadding="15" border="1" style="background-color: #ffffcc;" align="center">
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>User Id</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <Th>Role</Th>
+      <Th>Action</Th>
+    </tr>
+  </thead>
+  <%
+  while (rs.next()) {
+  %>
+  <tbody>
+    <tr>
+
+    <TD><%=rs.getInt(1)%></TD>
+    <TD><%=rs.getString(2)%></TD>
+    <TD><%=rs.getString(3)%></TD>
+    <TD><%=rs.getString(8)%></TD>
+    <TD><input type="button" class="btn btn-primary" value="Deactivate" onclick="deactivate(<%=rs.getInt(1)%>)"></TD>
+    </tr>
+    <% } %>
+    <%
+    // close all the connections.
+    rs.close();
+    statement.close();
+    connection.close();
+    } catch (Exception ex) {
+    %>
+  </font>
+  <font size="+3" color="red"></b>
+  <%
+  out.println("Unable to connect to database.");
+  }
+  %>
+  </tbody>
+</table>
+<TABLE>
 <TR>
-<Th>User Id</Th>
-<Th>First Name</Th>
-<Th>Last Name</Th>
-<Th>Role</Th>
-<Th>Action</Th>
-</TR>
-<%
-while (rs.next()) {
-%>
-<TR>
-<TD><%=rs.getInt(1)%></TD>
-<TD><%=rs.getString(2)%></TD>
-<TD><%=rs.getString(3)%></TD>
-<TD><%=rs.getString(8)%></TD>
-<TD><input type="button" value="Deactivate" onclick="deactivate(<%=rs.getInt(1)%>)"></TD>
-</TR>
-<% } %>
-<%
-// close all the connections.
-rs.close();
-statement.close();
-connection.close();
-} catch (Exception ex) {
-%>
-</font>
-<font size="+3" color="red"></b>
-<%
-out.println("Unable to connect to database.");
-}
-%>
-</TABLE><TABLE>
-<TR>
-<TD> <FORM ACTION="Admin.jsp" method="get" >
-<button type="submit"><-- back</button></TD>
+<TD> <form class="login-form form-horizontal" action="login.jsp" method="get" >
+<button class="btn btn-primary" type="submit"><-- back</button></TD>
 </TR>
 </TABLE>
 </font>
 </body>
 </html>
-
-
-<!--<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>#</th>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Username</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</table>-->

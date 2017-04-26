@@ -12,6 +12,7 @@
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
     integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!--<link href="faq/style.css" rel="stylesheet">-->
 
 
@@ -24,7 +25,7 @@
     <![endif]-->
 
   <style>
-  .noBullets{
+  /*.noBullets{
     	list-style:none;
 		padding:auto;
 	}
@@ -35,7 +36,40 @@
 	.footlinks li a{
 	text-align:center;
 	margin-left:5px ;
-	}
+	}*/
+
+  #footer
+{
+	background-color: #00547A;
+	padding: 20px 0px;
+}
+.footer-copyright {
+    color: #fff;
+    line-height: 32px;
+    text-align: left;
+}
+.footer-social
+{
+	float: right;
+}
+.footer-social a {
+    font-size: 18px;
+    color: #fff;
+}
+.footer-social a :hover{
+color: #e5e5f2;
+}
+.btn-link{
+    color: #fff;
+
+}
+.btn-link:hover{
+  color: #e5e5f2;
+
+}
+.modal{
+  color: #000;
+}
 
 </style>
 
@@ -48,113 +82,86 @@
 integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
 crossorigin="anonymous"></script>
 
+<footer class="" id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-7 footer-copyright">
+                    © Team- TECHQUO
+                    <div class="credits">
 
-  	<footer class="text-muted well" id="last-footer">
-  		<section>
-  		<div class="row" >
-  		<div class="container">
-  		<h3 class="subhead" style="text-align:center;">BLAH BLAH BLAh BLAH</h3>
-  		   <div class="col-md-12">
-          <div class="row" >
-<div class="col-md-1"> </div>
-  			<div class="col-md-3">
-  			<div class="row footlinks">
-  			<div class="col-xs-12">
-          <h4> ABOUT US! </h4>
+                      <button type="button" class="btn btn-link btn-md " data-toggle="modal" data-target="#myModal1">Know More About TECHQUO</button>
+                      <!-- Modal -->
+                      <div id="myModal1" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
 
-          <p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
-          <button type="button" class="btn btn-link btn-md " data-toggle="modal" data-target="#myModal1">Know More About TECHQUO</button>
-          <!-- Modal -->
-          <div id="myModal1" class="modal fade" role="dialog">
-            <div class="modal-dialog">
+                          <!-- Modal content-->
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <h4 class="modal-title"> ABOUT US </h4>
+                            </div>
+                            <div class="modal-body">
+                              <p>Tech Quo is a perfect platform to widen one's horizon. Tech Quo is best source of reading and improving one's skills .It enables learning in a fun manner and social networking at the same time. Tech Quo helps sharing knowledge via simple question and answer strategy. When a user posts question, other users engage themselves in answering it. This helps not only the person who posted the question but also hepls the users who gave the answer as they get to know a lot about themselves and boosts their confidence. The best part is that the questions are not restricted to a domain any may belong to any category. It is a perfect place to know other's thought process and get genuine responses. Tech Quo is where you can read important insights that have never been shared anywhere else, from people you could never reach any other way.
+<p>
+                            </div>
 
-              <!-- Modal content-->
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title">ABOUT US</h4>
+                          </div>
+
+                        </div>
+                      </div>
+&nbsp; &nbsp; || &nbsp;&nbsp;
+                      <button type="button" class="btn btn-link btn-md" data-toggle="modal" data-target="#myModal">FAQ</button>
+                      <!-- Modal -->
+                      <div id="myModal" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+
+                          <!-- Modal content-->
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <h4 class="modal-title">Frequently Asked Questions</h4>
+                            </div>
+                            <div class="modal-body">
+                              <p> <strong> QUES: How do I make an account on Tech Quo?</strong></p>
+
+            <p>"Sign up for TechQuo. Visit the TechQuo creation page. Follow the steps on the screen to complete your account setup. After you've created your TechQuo Account, you can use it to sign in to TechQuo on your computer, phone, or tablet.
+            </p> <p> <strong> Ques: How do I change my password? </strong>
+
+            <p>If you know your current password, you can change it:
+Click  on change password
+Type your current and new passwords
+Click Save Changes
+
+
+
+
+            </p> <p> <strong> Ques: How can I alter my answer and delete the previous one? </strong></p><p>
+              You can edit the answer you have posted previously quite easily using the answer module.
+            </p>
+
+
+                            </div>
+
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
                 </div>
-                <div class="modal-body">
-                  <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+                <div class="col-sm-5 footer-social">
+                    <div class="pull-right hidden-xs hidden-sm">
+                        <a href="#"><i class="fa fa-facebook"></i></a>
+                        <a href="#"><i class="fa fa-dribbble"></i></a>
+                        <a href="#"><i class="fa fa-twitter"></i></a>
+                        <a href="#"><i class="fa fa-google-plus"></i></a>
+                        <a href="#"><i class="fa fa-pinterest"></i></a>
+                    </div>
                 </div>
-
-              </div>
-
             </div>
-          </div>
-  			</div>
-  			</div>
-  			</div>
-<div class="col-md-1"> </div>
-        <div class="col-md-3">
-  			<div class="row footlinks">
-  			<div class="col-xs-12">
-
-          <h4> CONTACT US! </h4>
-
-          <p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
-
-  			</div>
-  			</div>
-  			</div>
-
-        <div class="col-md-4">
-  			<div class="row footlinks">
-  			<div class="col-xs-12">
-          <h4> GOT QUESTIONS? </h4>
-<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-          <button type="button" class="btn btn-link btn-md" data-toggle="modal" data-target="#myModal">FAQ</button>
-          <!-- Modal -->
-          <div id="myModal" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-
-              <!-- Modal content-->
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title">Frequently Asked Questions</h4>
-                </div>
-                <div class="modal-body">
-                  <p> <strong> QUES: Section 1.10.32 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC</strong></p>
-
-<p>"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
-
-</p> <p> <strong> Ques: 1914 translation by H. Rackham </strong>
-
-<p>"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?"
-
-Section 1.10.33 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC
+        </div>
+    </footer>
 
 
 
-</p> <p> <strong> Ques: 1914 translation by H. Rackham </strong></p><p>
-  "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."
-</p>
-
-
-                </div>
-
-              </div>
-
-            </div>
-          </div>
-  			</div>
-  			</div>
-  			</div>
-
-          </div><!--/.row inner-->
-  		</div>
-
-
-<br>
-  		<footer>	<div class="row">
-  			<div class="container text-center">
-  				<h5>All Rights Reserved © 2014.<a href="mailto:chance2seo@gmail.com">TECHQUO</a></h5>
-  			</div>
-  			</div></footer>
-  			 </div><!--/.container-->
-  			 </div><!--/.row outer-->
-  		</section>
-  				</footer>
   </body>
   </html>
