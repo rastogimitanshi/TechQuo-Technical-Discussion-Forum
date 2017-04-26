@@ -1,6 +1,7 @@
 package tables;
 import domain.User;
 
+import java.io.PrintWriter;
 //import java.io.PrintWriter;
 import java.sql.*;
 
@@ -13,7 +14,6 @@ public class UserDAO
 	static int flag = 0;
 
 	public static User login(User bean) {
-
 		String Email = bean.getEmailId();   
 		String pass = bean.getPassword();   
 		//String searchQuery;

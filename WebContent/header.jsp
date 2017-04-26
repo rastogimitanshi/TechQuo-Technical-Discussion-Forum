@@ -1,7 +1,9 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+  <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
+   <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
@@ -86,8 +88,6 @@ crossorigin="anonymous"></script>
 <div class="menu">
 
     <div class="container-fluid">
-      <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
           <%@page import="domain.User" %>
       <div class="dropdown navbar-left">
        
@@ -115,7 +115,7 @@ crossorigin="anonymous"></script>
 
 		<div class="navbar-header">
 
-			<a href="#">TechQuo</a>
+			<a href="Home.jsp">TechQuo</a>
 		</div>
 		<div>
 			<ul class="nav navbar-nav navbar-right">

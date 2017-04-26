@@ -89,7 +89,7 @@ crossorigin="anonymous"></script>
 <div class="form-group">
   <label class="col-md-4 control-label" for="username">Answer 1</label>
   <div class="col-md-5">
-  <input iname="A1" id="A1" type="text" placeholder="Your answer" class="form-control input-md" required="">
+  <input name="A1" id="A1" type="text" placeholder="Your answer" class="form-control input-md" required="">
 
   </div>
 </div>
@@ -112,7 +112,7 @@ crossorigin="anonymous"></script>
 <div class="form-group">
   <label class="col-md-4 control-label" for="username">Answer 2</label>
   <div class="col-md-5">
-  <input iname="A2" id="A2" type="text" placeholder="Your answer" class="form-control input-md" required="">
+  <input name="A2" id="A2" type="text" placeholder="Your answer" class="form-control input-md" required="">
 
   </div>
 </div>
@@ -154,7 +154,7 @@ crossorigin="anonymous"></script>
 <div class="form-group">
   <label class="col-md-4 control-label" for="confirmation"></label>
   <div class="col-md-4">
-    <button id="reg"  class="btn btn-primary">Submit</button>
+    <button type="submit" id="reg"  class="btn btn-primary">Submit</button>
   </div>
 </div>
 

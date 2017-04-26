@@ -13,7 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+//import javax.servlet.http.HttpSession;
 
 import service.SendMail;
 
@@ -62,7 +62,7 @@ public class RegistrationServlet extends HttpServlet {
             errorMsg ="Password Cannot be empty!!";
         }
 		 if(errorMsg != null){
-	            RequestDispatcher rd = getServletContext().getRequestDispatcher("/Register.html");
+	            RequestDispatcher rd = getServletContext().getRequestDispatcher("/Register.jsp");
 	            //PrintWriter out= response.getWriter();
 	            out.println("<font color=red>"+errorMsg+"</font>");
 	            rd.include(request, response);
@@ -79,7 +79,7 @@ public class RegistrationServlet extends HttpServlet {
 				out.println("<font color=red>User with email"+ mailid+"  already exists </font>");
 				out.println("<script type=\"text/javascript\">");        // creating alert message using java
 				out.println("alert('User Already Exists!!');");
-				out.println("location='Register.html';");
+				out.println("location='Register.jsp';");
 				out.println("</script>");
 				
 				
@@ -123,7 +123,7 @@ public class RegistrationServlet extends HttpServlet {
             se.printStackTrace();
             out.println("<script type=\"text/javascript\">");        // creating alert message using java
 			out.println("alert('Some unexpected error occured. Please try again later');");
-			out.println("location='Register.html';");
+			out.println("location='Register.jsp';");
 			out.println("</script>");
         }	
 	}

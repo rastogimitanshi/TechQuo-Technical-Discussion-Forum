@@ -192,7 +192,7 @@ return false;
           <div class="form-group">
             <label class="col-md-4 control-label" for="confirmation"></label>
             <div class="col-md-4">
-              <button id="submit" class="btn btn-primary">Submit</button>
+              <button type="submit" id="submit" class="btn btn-primary">Submit</button>
               <input type="hidden" id="Pass" name="Pass" value="<%= user.getPassword() %>">
             </div>
           </div>

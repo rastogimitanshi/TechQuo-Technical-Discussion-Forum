@@ -123,6 +123,10 @@ public class LoginServlet extends HttpServlet {
 		catch (Throwable theException) 	    
 		{
 			System.out.println(theException); 
+			out.println("<script type=\"text/javascript\">");        // creating alert message using java
+			out.println("alert('Incorrect Credentials');");
+			out.println("location='Register.jsp';");
+			out.println("</script>");
 		}
 	}
 
