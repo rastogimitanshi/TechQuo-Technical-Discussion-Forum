@@ -57,6 +57,9 @@
 <body>
     <jsp:include page="header.jsp"></jsp:include>
 	<br>
+	<br>
+	<br>
+	<br>
 	<c:if test="${not empty list}">
 
 		<div>

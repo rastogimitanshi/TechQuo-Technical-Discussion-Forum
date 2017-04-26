@@ -56,7 +56,7 @@
  	User user= (User)session.getAttribute("user_details");
 %>
 
-    
+    <jsp:include page="header.jsp"></jsp:include>
     <!--Form Begins-->
     <br>
     <br>

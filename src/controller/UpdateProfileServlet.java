@@ -64,8 +64,6 @@ public class UpdateProfileServlet extends HttpServlet {
 		Interests=request.getParameterValues("myInputs");
 		String []Education=new String[]{};
 		Education=request.getParameterValues("myEducation");
-	
-		
         Part filePart = request.getPart("photo");
         if (filePart != null) {
             
@@ -112,9 +110,10 @@ public class UpdateProfileServlet extends HttpServlet {
 			
 			int i = ps.executeUpdate();
 			System.out.println("User Table Updates");
-			PreparedStatement pst = (PreparedStatement) con.prepareStatement("INSERT INTO `interests_user`(user_id_I,Interests) VALUES(?,?)");
 			if (Interests!=null)
 			{
+			PreparedStatement pst = (PreparedStatement) con.prepareStatement("INSERT INTO `interests_user`(user_id_I,Interests) VALUES(?,?)");
+			
 			for(i=0;i<Interests.length;i++){
 				pst.setInt(1, UserId);
 				pst.setString(2, Interests[i]);
@@ -123,10 +122,10 @@ public class UpdateProfileServlet extends HttpServlet {
 			}
 			pst.executeBatch();
 			}
-			
-			PreparedStatement pstE = (PreparedStatement) con.prepareStatement("INSERT INTO `education_user` VALUES(?,?)");
 			if (Education!=null)
 			{
+			PreparedStatement pstE = (PreparedStatement) con.prepareStatement("INSERT INTO `education_user` VALUES(?,?)");
+			
 			for(int j=0;j<Education.length;j++){
 				pstE.setInt(1, UserId);
 				pstE.setString(2, Education[j]);
