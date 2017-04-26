@@ -40,6 +40,11 @@ function deactivate(id)
   crossorigin="anonymous"></script>
 
     <jsp:include page="header.jsp"></jsp:include>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
 <h2>Details of Users</h2>
 <form method="post" name="form">
 <%
@@ -69,7 +74,7 @@ statement = connection.createStatement();
 String QueryString = "SELECT * from user where Role!='Admin' and Flag!='DeActivate'";
 rs = statement.executeQuery(QueryString);
 %>
-<TABLE cellpadding="15" border="1" style="background-color: #ffffcc;">
+<TABLE cellpadding="15" border="1" style="background-color: #ffffcc;" align="center">
 <TR>
 <Th>User Id</Th>
 <Th>First Name</Th>

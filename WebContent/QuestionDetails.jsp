@@ -78,6 +78,11 @@ crossorigin="anonymous"></script>
 				"create_time,count FROM `question` WHERE Ques_id=?");
 		%>
  <jsp:include page="header.jsp"></jsp:include>
+ <br>
+ <br>
+ <br>
+ <br>
+ <br>
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12 col-sm-10 col-md-10">

@@ -46,7 +46,7 @@ out.println("<font size='+3' color='red'></b>User Deactivated Successfully</b></
 catch (Exception ex) {
 }
 %>
-<FORM ACTION="login.jsp" method="get" >
+<FORM ACTION="Admin.jsp" method="get" >
 <button type="submit">Back</button>
 </FORM>
 </body>

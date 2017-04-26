@@ -40,7 +40,6 @@
 
   <script type = "text/javascript" src = "JS/jquery-min.js"> </script>
 
-    <jsp:include page="header.jsp"></jsp:include>
   <form class="login-form form-horizontal" action="ForgotPassword" method="post">
     <fieldset>
 
