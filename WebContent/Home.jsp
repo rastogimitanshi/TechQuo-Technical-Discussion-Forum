@@ -122,12 +122,16 @@ color: #04A3ED;
 	text-transform: uppercase;
 }
 
-.question{
-	color: #fff;
+.panel{
+	color: #000;
+	margin-left: -500px;
+	
+	
 
 }
 
 </style>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
   </head>
   <body>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -140,7 +144,8 @@ color: #04A3ED;
         	if(session.getAttribute("user_details")!=null)
         	 user = (User)session.getAttribute("user_details");
         	%>
- <!--header-->
+        	<jsp:include page="header.jsp"></jsp:include>
+ <!-- <!--header-->
  <div class="menu">
 
     <div class="container-fluid">
@@ -199,7 +204,6 @@ color: #04A3ED;
      <br>
      <br>
      <br>
-
 		 <!--header ends-->
 		 <header class="main-header" id="header">
         <div class="bg-color">
@@ -212,17 +216,21 @@ color: #04A3ED;
                 </div>
             </div>
 				</div>
-			</header>
-
+			</header>-->
       <jsp:include page="/LoadPosts" flush="true"></jsp:include>
       <div class="post">
       <br>TOP 20 POSTS OF THE DAY <br>
+      <div class="container">
+     <div class="panel panel-default">
+              <div class="panel-heading">
       <c:forEach items="${quesList}" var="q">
 
       <a href="QuestionDetails.jsp?QID=<c:out value="${q.getQuesid()}"/>"><c:out value="${q.getQuestion()}"></c:out></a>
       <br>
 
       </c:forEach>
+      </div></div>
+      </div>
       </div>
       <br>
       <br>
@@ -234,7 +242,8 @@ color: #04A3ED;
         <div>
 
 		<form action="pagination" method="post">
-			<input type="hidden" name="action" value="load"> <input
+			<input type="hidden" name="action" value="load">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
 				type="submit" class="button btn btn-primary" value="View All">
 		</form>
 		</div>
@@ -246,6 +255,7 @@ color: #04A3ED;
       <a href="http://localhost:8080/TechQuo/SearchQuestionServlet?tag=<c:out value="${tag}"/>"><c:out value="${tag}"></c:out></a>
       <br>
       </c:forEach>
+      </div>
       </div>
 
      <jsp:include page="footer.jsp"></jsp:include>

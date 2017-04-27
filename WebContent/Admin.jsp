@@ -66,7 +66,7 @@ ResultSet rs = null;
 Class.forName("com.mysql.jdbc.Driver").newInstance();
 /* Create a connection by using getConnection() method that takes parameters
 of string type connection url, user name and password to connect to database.*/
-connection = DriverManager.getConnection(connectionURL, "root", "dnsingh87");
+connection = DriverManager.getConnection(connectionURL, "root", "tiger");
 /* createStatement() is used for create statement object that is used for
 sending sql statements to the specified database. */
 statement = connection.createStatement();

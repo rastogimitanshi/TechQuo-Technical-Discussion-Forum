@@ -39,8 +39,8 @@
  $.ajax({
  url: "/Upvote",
  data: form.serialize(),
- type="get",
- cache= false,
+ type:"get",
+ cache: false,
  success: function (data) {
  var result=data;
  $('#content').html(result);

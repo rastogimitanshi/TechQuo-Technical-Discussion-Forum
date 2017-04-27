@@ -10,6 +10,11 @@
 </head>
 <body>
     <jsp:include page="header.jsp"></jsp:include>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
 <%
 String value=(String)session.getAttribute("flag_val");
 int id=Integer.parseInt(request.getParameter("id"));
